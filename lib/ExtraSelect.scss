@@ -1,0 +1,33 @@
+.extra-select {
+    &.dropdown {
+        background-color: white;
+        border: 1px solid lightgray;
+        padding-top:0.5rem;
+        padding-left:0.5rem;
+    }
+    & .extra-select-search {
+        margin-right: 0.5rem;
+    }
+    
+    &.extra-select-input{
+        
+    }
+    
+    & .scroller{
+        max-height: 250px;
+    }
+    & .dropdown-row {
+        overflow-x: hidden;
+        width:100%;
+        & > label {
+            white-space: nowrap;
+            overflow-x: hidden;
+            width:100%;
+            text-overflow: ellipsis;
+        
+            & > input[type=checkbox]{
+                pointer-events: none;
+            }
+        }
+    }
+}
