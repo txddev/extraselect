@@ -1,8 +1,7 @@
 <script setup>
 import { RecycleScroller } from 'vue-virtual-scroller'
 import { offset, getParents,empty } from './windowUtils'
-import { ref } from "@vue/reactivity";
-import { computed, nextTick, onMounted,onUnmounted, watchEffect } from 'vue';
+import { ref, computed, nextTick, onMounted,onUnmounted, watchEffect } from 'vue';
 import testOptions from './test_options'
 import {loadOptions } from './options'
 
