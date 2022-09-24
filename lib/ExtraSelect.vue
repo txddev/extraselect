@@ -2,8 +2,8 @@
 import { RecycleScroller } from 'vue-virtual-scroller'
 import { offset, getParents,empty } from './windowUtils'
 import { ref, computed, nextTick, onMounted,onUnmounted, watchEffect } from 'vue';
-import testOptions from './test_options'
-import {loadOptions } from './options'
+import {loadOptions, prepareOriginalNode } from './composition/options'
+import {loadSearch} from './composition/search'
 
 const props = defineProps({
     keepOpen: Boolean|null,
@@ -13,26 +13,21 @@ const props = defineProps({
     search: Boolean | null
 })
 
-props.originalNode.hidden = true
+const isMultiple = props.originalNode.multiple
+const {options,selectedOptions} = loadOptions(props.originalNode)
 
-const isMultiple = ref(props.originalNode.multiple)
-const originalSelection = Array.apply(null,props.originalNode.selectedOptions).map(opt => opt.value)
-const selectedOptions = ref(originalSelection.filter(n => n))
+prepareOriginalNode(props.originalNode)
 
-const options = loadOptions(props.originalNode)
 
-empty(props.originalNode)
-
-const searchActive = ref(props.search??true)
 const inputNode = ref(null)
 const dropdownNode = ref(null)
 const searchNode = ref(null)
 const open = ref(false)
-const preventDefault = (e) => e.preventDefault()
+
 const toggleOption = (key,event) => {
     event.preventDefault()
     event.stopPropagation()
-    if(isMultiple.value){
+    if(isMultiple){
         if(selectedOptions.value.includes(key)){
             selectedOptions.value.splice(selectedOptions.value.indexOf(key),1)
         }else{
@@ -74,10 +69,6 @@ const placeDropdown = function () {
     
 }
 
-//const actualTestOptions = testOptions.map((el,idx)=>({...el,key: idx}))
-
-//const options = ref(actualTestOptions)
-
 const getTextWidth = function(text, font) {
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d');
@@ -109,20 +100,12 @@ const dropdownStyle = computed(()=>{
     return out
 })
 
-const filter = ref("")
 
 const setOpen = (value) => {
     open.value = value
 }
 
-
-const filteredOptions = computed(()=>options.value
-    .filter((option)=>{
-    if(filter.value.length>0){
-        return option.value.toLowerCase().includes(filter.value.toLowerCase())
-    }
-    return true
-}))
+const {searchActive,filterText,filteredOptions} = loadSearch(props.search, options)
 
 watchEffect(()=>{
     console.log("watching open",open.value)
@@ -134,7 +117,7 @@ watchEffect(()=>{
             })
         }
     }else{
-        filter.value = ""
+        filterText.value = ""
     }
 })
 
@@ -149,15 +132,15 @@ const placeholder = computed(()=>{
 </script>
 
 <template>
-    <input @focus="setOpen(true)" @click="setOpen(true)" ref="inputNode" :value="placeholder" class="extra-select extra-select-input form-select" readonly="">
+    <input @focus="open = true" @click="open = true" ref="inputNode" :value="placeholder" class="extra-select extra-select-input form-select" readonly="">
     <Teleport to="body">
         <div class="extra-select dropdown" ref="dropdownNode" v-show="open" :style="dropdownStyle">
             <div v-if="searchActive">
-                <input ref="searchNode" class="extra-select-search form-control" v-model="filter" type="text" autocomplete="off" autocorrect="off" autocapitilize="off" spellcheck="false" placeholder="Cerca...">
+                <input ref="searchNode" class="extra-select-search form-control" v-model="filterText" type="text" autocomplete="off" autocorrect="off" autocapitilize="off" spellcheck="false" placeholder="Cerca...">
             </div>
             <template v-if="isMultiple" >
-                <div v-if="filter.length == 0" @click="selectedOptions=options.map(el=>el.key)"><label><b>Select all</b></label></div>
-                <div v-if="filteredOptions.length > 0 && filter.length > 0" @click="selectedOptions=filteredOptions.map(el=>el.key)"><label><b>Select Filtered</b></label></div>
+                <div v-if="filterText.length == 0" @click="selectedOptions=options.map(el=>el.key)"><label><b>Select all</b></label></div>
+                <div v-if="filteredOptions.length > 0 && filterText.length > 0" @click="selectedOptions=filteredOptions.map(el=>el.key)"><label><b>Select Filtered</b></label></div>
                 <div @click="selectedOptions=[]"><label><b>Select None</b></label></div>
             </template>
             <div v-if="filteredOptions.length == 0">No matches found</div>
