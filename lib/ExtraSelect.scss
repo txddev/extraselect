@@ -4,6 +4,9 @@
         border: 1px solid lightgray;
         padding-top:0.5rem;
         padding-left:0.5rem;
+        &.searching {
+            background-color: lightcoral;
+        }
     }
     & .extra-select-search {
         margin-right: 0.5rem;
@@ -16,18 +19,20 @@
     & .scroller{
         max-height: 250px;
     }
+    & label {
+        pointer-events: none;
+        white-space: nowrap;
+        overflow-x: hidden;
+        width:100%;
+        text-overflow: ellipsis;
+    
+        & > input[type=checkbox]{
+            pointer-events: none;
+        }
+    }
     & .dropdown-row {
         overflow-x: hidden;
         width:100%;
-        & > label {
-            white-space: nowrap;
-            overflow-x: hidden;
-            width:100%;
-            text-overflow: ellipsis;
         
-            & > input[type=checkbox]{
-                pointer-events: none;
-            }
-        }
     }
 }

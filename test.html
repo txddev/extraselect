@@ -20,14 +20,19 @@
   <body>
     <main>
     <div>
-      <select multiple class="extraselect form-select" name="test[]">
+      <select multiple class="extraselect form-select" name="test[]" data-url="/test_options.json" data-searchable-url="true" data-min-chars="3" data-show-selected="true">
         <option value="1"> A</option>
-        <option value="2"> B</option>
+        <option value="2"> B2</option>
+        <option value="3"> B3</option>
+        <option value="4"> B4</option>
+        <option value="5"> B5</option>
+        <option value="6"> B6</option>
+        <option value="7"> B1</option>
       </select>
     </div>
   </main>
   <footer>test</footer>
   <script src="https://unpkg.com/vue@3/dist/vue.runtime.global.prod.js"></script>
-  <script src="./dist/extraselect.umd.cjs"></script>
+  <script src="./dist/extraselect.iife.js"></script>
   </body>
 </html>
