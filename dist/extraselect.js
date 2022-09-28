@@ -830,7 +830,7 @@ const ot = (e) => {
         ref_key: "inputNode",
         ref: o,
         value: g(T),
-        class: "extra-select extra-select-input form-select",
+        class: "extra-select extra-select-input",
         readonly: ""
       }, null, 40, pt),
       (y(), C(ne, { to: "body" }, [
@@ -844,7 +844,7 @@ const ot = (e) => {
             W(_("input", {
               ref_key: "searchNode",
               ref: f,
-              class: "extra-select-search form-control",
+              class: "extra-select-search",
               "onUpdate:modelValue": p[2] || (p[2] = (c) => $e(r) ? r.value = c : null),
               type: "text",
               autocomplete: "off",

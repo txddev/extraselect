@@ -72,7 +72,7 @@ if (!props.keepOpen) {
 
 const {dropdownStyle,placeDropdown} = loadStyling(options,selectedOptions,props.originalNode,inputNode,dropdownNode,props.maxWidth)
 
-const toggleOption = (key, event) => {
+const toggleOption = (key) => {
   if (isMultiple) {
     if (selectedOptions.value.includes(key)) {
       selectedOptions.value.splice(selectedOptions.value.indexOf(key), 1);
@@ -85,6 +85,31 @@ const toggleOption = (key, event) => {
   }
 };
 
+const toggleAll = (event,state = null) => {
+  if(state == null) state = !AllSelected.value
+  if(!state){
+    selectedOptions.value = []
+  }else{
+    selectedOptions.value = options.value.map((el) => el.key)
+  }
+}
+
+
+const toggleFiltered = () => {
+  if(FilterSelected.value){
+    filteredOptions.value.forEach(element => {
+      if(selectedOptions.value.includes(element.key)){
+        selectedOptions.value.splice(selectedOptions.value.indexOf(element.key),1)
+      }
+    })
+  }else{
+    filteredOptions.value.forEach(element => {
+      if(!selectedOptions.value.includes(element.key)){
+        selectedOptions.value.push(element.key)
+      }
+    })
+  }
+}
 
 
 watchEffect(() => {
@@ -101,6 +126,9 @@ watchEffect(() => {
 });
 
 const AllSelected = computed(()=>selectedOptions.value.length == options.value.length)
+const FilterSelected = computed(()=>{
+  return filteredOptions.value.reduce((c,el) => c&& selectedOptions.value.includes(el.key),true) 
+})
 const NoneSelected = computed(()=>selectedOptions.value.length == 0)
 
 const placeholder = computed(() => {
@@ -122,7 +150,7 @@ const placeholder = computed(() => {
     @click="open = true"
     ref="inputNode"
     :value="placeholder"
-    class="extra-select extra-select-input form-select"
+    class="extra-select extra-select-input"
     readonly=""
   />
   <Teleport to="body">
@@ -133,10 +161,10 @@ const placeholder = computed(() => {
       v-show="open"
       :style="dropdownStyle"
     >
-      <div v-if="props.search">
+      <div class="input-searching" v-if="props.search">
         <input
           ref="searchNode"
-          class="extra-select-search form-control"
+          class="extra-select-search"
           v-model="filterText"
           type="text"
           autocomplete="off"
@@ -150,19 +178,22 @@ const placeholder = computed(() => {
         <template v-if="isMultiple">
           <div
             v-if="filterText.length == 0"
-            @click="selectedOptions = options.map((el) => el.key)"
+            @click="toggleAll"
           >
-            <label> <input :checked="AllSelected" type="checkbox" /><b>Select all</b></label>
+          <div class="row-input">
+           <input :checked="AllSelected" type="checkbox" /><b>Select all</b>
           </div>
+          </div>
+          <div @click="toggleAll($e,false)">Clear</div>
           <div
             v-if="filteredOptions.length > 0 && filterText.length > 0"
-            @click="selectedOptions = filteredOptions.map((el) => el.key)"
+            @click="toggleFiltered"
           >
-            <label> <input type="checkbox" /><b>Select Filtered</b></label>
+          <div class="row-input">
+            <input :checked="FilterSelected" type="checkbox" /><b>Select Filtered</b>
+            </div>
           </div>
-          <div @click="selectedOptions = []">
-            <label> <input type="checkbox" /><b>Select None</b></label>
-          </div>
+          
         </template>
         <template v-if="filteredOptions.length == 0">
           
@@ -182,14 +213,14 @@ const placeholder = computed(() => {
           @click="toggleOption(item.key, $event)"
           style="height: 32px"
         >
-          <label class="">
+          <div class="row-input">
             <input
               :checked="selectedOptions.includes(item.key)"
               v-if="isMultiple"
               type="checkbox"
             />
             {{ item.value }}
-          </label>
+          </div>
         </div>
       </recycle-scroller>
     </div>

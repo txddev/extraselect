@@ -1,0 +1,87 @@
+body {
+    background-color: #cde4cd;
+}
+
+.container{
+    padding: 2rem;
+}
+
+.extra-select{
+    &.extra-select-input{
+        width: 100%;
+        height: calc(1.5em + .75rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        // background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        &:focus{
+            color: #495057;
+            background-color: #fff;
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
+        }
+    }
+   
+    &.dropdown {
+        background-color: white;
+        border: 1px solid lightgray;
+        // padding-top: 0.5rem;
+        padding-left: 0;
+        & .extra-select-search{
+            // width: 99.3%;
+            width: calc(100% - 1rem);
+            border-radius: 3px;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            margin: 0.4rem;
+            position: relative;
+            &:focus{
+                color: #495057;
+                background-color: #fff;
+                border-color: #80bdff;
+                outline: 0;
+                box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
+            }
+        }
+        & .dropdown-row{
+
+        }
+    }
+    &.dropdown.searching .input-searching::after{
+        content: "searching..";
+        width: 10px;
+        height: 30px;
+        position: absolute;
+        right: 67px;
+        top: 11px;
+        color: #11c3c3;
+        font-size: 13px;
+        font-style: italic;
+    }
+
+}
+.vue-recycle-scroller__item-view.hover{
+    background-color: #eff0f0;
+    cursor: pointer;
+}
+
+.vue-recycle-scroller__item-view.hover .dropdown-row::before{
+    content: "";
+    width: 10px;
+    height: 30px;
+    position: absolute;
+    left: -3px;
+    color: #eff0f0;
+    font-size: 51px;
+}
