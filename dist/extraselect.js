@@ -1,4 +1,4 @@
-import { pushScopeId as he, popScopeId as pe, nextTick as G, openBlock as y, createBlock as C, withScopeId as ve, markRaw as me, shallowReactive as ye, resolveComponent as be, resolveDirective as ge, withDirectives as W, renderSlot as D, createCommentVNode as T, createVNode as q, Fragment as A, renderList as K, ref as I, computed as L, watchEffect as Q, watchPostEffect as we, onMounted as _e, onUnmounted as Se, createElementBlock as z, unref as g, toDisplayString as H, createElementVNode as _, Teleport as ne, normalizeClass as ke, normalizeStyle as ze, isRef as $e, vModelText as xe, withCtx as Oe, createTextVNode as Ie, vShow as Ve, createApp as Ee } from "vue";
+import { pushScopeId as he, popScopeId as pe, nextTick as G, openBlock as y, createBlock as C, withScopeId as ve, markRaw as me, shallowReactive as ye, resolveComponent as be, resolveDirective as ge, withDirectives as W, renderSlot as H, createCommentVNode as T, createVNode as q, Fragment as A, renderList as K, ref as I, computed as L, watchEffect as Q, watchPostEffect as we, onMounted as _e, onUnmounted as Se, createElementBlock as z, unref as g, toDisplayString as D, createElementVNode as _, Teleport as ne, normalizeClass as ke, normalizeStyle as ze, isRef as $e, vModelText as Oe, withCtx as xe, createTextVNode as Ie, vShow as Ve, createApp as Ee } from "vue";
 const V = /* @__PURE__ */ new WeakMap();
 class P {
   static put(t, i, n) {
@@ -151,7 +151,7 @@ function Be(e) {
     callback: e
   } : t = e, t;
 }
-function De(e, t) {
+function He(e, t) {
   var i = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {}, n, s, r, o = function(l) {
     for (var b = arguments.length, f = new Array(b > 1 ? b - 1 : 0), d = 1; d < b; d++)
       f[d - 1] = arguments[d];
@@ -177,7 +177,7 @@ function ae(e, t) {
   }
   return !1;
 }
-var He = /* @__PURE__ */ function() {
+var De = /* @__PURE__ */ function() {
   function e(t, i, n) {
     Me(this, e), this.el = t, this.observer = null, this.frozen = !1, this.createObserver(i, n);
   }
@@ -190,7 +190,7 @@ var He = /* @__PURE__ */ function() {
           s.options.callback(a, l), a && s.options.once && (s.frozen = !0, s.destroyObserver());
         }, this.callback && this.options.throttle) {
           var r = this.options.throttleOptions || {}, o = r.leading;
-          this.callback = De(this.callback, this.options.throttle, {
+          this.callback = He(this.callback, this.options.throttle, {
             leading: function(l) {
               return o === "both" || o === "visible" && l || o === "hidden" && !l;
             }
@@ -233,7 +233,7 @@ function ue(e, t, i) {
     if (typeof IntersectionObserver > "u")
       console.warn("[vue-observe-visibility] IntersectionObserver API is not available in your browser. Please install this polyfill: https://github.com/w3c/IntersectionObserver/tree/master/polyfill");
     else {
-      var s = new He(e, n, i);
+      var s = new De(e, n, i);
       e._vue_visibilityState = s;
     }
 }
@@ -454,16 +454,16 @@ var Z = {
     },
     updateVisibleItems(e, t = !1) {
       const i = this.itemSize, n = this.$_computedMinItemSize, s = this.typeField, r = this.simpleArray ? null : this.keyField, o = this.items, a = o.length, l = this.sizes, b = this.$_views, f = this.$_unusedViews, d = this.pool;
-      let m, h, x;
+      let m, h, O;
       if (!a)
-        m = h = x = 0;
+        m = h = O = 0;
       else if (this.$_prerender)
-        m = 0, h = this.prerender, x = null;
+        m = 0, h = this.prerender, O = null;
       else {
         const v = this.getScroll();
         if (t) {
-          let O = v.start - this.$_lastUpdateScrollPosition;
-          if (O < 0 && (O = -O), i === null && O < n || O < i)
+          let x = v.start - this.$_lastUpdateScrollPosition;
+          if (x < 0 && (x = -x), i === null && x < n || x < i)
             return {
               continuous: !0
             };
@@ -471,17 +471,17 @@ var Z = {
         this.$_lastUpdateScrollPosition = v.start;
         const k = this.buffer;
         if (v.start -= k, v.end += k, i === null) {
-          let O, ee = 0, te = a - 1, $ = ~~(a / 2), ie;
+          let x, ee = 0, te = a - 1, $ = ~~(a / 2), ie;
           do
-            ie = $, O = l[$].accumulator, O < v.start ? ee = $ : $ < a - 1 && l[$ + 1].accumulator > v.start && (te = $), $ = ~~((ee + te) / 2);
+            ie = $, x = l[$].accumulator, x < v.start ? ee = $ : $ < a - 1 && l[$ + 1].accumulator > v.start && (te = $), $ = ~~((ee + te) / 2);
           while ($ !== ie);
-          for ($ < 0 && ($ = 0), m = $, x = l[a - 1].accumulator, h = $; h < a && l[h].accumulator < v.end; h++)
+          for ($ < 0 && ($ = 0), m = $, O = l[a - 1].accumulator, h = $; h < a && l[h].accumulator < v.end; h++)
             ;
           h === -1 ? h = o.length - 1 : (h++, h > a && (h = a));
         } else
-          m = ~~(v.start / i), h = Math.ceil(v.end / i), m < 0 && (m = 0), h > a && (h = a), x = a * i;
+          m = ~~(v.start / i), h = Math.ceil(v.end / i), m < 0 && (m = 0), h > a && (h = a), O = a * i;
       }
-      h - m > qe.itemsLimit && this.itemsLimitError(), this.totalSize = x;
+      h - m > qe.itemsLimit && this.itemsLimitError(), this.totalSize = O;
       let u;
       const E = m <= this.$_endIndex && h >= this.$_startIndex;
       if (this.$_continuous !== E) {
@@ -494,7 +494,7 @@ var Z = {
       } else if (E)
         for (let v = 0, k = d.length; v < k; v++)
           u = d[v], u.nr.used && (e && (u.nr.index = o.findIndex(
-            (O) => r ? O[r] === u.item[r] : O === u.item
+            (x) => r ? x[r] === u.item[r] : x === u.item
           )), (u.nr.index === -1 || u.nr.index < m || u.nr.index >= h) && this.unuseView(u));
       const w = E ? null : /* @__PURE__ */ new Map();
       let p, c, S, N;
@@ -583,7 +583,7 @@ function nt(e, t, i, n, s, r) {
     onScrollPassive: t[2] || (t[2] = (...l) => r.handleScroll && r.handleScroll(...l))
   }, [
     e.$slots.before ? (y(), C("div", tt, [
-      D(e.$slots, "before")
+      H(e.$slots, "before")
     ])) : T("v-if", !0),
     q("div", {
       ref: "wrapper",
@@ -597,7 +597,7 @@ function nt(e, t, i, n, s, r) {
         onMouseenter: (b) => s.hoverKey = l.nr.key,
         onMouseleave: t[1] || (t[1] = (b) => s.hoverKey = null)
       }, [
-        D(e.$slots, "default", {
+        H(e.$slots, "default", {
           item: l.item,
           index: l.nr.index,
           active: l.nr.used
@@ -605,7 +605,7 @@ function nt(e, t, i, n, s, r) {
       ], 46, ["onMouseenter"]))), 128))
     ], 4),
     e.$slots.after ? (y(), C("div", it, [
-      D(e.$slots, "after")
+      H(e.$slots, "after")
     ])) : T("v-if", !0),
     q(o, { onNotify: r.handleResize }, null, 8, ["onNotify"])
   ], 34)), [
@@ -676,11 +676,8 @@ const lt = (e) => {
   const t = Array.apply(null, e.selectedOptions).map((s) => s.value), i = I(t.filter((s) => s)), n = I(Array.apply(null, e.options).reduce((s, r) => (s.push({ value: r.text, key: r.value, data: r.dataset }), s), []));
   return (e.id == null || e.id.length == 0) && (e.id = "extraselect_" + oe.toString(), oe++), ot(n, e.id), { options: n, selectedOptions: i };
 }, le = async function(e, t = null, i = {}) {
-  const n = {
-    method: "POST",
-    body: JSON.stringify({ search: t, ...i })
-  };
-  return await (await fetch(e, n)).json();
+  const n = { method: "POST", credentials: "same-origin", ...i };
+  return n.body = JSON.stringify({ search: t, ...n.body }), await (await fetch(e, n)).json();
 }, ut = (e, t, i, n, s, r = "limited", o = {}) => {
   const a = I(0), l = I(!1), b = L(() => l.value || a.value > 0);
   if (t != null && t.length > 0)
@@ -697,14 +694,14 @@ const lt = (e) => {
               m = !f.includes(n.value);
               break;
             case "complete":
-              m = f.reduce((h, x) => h && !n.value.startsWith(x), !0);
+              m = f.reduce((h, O) => h && !n.value.startsWith(O), !0);
               break;
           }
           if (m) {
             l.value = !0;
             const h = setTimeout(() => {
-              f.push(n.value), a.value += 1, le(t, n.value, o).then((x) => {
-                e.actions.addRange(x), e.actions.sort(), a.value -= 1, l.value = !1;
+              f.push(n.value), a.value += 1, le(t, n.value, o).then((O) => {
+                e.actions.addRange(O), e.actions.sort(), a.value -= 1, l.value = !1;
               });
             }, 500);
             d(() => {
@@ -761,7 +758,7 @@ const lt = (e) => {
   /* @__PURE__ */ _("b", null, "Select None")
 ], -1), _t = [
   wt
-], St = { key: 1 }, kt = { key: 2 }, zt = ["onClick"], $t = { class: "" }, xt = ["checked"], Ot = ["value"], It = {
+], St = { key: 1 }, kt = { key: 2 }, zt = ["onClick"], $t = { class: "" }, Ot = ["checked"], xt = ["value"], It = {
   __name: "ExtraSelect",
   props: {
     originalNode: { type: Object, required: !0 },
@@ -773,7 +770,7 @@ const lt = (e) => {
     minChars: { type: Number, default: 0 },
     showSelected: { type: Boolean, default: !1 },
     fetchMode: { type: String, default: "limited" },
-    fetchData: { type: Object, default: {} }
+    fetchOptions: { type: Object, default: {} }
   },
   setup(e) {
     const t = e, i = t.originalNode.multiple, { options: n, selectedOptions: s } = at(t.originalNode);
@@ -785,7 +782,7 @@ const lt = (e) => {
       r,
       t.minChars,
       t.fetchMode,
-      t.fetchData
+      t.fetchOptions
     ), l = I(null), b = I(null), f = I(null), d = I(!1);
     if (!t.keepOpen) {
       const w = function(p) {
@@ -798,7 +795,7 @@ const lt = (e) => {
         window.document.removeEventListener("mousedown", w), window.document.removeEventListener("focusin", w);
       });
     }
-    const { dropdownStyle: m, placeDropdown: h } = dt(n, s, t.originalNode, l, b, t.maxWidth), x = (w, p) => {
+    const { dropdownStyle: m, placeDropdown: h } = dt(n, s, t.originalNode, l, b, t.maxWidth), O = (w, p) => {
       i ? s.value.includes(w) ? s.value.splice(s.value.indexOf(w), 1) : s.value.push(w) : (s.value = [w], d.value = !1);
     };
     Q(() => {
@@ -818,7 +815,7 @@ const lt = (e) => {
     return (w, p) => (y(), z(A, null, [
       t.showSelected ? (y(), z("div", ft, [
         ht,
-        (y(!0), z(A, null, K(g(s), (c) => (y(), z("div", { key: c }, H(c), 1))), 128))
+        (y(!0), z(A, null, K(g(s), (c) => (y(), z("div", { key: c }, D(c), 1))), 128))
       ])) : T("", !0),
       _("input", {
         onFocus: p[0] || (p[0] = (c) => d.value = !0),
@@ -849,7 +846,7 @@ const lt = (e) => {
               spellcheck: "false",
               placeholder: "Cerca..."
             }, null, 512), [
-              [xe, g(r)]
+              [Oe, g(r)]
             ])
           ])) : T("", !0),
           g(r).length >= t.minChars ? (y(), z(A, { key: 1 }, [
@@ -875,17 +872,17 @@ const lt = (e) => {
               }, _t)
             ], 64)) : T("", !0),
             g(o).length == 0 ? (y(), z("div", St, "No matches found")) : T("", !0)
-          ], 64)) : (y(), z("div", kt, "Insert at least " + H(t.minChars) + " characters", 1)),
+          ], 64)) : (y(), z("div", kt, "Insert at least " + D(t.minChars) + " characters", 1)),
           q(g(Z), {
             items: g(o),
             "item-size": 32,
             "key-field": "key",
             class: "scroller"
           }, {
-            default: Oe(({ item: c }) => [
+            default: xe(({ item: c }) => [
               _("div", {
                 class: "dropdown-row",
-                onClick: (S) => x(c.key),
+                onClick: (S) => O(c.key),
                 style: { height: "32px" }
               }, [
                 _("label", $t, [
@@ -893,8 +890,8 @@ const lt = (e) => {
                     key: 0,
                     checked: g(s).includes(c.key),
                     type: "checkbox"
-                  }, null, 8, xt)) : T("", !0),
-                  Ie(" " + H(c.value), 1)
+                  }, null, 8, Ot)) : T("", !0),
+                  Ie(" " + D(c.value), 1)
                 ])
               ], 8, zt)
             ]),
@@ -911,7 +908,7 @@ const lt = (e) => {
           key: c,
           selected: "selected",
           value: c
-        }, null, 8, Ot))), 128))
+        }, null, 8, xt))), 128))
       ], 8, ["to"]))
     ], 64));
   }

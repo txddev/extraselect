@@ -24,7 +24,7 @@ const props = defineProps({
   minChars: { type: Number, default: 0 },
   showSelected: { type: Boolean, default: false },
   fetchMode: { type: String, default: "limited" },
-  fetchData: { type: Object, default: {} },
+  fetchOptions: { type: Object, default: {} },
 });
 const isMultiple = props.originalNode.multiple;
 const { options, selectedOptions } = loadOptions(props.originalNode);
@@ -39,7 +39,7 @@ const { searchingFlag } = loadSearch(
   filterText,
   props.minChars,
   props.fetchMode,
-  props.fetchData
+  props.fetchOptions
 );
 
 const inputNode = ref(null);
