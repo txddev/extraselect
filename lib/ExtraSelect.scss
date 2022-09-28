@@ -3,24 +3,25 @@
         background-color: white;
         border: 1px solid lightgray;
         padding-top:0.5rem;
-        padding-left:0.5rem;
         &.searching {
-            background-color: lightcoral;
+            background-color:#f8f8f8;
         }
     }
     & .extra-select-search {
         margin-right: 0.5rem;
     }
     
-    &.extra-select-input{
+    // &.extra-select-input{
         
-    }
+    // }
     
     & .scroller{
         max-height: 250px;
     }
-    & label {
+    & .row-input {
+        
         pointer-events: none;
+        user-select: none;
         white-space: nowrap;
         overflow-x: hidden;
         width:100%;
@@ -33,6 +34,9 @@
     & .dropdown-row {
         overflow-x: hidden;
         width:100%;
+        display: flex;
+        justify-content: start;
+        align-items: center;
         
     }
 }

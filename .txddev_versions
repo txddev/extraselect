@@ -1,1 +1,2 @@
 PHP_LOCAL_VERSION="8.1"
+NODE_LOCAL_VERSION="lts/gallium"
