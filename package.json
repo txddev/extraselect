@@ -1,13 +1,17 @@
 {
   "name": "extraselect",
-  "files": ["dist","dist/*.css"],  
+  "files": ["dist"],  
   "main": "./dist/extraselect.umd.cjs",
   "module": "./dist/extraselect.js",
   "exports": {
     ".": {
       "import": "./dist/extraselect.js",
       "require": "./dist/extraselect.umd.cjs"
-    }
+    },
+    "./dist/styles.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
+    } 
   },
   "private": true,
   "version": "0.0.0",
