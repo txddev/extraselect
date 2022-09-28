@@ -22,7 +22,7 @@ const props = defineProps({
   search: { type: Boolean, default: true },
   searchableUrl: { type: Boolean, default: false },
   minChars: { type: Number, default: 0 },
-  showSelected: { type: Boolean, default: true },
+  showSelected: { type: Boolean, default: false },
   fetchMode: { type: String, default: "limited" },
   fetchData: { type: Object, default: {} },
 });
