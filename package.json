@@ -1,6 +1,6 @@
 {
   "name": "extraselect",
-  "files": ["dist"],  
+  "files": ["dist","dist/*.css"],  
   "main": "./dist/extraselect.umd.cjs",
   "module": "./dist/extraselect.js",
   "exports": {
