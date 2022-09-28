@@ -15,8 +15,10 @@ import { loadFilter } from "./composition/filter";
 import { loadStyling } from "./composition/styling";
 
 const props = defineProps({
-  originalNode: { type: Object, required: true },
-  url: String,
+  originalNode: { type: Object, required: false },
+  options: { type: Array, required: false },
+  modelValue: { type: Array, required: false },
+  url: { type:String, required:false },
   keepOpen: { type: Boolean, default: false },
   maxWidth: { type: String, default: "dynamic" },
   search: { type: Boolean, default: true },
@@ -70,7 +72,7 @@ if (!props.keepOpen) {
   });
 }
 
-const {dropdownStyle,placeDropdown} = loadStyling(options,selectedOptions,props.originalNode,inputNode,dropdownNode,props.maxWidth)
+const {dropdownStyle,placeDropdown} = loadStyling(options,selectedOptions,getComputedStyle(props.originalNode).font,inputNode,dropdownNode,props.maxWidth)
 
 const toggleOption = (key, event) => {
   if (isMultiple) {
