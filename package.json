@@ -8,7 +8,7 @@
       "import": "./dist/extraselect.js",
       "require": "./dist/extraselect.umd.cjs"
     },
-    "./dist/styles.css": {
+    "./dist/style.css": {
       "import": "./dist/style.css",
       "require": "./dist/style.css"
     } 
