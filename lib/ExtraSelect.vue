@@ -16,6 +16,7 @@ import { loadStyling } from "./composition/styling";
 
 const props = defineProps({
   originalNode: { type: Object, required: false },
+  multiple: {type: Boolean, required: false},
   options: { type: Array, required: false },
   modelValue: { type: Array, required: false },
   url: { type:String, required:false },
@@ -28,9 +29,12 @@ const props = defineProps({
   fetchMode: { type: String, default: "limited" },
   fetchOptions: { type: Object, default: {} },
 });
-const isMultiple = props.originalNode.multiple;
-const { options, selectedOptions } = loadOptions(props.originalNode);
+const isMultiple = computed(() => props.originalNode?.multiple || props.multiple)
+
+
+const { options, selectedOptions } = loadOptions(props.originalNode,props.options,props.modelValue);
 prepareOriginalNode(props.originalNode);
+const emit = defineEmits(['update:modelValue'])
 
 
 const { filterText, filteredOptions } = loadFilter(options, props.minChars)
@@ -72,7 +76,7 @@ if (!props.keepOpen) {
   });
 }
 
-const {dropdownStyle,placeDropdown} = loadStyling(options,selectedOptions,getComputedStyle(props.originalNode).font,inputNode,dropdownNode,props.maxWidth)
+const {dropdownStyle,placeDropdown} = loadStyling(options,selectedOptions,inputNode,dropdownNode,props.maxWidth)
 
 const toggleOption = (key) => {
   if (isMultiple) {
@@ -85,6 +89,7 @@ const toggleOption = (key) => {
     selectedOptions.value = [key];
     open.value = false;
   }
+  emit('update:modelValue', selectedOptions.value)
 };
 
 const toggleAll = (event,state = null) => {
@@ -94,6 +99,7 @@ const toggleAll = (event,state = null) => {
   }else{
     selectedOptions.value = options.value.map((el) => el.key)
   }
+  emit('update:modelValue', selectedOptions.value)
 }
 
 
@@ -111,6 +117,7 @@ const toggleFiltered = () => {
       }
     })
   }
+  emit('update:modelValue', selectedOptions.value)
 }
 
 
@@ -227,7 +234,7 @@ const placeholder = computed(() => {
       </recycle-scroller>
     </div>
   </Teleport>
-  <Teleport :to="props.originalNode">
+  <Teleport v-if="props.originalNode" :to="props.originalNode">
     <option
       v-for="opt in selectedOptions"
       :key="opt"
