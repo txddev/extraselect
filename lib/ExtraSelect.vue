@@ -24,7 +24,7 @@ const props = defineProps({
   minChars: { type: Number, default: 0 },
   showSelected: { type: Boolean, default: false },
   fetchMode: { type: String, default: "limited" },
-  fetchData: { type: Object, default: {} },
+  fetchOptions: { type: Object, default: {} },
 });
 const isMultiple = props.originalNode.multiple;
 const { options, selectedOptions } = loadOptions(props.originalNode);
@@ -39,7 +39,7 @@ const { searchingFlag } = loadSearch(
   filterText,
   props.minChars,
   props.fetchMode,
-  props.fetchData
+  props.fetchOptions
 );
 
 const inputNode = ref(null);
@@ -146,28 +146,30 @@ const placeholder = computed(() => {
           placeholder="Cerca..."
         />
       </div>
-      <template v-if="isMultiple">
-        <div
-          v-if="filterText.length == 0"
-          @click="selectedOptions = options.map((el) => el.key)"
-        >
-          <label> <input :checked="AllSelected" type="checkbox" /><b>Select all</b></label>
-        </div>
-        <div
-          v-if="filteredOptions.length > 0 && filterText.length > 0"
-          @click="selectedOptions = filteredOptions.map((el) => el.key)"
-        >
-          <label> <input type="checkbox" /><b>Select Filtered</b></label>
-        </div>
-        <div @click="selectedOptions = []">
-          <label> <input type="checkbox" /><b>Select None</b></label>
-        </div>
+      <template v-if="filterText.length >= props.minChars">
+        <template v-if="isMultiple">
+          <div
+            v-if="filterText.length == 0"
+            @click="selectedOptions = options.map((el) => el.key)"
+          >
+            <label> <input :checked="AllSelected" type="checkbox" /><b>Select all</b></label>
+          </div>
+          <div
+            v-if="filteredOptions.length > 0 && filterText.length > 0"
+            @click="selectedOptions = filteredOptions.map((el) => el.key)"
+          >
+            <label> <input type="checkbox" /><b>Select Filtered</b></label>
+          </div>
+          <div @click="selectedOptions = []">
+            <label> <input type="checkbox" /><b>Select None</b></label>
+          </div>
+        </template>
+        <template v-if="filteredOptions.length == 0">
+          
+          <div >No matches found</div>
+        </template>
       </template>
-      <template v-if="filteredOptions.length == 0">
-        <div v-if="filterText.length < props.minChars">Insert at least {{props.minChars}} characters</div>
-        <div v-else>No matches found</div>
-        
-      </template>
+      <div v-else >Insert at least {{props.minChars}} characters</div>
       <recycle-scroller
         :items="filteredOptions"
         :item-size="32"
