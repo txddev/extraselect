@@ -79,7 +79,7 @@ onUnmounted(() => {
 });
 
 
-const {dropdownStyle,placeDropdown} = loadStyling(options,selectedOptions,inputNode,dropdownNode,props.maxWidth)
+const {dropdownStyle,placeDropdown} = loadStyling(options,selectedOptions,open,inputNode,dropdownNode,props.maxWidth)
 
 const toggleOption = (key) => {
   if (isMultiple.value) {
