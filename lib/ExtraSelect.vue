@@ -185,28 +185,33 @@ const placeholder = computed(() => {
       </div>
       <template v-if="filterText.length >= props.minChars">
         <template v-if="isMultiple">
-          <div
-            v-if="filterText.length == 0"
-            @click="toggleAll"
-          >
-          <div class="row-input">
-           <input :checked="AllSelected" type="checkbox" /><b>Select all</b>
-          </div>
-          </div>
-          <div @click="toggleAll($e,false)">Clear</div>
-          <div
+          <div class="allselect-clear">
+            <div
+              v-if="filterText.length == 0"
+              @click="toggleAll"
+            >
+              <div class="row-input">
+                <input :checked="AllSelected" type="checkbox" /><b>Select all</b>
+              </div>
+            </div>
+            <div
             v-if="filteredOptions.length > 0 && filterText.length > 0"
             @click="toggleFiltered"
           >
-          <div class="row-input">
-            <input :checked="FilterSelected" type="checkbox" /><b>Select Filtered</b>
+            <div class="row-input">
+              <input :checked="FilterSelected" type="checkbox" /><b>Select Filtered</b>
             </div>
           </div>
+
+            <div class="clear" @click="toggleAll($e,false)">Clear</div>
+            
+          </div>
+          
           
         </template>
         <template v-if="filteredOptions.length == 0">
           
-          <div >No matches found</div>
+          <div class="no-matches">No matches found</div>
         </template>
       </template>
       <div v-else >Insert at least {{props.minChars}} characters</div>

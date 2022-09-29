@@ -1,3 +1,12 @@
+// variables
+$primary: #11c3c3;
+$primary-darker: darken($primary, 10%);
+
+// general
+.pointer{
+    cursor: pointer;
+}
+
 .extra-select {
     &.dropdown {
         background-color: white;
@@ -10,23 +19,44 @@
     & .extra-select-search {
         margin-right: 0.5rem;
     }
-    
-    // &.extra-select-input{
-        
-    // }
-    
+    & .allselect-clear{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        & div:first-child{
+            flex-grow: 1;
+            padding: 0.1rem 0.5rem;
+            margin-right: 0.5rem;
+            cursor: pointer;
+            &:hover{
+                background-color: #eff0f0;
+            }
+        }
+        & .clear{
+            color: $primary;
+            font-weight: bold;
+            padding: 0 1rem 0 0.5rem;
+            cursor: pointer;
+            &:hover{
+                color: $primary-darker;
+                background-color: transparent !important;
+            }
+        }
+    }
     & .scroller{
         max-height: 250px;
     }
+    & .no-matches{
+        font-style: italic;
+        padding-left: 0.5rem;
+    }
     & .row-input {
-        
         pointer-events: none;
         user-select: none;
         white-space: nowrap;
         overflow-x: hidden;
         width:100%;
         text-overflow: ellipsis;
-    
         & > input[type=checkbox]{
             pointer-events: none;
         }
@@ -37,6 +67,10 @@
         display: flex;
         justify-content: start;
         align-items: center;
-        
+        padding: 0 1rem;
+    }
+    .vue-recycle-scroller__item-view.hover{
+        background-color: #eff0f0;
+        cursor: pointer;
     }
 }
