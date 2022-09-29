@@ -1,42 +1,23 @@
-
+@import 'extraselect.scss';
 
 // bootstrap 3
-$primary: #337ab7;
-$dark-bs3:#555;
-$input-bs3: #ccc;
-$focus-bs3: #66afe9;
-$shadow-bs3: rgba(102,175,233,.6);
+:root{
+    --es-primary:#337ab7;
+    --es-dark:#555;
+    --es-input: #ccc;
+    --es-focus: #66afe9;
+    --es-shadow: rgba(102,175,233,.6);
+
+}
+
 
 // component
 .extra-select{
-    &.extra-select-input{
-        display: block;
-        width: 100%;
-        height: 34px;
-        padding: 6px 12px;
-        font-size: 14px;
-        line-height: 1.42857143;
-        color: $dark-bs3;
-        background-color: #fff;
-        background-image: none;
-        border: 1px solid $input-bs3;
-        border-radius: 4px;
-        -webkit-box-shadow: inset 0 1px 1px $box-shadow;
-        box-shadow: inset 0 1px 1px $box-shadow;
-        -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-        -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-        &:focus{
-            border-color: $focus-bs3;
-            outline: 0;
-            -webkit-box-shadow: inset 0 1px 1px $box-shadow,0 0 8px $shadow-bs3;
-            box-shadow: inset 0 1px 1px $box-shadow,0 0 8px $shadow-bs3;
-        }
-    }
+    
     &.dropdown {
-        border: 1px solid $gray-border;
+        border: 1px solid var(--es-gray-border);
         border-radius: 4px;
-        box-shadow: 0 0 8px $box-shadow;
+        box-shadow: 0 0 8px var(--es-box-shadow);
         & .extra-select-search{
             display: block;
             
@@ -44,22 +25,22 @@ $shadow-bs3: rgba(102,175,233,.6);
             padding: 6px 12px;
             font-size: 14px;
             line-height: 1.42857143;
-            color: $dark-bs3;
+            color: var(--es-dark);
             background-color: #fff;
             background-image: none;
-            border: 1px solid $input-bs3;
+            border: 1px solid var(--es-input);
             border-radius: 4px;
-            -webkit-box-shadow: inset 0 1px 1px $box-shadow;
-            box-shadow: inset 0 1px 1px $box-shadow;
+            -webkit-box-shadow: inset 0 1px 1px var(--es-box-shadow);
+            box-shadow: inset 0 1px 1px var(--es-box-shadow);
             -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
             -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
             transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
             margin-bottom: 0.5rem;
             &:focus{
-                border-color: $focus-bs3;
+                border-color: var(--es-focus);
                 outline: 0;
-                -webkit-box-shadow: inset 0 1px 1px $box-shadow,0 0 8px $shadow-bs3;
-                box-shadow: inset 0 1px 1px $box-shadow,0 0 8px $shadow-bs3;
+                -webkit-box-shadow: inset 0 1px 1px var(--es-box-shadow),0 0 8px var(--es-shadow);
+                box-shadow: inset 0 1px 1px var(--es-box-shadow),0 0 8px var(--es-shadow);
             }
         }
        
@@ -69,7 +50,7 @@ $shadow-bs3: rgba(102,175,233,.6);
         position: absolute;
         right: 19px;
         top: 17px;
-        color: $primary;
+        color: var(--es-primary);
         font-size: 13px;
         font-style: italic;
     }
@@ -79,23 +60,3 @@ $shadow-bs3: rgba(102,175,233,.6);
         }
     }
 }
-
-// prova codice per mettere fake chevron down
-/* remove the original arrow */
-.extra-select select.input {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -o-appearance: none;
-    /* no standardized syntax available, no ie-friendly solution available */
-  }
-.extra-select select + i.fa {
-    float: right;
-    margin-top: -30px;
-    margin-right: 5px;
-    /* this is so when you click on the chevron, your click actually goes on the dropdown menu */
-    pointer-events: none;
-    /* everything after this is just to cover up the original arrow */
-    /* (for browsers that don't support the syntax used above) */
-    background-color: #fff;
-    padding-right: 5px;
-  }
