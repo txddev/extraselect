@@ -1,3 +1,117 @@
+// da cancellare, solo per preview
 body {
-    background-color: blue;
+    background-color: rgb(234, 234, 254);
 }
+.bg-light{
+    background-color: #f8f9fa !important;
+}
+.blocco-esempio{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 2rem;
+    & select{
+        margin-right: 2rem;
+    }
+}
+// fine codice da cancellare
+// variables
+// variables
+$primary: #1126c3;
+$primary-darker: darken($primary, 10%);
+
+// component
+.extra-select{
+    &.extra-select-input{
+        display: block;
+        width: 100%;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+        -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        &:focus{
+            border-color: #66afe9;
+            outline: 0;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+        }
+    }
+    &.dropdown {
+        border: 1px solid rgb(180, 180, 180);
+        border-radius: 4px;
+        box-shadow: 0 0 8px rgba(0,0,0,.075);
+        & .extra-select-search{
+            display: block;
+            width: 100%;
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            margin-bottom: 0.5rem;
+            &:focus{
+                border-color: #66afe9;
+                outline: 0;
+                -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+                box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+            }
+        }
+       
+    }
+    &.dropdown.searching .input-searching::after{
+        content: "searching..";
+        position: absolute;
+        right: 19px;
+        top: 17px;
+        color: $primary;
+        font-size: 13px;
+        font-style: italic;
+    }
+    & .allselect-clear{
+        & div:first-child{
+            padding: 0.25rem 0.5rem;
+        }
+        & .clear{
+            color: $primary;
+        }
+    }
+}
+
+// prova codice per mettere fake chevron down
+/* remove the original arrow */
+.extra-select select.input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    /* no standardized syntax available, no ie-friendly solution available */
+  }
+.extra-select select + i.fa {
+    float: right;
+    margin-top: -30px;
+    margin-right: 5px;
+    /* this is so when you click on the chevron, your click actually goes on the dropdown menu */
+    pointer-events: none;
+    /* everything after this is just to cover up the original arrow */
+    /* (for browsers that don't support the syntax used above) */
+    background-color: #fff;
+    padding-right: 5px;
+  }

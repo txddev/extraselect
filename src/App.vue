@@ -50,14 +50,14 @@ const showSelected = ref(false)
     <div><input v-model="minChars" type="number" />minChars</div>
     <div><input v-model="maxWidth" type="text" />maxWidth</div>
     
-    <extra-select :options="options" v-model="selection" 
+    <!-- <extra-select :options="options" v-model="selection" 
       :multiple="multiple"
       :keepOpen="keepOpen"
       :maxWidth="maxWidth"
       :search="search"
       :minChars="minChars"
       :showSelected="showSelected"
-    ></extra-select>
+    ></extra-select> -->
   </div>
   
 </template>

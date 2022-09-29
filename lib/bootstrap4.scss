@@ -2,15 +2,16 @@
 $primary: #11c3c3;
 $primary-darker: darken($primary, 10%);
 
-// general
+// da cancellare, solo per preview
 body {
     background-color: #cde4cd;
 }
-
 .container{
     padding: 2rem;
 }
+// fine codice da cancellare, 
 
+// component
 .extra-select{
     &.extra-select-input{
         width: 100%;
@@ -32,13 +33,13 @@ body {
             box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
         }
     }
-   
     &.dropdown {
         background-color: white;
-        border: 1px solid lightgray;
-        padding-left: 0;
+        border: 1px solid rgb(180, 180, 180);
+        border-radius: 3px;
+        box-shadow: 0 0 8px rgba(0,0,0,.075);
         & .extra-select-search{
-            width: calc(100% - 1rem);
+            // width: calc(100% - 1rem);
             border-radius: 3px;
             font-size: 1rem;
             font-weight: 400;
@@ -47,7 +48,7 @@ body {
             background-color: #fff;
             background-clip: padding-box;
             border: 1px solid #ced4da;
-            margin: 0.4rem;
+            // margin: 0.4rem;
             position: relative;
             &:focus{
                 color: #495057;
@@ -57,14 +58,9 @@ body {
                 box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
             }
         }
-        & .dropdown-row{
-
-        }
     }
     &.dropdown.searching .input-searching::after{
         content: "searching..";
-        width: 10px;
-        height: 30px;
         position: absolute;
         right: 67px;
         top: 17px;
@@ -72,5 +68,9 @@ body {
         font-size: 13px;
         font-style: italic;
     }
-
+    & .allselect-clear{
+        & div:first-child{
+            padding: 0.1rem 0.5rem;
+        }
+    }
 }

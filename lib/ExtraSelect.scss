@@ -10,22 +10,23 @@ $primary-darker: darken($primary, 10%);
 .extra-select {
     &.dropdown {
         background-color: white;
-        border: 1px solid lightgray;
         padding-top:0.5rem;
+        padding-left: 0;
         &.searching {
             background-color:#f8f8f8;
         }
-    }
-    & .extra-select-search {
-        margin-right: 0.5rem;
+        & .extra-select-search {
+            margin: 0.4rem;
+            width: calc(100% - 1rem);
+        }
     }
     & .allselect-clear{
         display: flex;
         justify-content: space-between;
         align-items: center;
+        border-bottom: 1px solid #ced4da;
         & div:first-child{
             flex-grow: 1;
-            padding: 0.1rem 0.5rem;
             margin-right: 0.5rem;
             cursor: pointer;
             &:hover{
@@ -41,6 +42,9 @@ $primary-darker: darken($primary, 10%);
                 color: $primary-darker;
                 background-color: transparent !important;
             }
+        }
+        & .row-input input{
+            margin-right: 0.45rem;
         }
     }
     & .scroller{
