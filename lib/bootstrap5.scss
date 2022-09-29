@@ -1,15 +1,5 @@
+@import "ExtraSelect.scss";
 
-// da cancellare, solo per preview
-body {
-    background-color: #ffebe8;
-}
-.container{
-    padding: 2rem;
-}
-.bg-light{
-    background-color: #fffaf9 !important
-}
-// fine codice da cancellare
 
 // variables
 $primary: #250b7f;
@@ -46,7 +36,6 @@ $primary-darker: darken($primary, 10%);
         box-shadow: 0 0 8px rgba(0,0,0,.075);
         & .extra-select-search{
             display: block;
-            // width: 100%;
             padding: .375rem .75rem;
             font-size: 1rem;
             font-weight: 400;

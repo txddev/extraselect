@@ -1,20 +1,5 @@
-// da cancellare, solo per preview
-body {
-    background-color: rgb(234, 234, 254);
-}
-.bg-light{
-    background-color: #f8f9fa !important;
-}
-.blocco-esempio{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-top: 2rem;
-    & select{
-        margin-right: 2rem;
-    }
-}
-// fine codice da cancellare
+@import "ExtraSelect.scss";
+
 // variables
 $primary: #1126c3;
 $primary-darker: darken($primary, 10%);
@@ -23,7 +8,7 @@ $primary-darker: darken($primary, 10%);
 .extra-select{
     &.extra-select-input{
         display: block;
-        // width: 100%;
+        width: 100%;
         height: 34px;
         padding: 6px 12px;
         font-size: 14px;
@@ -51,7 +36,7 @@ $primary-darker: darken($primary, 10%);
         box-shadow: 0 0 8px rgba(0,0,0,.075);
         & .extra-select-search{
             display: block;
-            width: 100%;
+            
             height: 34px;
             padding: 6px 12px;
             font-size: 14px;

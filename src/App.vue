@@ -29,6 +29,7 @@ const maxWidth = ref("dynamic")
 const search = ref(true)
 const minChars= ref(0)
 const showSelected = ref(false)
+const removeIcon = ref(null)
 
   // fetchMode: { type: String, default: "limited" },
   // fetchOptions: { type: Object, default: {} },
@@ -41,6 +42,9 @@ const showSelected = ref(false)
 
 <template>
   <div>
+    <a href="/index-b3.html"> Bootstrap 3</a>
+    <a href="/index-b4.html"> Bootstrap 4</a>
+    <a href="/index-b5.html"> Bootstrap 5</a>
     <h2>Vue Component</h2>
     <div>Selected Options: {{selection.join(", ")}}</div>
     <div><label><input v-model="multiple" type="checkbox" />multiple</label></div>
@@ -49,15 +53,17 @@ const showSelected = ref(false)
     <div><label><input v-model="showSelected" type="checkbox" />showSelected</label></div>
     <div><input v-model="minChars" type="number" />minChars</div>
     <div><input v-model="maxWidth" type="text" />maxWidth</div>
+    <div><input v-model="removeIcon" type="text" />removeIcon</div>
     
-    <!-- <extra-select :options="options" v-model="selection" 
+    <extra-select :options="options" v-model="selection" 
       :multiple="multiple"
       :keepOpen="keepOpen"
       :maxWidth="maxWidth"
       :search="search"
       :minChars="minChars"
       :showSelected="showSelected"
-    ></extra-select> -->
+      :remove-icon="removeIcon"
+    ></extra-select>
   </div>
   
 </template>

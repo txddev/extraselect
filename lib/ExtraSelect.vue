@@ -20,7 +20,6 @@ const props = defineProps({
   options: { type: Array, required: false },
   modelValue: { type: Array, required: false },
   url: { type:String, required:false },
-  keepOpen: { type: Boolean, default: false },
   maxWidth: { type: String, default: "dynamic" },
   search: { type: Boolean, default: true },
   searchableUrl: { type: Boolean, default: false },
@@ -28,8 +27,9 @@ const props = defineProps({
   showSelected: { type: Boolean, default: false },
   fetchMode: { type: String, default: "limited" },
   fetchOptions: { type: Object, default: {} },
+  removeIcon: {type: String, default: "X"}
 });
-const isMultiple = computed(() => props.originalNode?.multiple || props.multiple)
+const isMultiple = computed(() => props.originalNode?.multiple ?? props.multiple)
 
 
 const { options, selectedOptions } = loadOptions(props.originalNode,props.options,props.modelValue);
@@ -53,33 +53,33 @@ const dropdownNode = ref(null);
 const searchNode = ref(null);
 const open = ref(false);
 
-if (!props.keepOpen) {
-  const autoCloseHandler = function (e) {
-    const elements = getParents(e.target);
-    elements.push(e.target);
 
-    if (
-      !elements.includes(inputNode.value) &&
-      !elements.includes(dropdownNode.value)
-    ) {
-      open.value = false;
-    }
-  };
+const autoCloseHandler = function (e) {
+  const elements = getParents(e.target);
+  elements.push(e.target);
 
-  onMounted(() => {
-    window.document.addEventListener("mousedown", autoCloseHandler);
-    window.document.addEventListener("focusin", autoCloseHandler);
-  });
-  onUnmounted(() => {
-    window.document.removeEventListener("mousedown", autoCloseHandler);
-    window.document.removeEventListener("focusin", autoCloseHandler);
-  });
-}
+  if (
+    !elements.includes(inputNode.value) &&
+    !elements.includes(dropdownNode.value)
+  ) {
+    open.value = false;
+  }
+};
+
+onMounted(() => {
+  window.document.addEventListener("mousedown", autoCloseHandler);
+  window.document.addEventListener("focusin", autoCloseHandler);
+});
+onUnmounted(() => {
+  window.document.removeEventListener("mousedown", autoCloseHandler);
+  window.document.removeEventListener("focusin", autoCloseHandler);
+});
+
 
 const {dropdownStyle,placeDropdown} = loadStyling(options,selectedOptions,inputNode,dropdownNode,props.maxWidth)
 
 const toggleOption = (key) => {
-  if (isMultiple) {
+  if (isMultiple.value) {
     if (selectedOptions.value.includes(key)) {
       selectedOptions.value.splice(selectedOptions.value.indexOf(key), 1);
     } else {
@@ -91,7 +91,10 @@ const toggleOption = (key) => {
   }
   emit('update:modelValue', selectedOptions.value)
 };
-
+const clear = ($e) => {
+  toggleAll($e,false)
+  filterText.value = ""
+}
 const toggleAll = (event,state = null) => {
   if(state == null) state = !AllSelected.value
   if(!state){
@@ -150,9 +153,14 @@ const placeholder = computed(() => {
 </script>
 
 <template>
-  <div v-if="props.showSelected">
-    <h2>selezione:</h2>
-    <div v-for="opt in selectedOptions" :key="opt">{{ opt }}</div>
+  <div v-if="props.showSelected" class="extra-select selection">
+    <template v-for="opt in selectedOptions" :key="opt">
+      <div @click="toggleOption(opt)" class="selection-badge">
+          {{ options.find(el=>el.key == opt)?.value }}
+        <div class="selection-remove" v-html="props.removeIcon"></div>
+      </div>
+    </template>
+    
   </div>
   <input
     @focus="open = true"
@@ -189,6 +197,7 @@ const placeholder = computed(() => {
             <div
               v-if="filterText.length == 0"
               @click="toggleAll"
+              class="all-select"
             >
               <div class="row-input">
                 <input :checked="AllSelected" type="checkbox" /><b>Select all</b>
@@ -197,13 +206,14 @@ const placeholder = computed(() => {
             <div
             v-if="filteredOptions.length > 0 && filterText.length > 0"
             @click="toggleFiltered"
+            class="all-select"
           >
             <div class="row-input">
               <input :checked="FilterSelected" type="checkbox" /><b>Select Filtered</b>
             </div>
           </div>
 
-            <div class="clear" @click="toggleAll($e,false)">Clear</div>
+            <div class="clear" @click="clear">Clear</div>
             
           </div>
           

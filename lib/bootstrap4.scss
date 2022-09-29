@@ -1,15 +1,7 @@
-// da cancellare, solo per preview
-body {
-    background-color: #cde4cd;
-}
-.container{
-    padding: 2rem;
-}
-// fine codice da cancellare
-
+@import "ExtraSelect.scss";
 // variables
-$primary: #11c3c3;
-$primary-darker: darken($primary, 10%);
+$primary: var(--primary);
+
 
 // component
 .extra-select{
@@ -65,8 +57,14 @@ $primary-darker: darken($primary, 10%);
         font-style: italic;
     }
     & .allselect-clear{
-        & div:first-child{
+        & div {
             padding: 0.1rem 0.5rem;
+        }
+        & .clear{
+            color: $primary; 
+            &:hover{
+                filter: brightness(85%);
+            }
         }
     }
 }

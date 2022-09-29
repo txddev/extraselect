@@ -1,4 +1,4 @@
-import { pushScopeId as fe, popScopeId as he, nextTick as Q, openBlock as y, createBlock as C, withScopeId as pe, markRaw as ve, shallowReactive as me, resolveComponent as ye, resolveDirective as be, withDirectives as W, renderSlot as D, createCommentVNode as T, createVNode as K, Fragment as M, renderList as J, ref as x, watchEffect as L, computed as A, watchPostEffect as ge, onMounted as we, onUnmounted as _e, createElementBlock as _, unref as g, toDisplayString as q, createElementVNode as S, Teleport as ne, normalizeClass as Se, normalizeStyle as ke, isRef as ze, vModelText as Oe, withCtx as $e, createTextVNode as xe, vShow as Ie, createApp as Ve } from "vue";
+import { pushScopeId as fe, popScopeId as he, nextTick as Q, openBlock as y, createBlock as C, withScopeId as pe, markRaw as ve, shallowReactive as me, resolveComponent as ye, resolveDirective as be, withDirectives as W, renderSlot as D, createCommentVNode as T, createVNode as K, Fragment as N, renderList as J, ref as x, watchEffect as L, computed as A, watchPostEffect as ge, onMounted as we, onUnmounted as _e, createElementBlock as _, unref as g, toDisplayString as q, createElementVNode as S, Teleport as ne, normalizeClass as Se, normalizeStyle as ke, isRef as ze, vModelText as Oe, withCtx as $e, createTextVNode as xe, vShow as Ie, createApp as Ve } from "vue";
 const E = /* @__PURE__ */ new WeakMap();
 class F {
   static put(t, i, n) {
@@ -590,7 +590,7 @@ function it(e, t, i, n, s, r) {
       style: { [e.direction === "vertical" ? "minHeight" : "minWidth"]: s.totalSize + "px" },
       class: "vue-recycle-scroller__item-wrapper"
     }, [
-      (y(!0), C(M, null, J(s.pool, (o) => (y(), C("div", {
+      (y(!0), C(N, null, J(s.pool, (o) => (y(), C("div", {
         key: o.nr.id,
         style: s.ready ? { transform: `translate${e.direction === "vertical" ? "Y" : "X"}(${o.position}px)` } : null,
         class: ["vue-recycle-scroller__item-view", { hover: s.hoverKey === o.nr.key }],
@@ -614,7 +614,7 @@ function it(e, t, i, n, s, r) {
 }
 Z.render = it;
 Z.__file = "src/components/RecycleScroller.vue";
-const N = function(e) {
+const M = function(e) {
   if (e == null)
     return { top: 0, left: 0 };
   let t = e.getBoundingClientRect();
@@ -741,11 +741,11 @@ const ot = (e) => {
     const h = document.createElement("canvas").getContext("2d");
     return h.font = v, h.measureText(f).width;
   }, l = function() {
-    var f = N(i.value), v = N(document.querySelector("body"));
+    var f = M(i.value), v = M(document.querySelector("body"));
     n.value.style.top = -v.top + f.top;
   }, a = A(() => {
     var v;
-    const f = (v = N(i.value).width) != null ? v : 100;
+    const f = (v = M(i.value).width) != null ? v : 100;
     if (s === "inherit")
       return f;
     if (s == null || s === "dynamic") {
@@ -759,7 +759,7 @@ const ot = (e) => {
   });
   return ge(() => {
     t.value.length < 0 && console.log("empty selection");
-    var f = N(i.value), v = N(document.querySelector("body"));
+    var f = M(i.value), v = M(document.querySelector("body"));
     o.value = {
       position: "absolute",
       "min-width": "max-content",
@@ -771,7 +771,13 @@ const ot = (e) => {
 }, ft = { key: 0 }, ht = /* @__PURE__ */ S("h2", null, "selezione:", -1), pt = ["value"], vt = {
   key: 0,
   class: "input-searching"
-}, mt = { class: "row-input" }, yt = ["checked"], bt = /* @__PURE__ */ S("b", null, "Select all", -1), gt = { class: "row-input" }, wt = ["checked"], _t = /* @__PURE__ */ S("b", null, "Select Filtered", -1), St = { key: 1 }, kt = { key: 2 }, zt = ["onClick"], Ot = { class: "row-input" }, $t = ["checked"], xt = ["value"], It = {
+}, mt = {
+  key: 0,
+  class: "allselect-clear"
+}, yt = { class: "row-input" }, bt = ["checked"], gt = /* @__PURE__ */ S("b", null, "Select all", -1), wt = { class: "row-input" }, _t = ["checked"], St = /* @__PURE__ */ S("b", null, "Select Filtered", -1), kt = {
+  key: 1,
+  class: "no-matches"
+}, zt = { key: 2 }, Ot = ["onClick"], $t = { class: "row-input" }, xt = ["checked"], It = ["value"], Vt = {
   __name: "ExtraSelect",
   props: {
     originalNode: { type: Object, required: !1 },
@@ -840,10 +846,10 @@ const ot = (e) => {
       }).join(", ");
       return p.length > 0 ? p : "--";
     });
-    return (p, u) => (y(), _(M, null, [
+    return (p, u) => (y(), _(N, null, [
       i.showSelected ? (y(), _("div", ft, [
         ht,
-        (y(!0), _(M, null, J(g(r), (c) => (y(), _("div", { key: c }, q(c), 1))), 128))
+        (y(!0), _(N, null, J(g(r), (c) => (y(), _("div", { key: c }, q(c), 1))), 128))
       ])) : T("", !0),
       S("input", {
         onFocus: u[0] || (u[0] = (c) => h.value = !0),
@@ -877,38 +883,39 @@ const ot = (e) => {
               [Oe, g(l)]
             ])
           ])) : T("", !0),
-          g(l).length >= i.minChars ? (y(), _(M, { key: 1 }, [
-            g(n) ? (y(), _(M, { key: 0 }, [
+          g(l).length >= i.minChars ? (y(), _(N, { key: 1 }, [
+            g(n) ? (y(), _("div", mt, [
               g(l).length == 0 ? (y(), _("div", {
                 key: 0,
                 onClick: I
               }, [
-                S("div", mt, [
+                S("div", yt, [
                   S("input", {
                     checked: g(k),
                     type: "checkbox"
-                  }, null, 8, yt),
-                  bt
+                  }, null, 8, bt),
+                  gt
                 ])
               ])) : T("", !0),
-              S("div", {
-                onClick: u[3] || (u[3] = (c) => I(p.$e, !1))
-              }, "Clear"),
               g(a).length > 0 && g(l).length > 0 ? (y(), _("div", {
                 key: 1,
                 onClick: P
               }, [
-                S("div", gt, [
+                S("div", wt, [
                   S("input", {
                     checked: g(z),
                     type: "checkbox"
-                  }, null, 8, wt),
-                  _t
+                  }, null, 8, _t),
+                  St
                 ])
-              ])) : T("", !0)
-            ], 64)) : T("", !0),
-            g(a).length == 0 ? (y(), _("div", St, "No matches found")) : T("", !0)
-          ], 64)) : (y(), _("div", kt, "Insert at least " + q(i.minChars) + " characters", 1)),
+              ])) : T("", !0),
+              S("div", {
+                class: "clear",
+                onClick: u[3] || (u[3] = (c) => I(p.$e, !1))
+              }, "Clear")
+            ])) : T("", !0),
+            g(a).length == 0 ? (y(), _("div", kt, "No matches found")) : T("", !0)
+          ], 64)) : (y(), _("div", zt, "Insert at least " + q(i.minChars) + " characters", 1)),
           K(g(Z), {
             items: g(a),
             "item-size": 32,
@@ -921,15 +928,15 @@ const ot = (e) => {
                 onClick: (w) => d(c.key),
                 style: { height: "32px" }
               }, [
-                S("div", Ot, [
+                S("div", $t, [
                   g(n) ? (y(), _("input", {
                     key: 0,
                     checked: g(r).includes(c.key),
                     type: "checkbox"
-                  }, null, 8, $t)) : T("", !0),
+                  }, null, 8, xt)) : T("", !0),
                   xe(" " + q(c.value), 1)
                 ])
-              ], 8, zt)
+              ], 8, Ot)
             ]),
             _: 1
           }, 8, ["items"])
@@ -941,11 +948,11 @@ const ot = (e) => {
         key: 1,
         to: i.originalNode
       }, [
-        (y(!0), _(M, null, J(g(r), (c) => (y(), _("option", {
+        (y(!0), _(N, null, J(g(r), (c) => (y(), _("option", {
           key: c,
           selected: "selected",
           value: c
-        }, null, 8, xt))), 128))
+        }, null, 8, It))), 128))
       ], 8, ["to"])) : T("", !0)
     ], 64));
   }
@@ -968,7 +975,7 @@ const de = {
       t.originalNode = e;
       const i = document.createElement("div");
       e.parentNode.insertBefore(i, e.nextSibling), i.dataset.isVue = !0;
-      const n = Ve(It, t);
+      const n = Ve(Vt, t);
       n.mount(i), e.addEventListener("remove", function() {
         n.unmount(), i.remove(), e.remove(), F.remove(e, "extra-select");
       });
