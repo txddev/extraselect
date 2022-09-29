@@ -6,11 +6,11 @@ function Ce() {
     return parseInt(e.substring(t + 5, e.indexOf(".", t)), 10);
   var i = e.indexOf("Trident/");
   if (i > 0) {
-    var n = e.indexOf("rv:");
-    return parseInt(e.substring(n + 3, e.indexOf(".", n)), 10);
+    var s = e.indexOf("rv:");
+    return parseInt(e.substring(s + 3, e.indexOf(".", s)), 10);
   }
-  var s = e.indexOf("Edge/");
-  return s > 0 ? parseInt(e.substring(s + 5, e.indexOf(".", s)), 10) : -1;
+  var n = e.indexOf("Edge/");
+  return n > 0 ? parseInt(e.substring(n + 5, e.indexOf(".", n)), 10) : -1;
 }
 let D;
 function Z() {
@@ -70,7 +70,7 @@ const Ee = {
   tabindex: "-1"
 };
 pe();
-const Ae = /* @__PURE__ */ Te((e, t, i, n, s, r) => (y(), A("div", Ee)));
+const Ae = /* @__PURE__ */ Te((e, t, i, s, n, r) => (y(), A("div", Ee)));
 W.render = Ae;
 W.__scopeId = "data-v-b329ee4c";
 W.__file = "src/components/ResizeObserver.vue";
@@ -87,8 +87,8 @@ function Le(e, t) {
 }
 function oe(e, t) {
   for (var i = 0; i < t.length; i++) {
-    var n = t[i];
-    n.enumerable = n.enumerable || !1, n.configurable = !0, "value" in n && (n.writable = !0), Object.defineProperty(e, n.key, n);
+    var s = t[i];
+    s.enumerable = s.enumerable || !1, s.configurable = !0, "value" in s && (s.writable = !0), Object.defineProperty(e, s.key, s);
   }
 }
 function Me(e, t, i) {
@@ -118,9 +118,9 @@ function Pe(e, t) {
 }
 function ee(e, t) {
   (t == null || t > e.length) && (t = e.length);
-  for (var i = 0, n = new Array(t); i < t; i++)
-    n[i] = e[i];
-  return n;
+  for (var i = 0, s = new Array(t); i < t; i++)
+    s[i] = e[i];
+  return s;
 }
 function je() {
   throw new TypeError(`Invalid attempt to spread non-iterable instance.
@@ -133,18 +133,18 @@ function Re(e) {
   } : t = e, t;
 }
 function He(e, t) {
-  var i = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {}, n, s, r, o = function(l) {
-    for (var c = arguments.length, v = new Array(c > 1 ? c - 1 : 0), m = 1; m < c; m++)
-      v[m - 1] = arguments[m];
-    if (r = v, !(n && l === s)) {
-      var h = i.leading;
-      typeof h == "function" && (h = h(l, s)), (!n || l !== s) && h && e.apply(void 0, [l].concat(ae(r))), s = l, clearTimeout(n), n = setTimeout(function() {
-        e.apply(void 0, [l].concat(ae(r))), n = 0;
+  var i = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {}, s, n, r, o = function(l) {
+    for (var p = arguments.length, v = new Array(p > 1 ? p - 1 : 0), d = 1; d < p; d++)
+      v[d - 1] = arguments[d];
+    if (r = v, !(s && l === n)) {
+      var m = i.leading;
+      typeof m == "function" && (m = m(l, n)), (!s || l !== n) && m && e.apply(void 0, [l].concat(ae(r))), n = l, clearTimeout(s), s = setTimeout(function() {
+        e.apply(void 0, [l].concat(ae(r))), s = 0;
       }, t);
     }
   };
   return o._clear = function() {
-    clearTimeout(n), n = null;
+    clearTimeout(s), s = null;
   }, o;
 }
 function ce(e, t) {
@@ -159,16 +159,16 @@ function ce(e, t) {
   return !1;
 }
 var Be = /* @__PURE__ */ function() {
-  function e(t, i, n) {
-    Le(this, e), this.el = t, this.observer = null, this.frozen = !1, this.createObserver(i, n);
+  function e(t, i, s) {
+    Le(this, e), this.el = t, this.observer = null, this.frozen = !1, this.createObserver(i, s);
   }
   return Me(e, [{
     key: "createObserver",
-    value: function(i, n) {
-      var s = this;
+    value: function(i, s) {
+      var n = this;
       if (this.observer && this.destroyObserver(), !this.frozen) {
         if (this.options = Re(i), this.callback = function(a, l) {
-          s.options.callback(a, l), a && s.options.once && (s.frozen = !0, s.destroyObserver());
+          n.options.callback(a, l), a && n.options.once && (n.frozen = !0, n.destroyObserver());
         }, this.callback && this.options.throttle) {
           var r = this.options.throttleOptions || {}, o = r.leading;
           this.callback = He(this.callback, this.options.throttle, {
@@ -180,19 +180,19 @@ var Be = /* @__PURE__ */ function() {
         this.oldResult = void 0, this.observer = new IntersectionObserver(function(a) {
           var l = a[0];
           if (a.length > 1) {
-            var c = a.find(function(m) {
-              return m.isIntersecting;
+            var p = a.find(function(d) {
+              return d.isIntersecting;
             });
-            c && (l = c);
+            p && (l = p);
           }
-          if (s.callback) {
-            var v = l.isIntersecting && l.intersectionRatio >= s.threshold;
-            if (v === s.oldResult)
+          if (n.callback) {
+            var v = l.isIntersecting && l.intersectionRatio >= n.threshold;
+            if (v === n.oldResult)
               return;
-            s.oldResult = v, s.callback(v, l);
+            n.oldResult = v, n.callback(v, l);
           }
         }, this.options.intersection), ie(function() {
-          s.observer && s.observer.observe(s.el);
+          n.observer && n.observer.observe(n.el);
         });
       }
     }
@@ -209,25 +209,25 @@ var Be = /* @__PURE__ */ function() {
   }]), e;
 }();
 function de(e, t, i) {
-  var n = t.value;
-  if (!!n)
+  var s = t.value;
+  if (!!s)
     if (typeof IntersectionObserver > "u")
       console.warn("[vue-observe-visibility] IntersectionObserver API is not available in your browser. Please install this polyfill: https://github.com/w3c/IntersectionObserver/tree/master/polyfill");
     else {
-      var s = new Be(e, n, i);
-      e._vue_visibilityState = s;
+      var n = new Be(e, s, i);
+      e._vue_visibilityState = n;
     }
 }
 function De(e, t, i) {
-  var n = t.value, s = t.oldValue;
-  if (!ce(n, s)) {
+  var s = t.value, n = t.oldValue;
+  if (!ce(s, n)) {
     var r = e._vue_visibilityState;
-    if (!n) {
+    if (!s) {
       fe(e);
       return;
     }
-    r ? r.createObserver(n, i) : de(e, {
-      value: n
+    r ? r.createObserver(s, i) : de(e, {
+      value: s
     }, i);
   }
 }
@@ -363,11 +363,11 @@ var se = {
       if (this.itemSize === null) {
         const e = {
           "-1": { accumulator: 0 }
-        }, t = this.items, i = this.sizeField, n = this.minItemSize;
-        let s = 1e4, r = 0, o;
+        }, t = this.items, i = this.sizeField, s = this.minItemSize;
+        let n = 1e4, r = 0, o;
         for (let a = 0, l = t.length; a < l; a++)
-          o = t[a][i] || n, o < s && (s = o), r += o, e[a] = { accumulator: r, size: o };
-        return this.$_computedMinItemSize = s, e;
+          o = t[a][i] || s, o < n && (n = o), r += o, e[a] = { accumulator: r, size: o };
+        return this.$_computedMinItemSize = n, e;
       }
       return [];
     },
@@ -399,13 +399,13 @@ var se = {
     this.removeListeners();
   },
   methods: {
-    addView(e, t, i, n, s) {
+    addView(e, t, i, s, n) {
       const r = ye({
         id: Ze++,
         index: t,
         used: !0,
-        key: n,
-        type: s
+        key: s,
+        type: n
       }), o = be({
         item: i,
         position: 0,
@@ -414,9 +414,9 @@ var se = {
       return e.push(o), o;
     },
     unuseView(e, t = !1) {
-      const i = this.$_unusedViews, n = e.nr.type;
-      let s = i.get(n);
-      s || (s = [], i.set(n, s)), s.push(e), t || (e.nr.used = !1, e.position = -9999, this.$_views.delete(e.nr.key));
+      const i = this.$_unusedViews, s = e.nr.type;
+      let n = i.get(s);
+      n || (n = [], i.set(s, n)), n.push(e), t || (e.nr.used = !1, e.position = -9999, this.$_views.delete(e.nr.key));
     },
     handleResize() {
       this.$emit("resize"), this.ready && this.updateVisibleItems(!1);
@@ -434,63 +434,63 @@ var se = {
       })) : this.$emit("hidden"));
     },
     updateVisibleItems(e, t = !1) {
-      const i = this.itemSize, n = this.$_computedMinItemSize, s = this.typeField, r = this.simpleArray ? null : this.keyField, o = this.items, a = o.length, l = this.sizes, c = this.$_views, v = this.$_unusedViews, m = this.pool;
-      let h, p, S;
+      const i = this.itemSize, s = this.$_computedMinItemSize, n = this.typeField, r = this.simpleArray ? null : this.keyField, o = this.items, a = o.length, l = this.sizes, p = this.$_views, v = this.$_unusedViews, d = this.pool;
+      let m, f, S;
       if (!a)
-        h = p = S = 0;
+        m = f = S = 0;
       else if (this.$_prerender)
-        h = 0, p = this.prerender, S = null;
+        m = 0, f = this.prerender, S = null;
       else {
-        const f = this.getScroll();
+        const h = this.getScroll();
         if (t) {
-          let O = f.start - this.$_lastUpdateScrollPosition;
-          if (O < 0 && (O = -O), i === null && O < n || O < i)
+          let O = h.start - this.$_lastUpdateScrollPosition;
+          if (O < 0 && (O = -O), i === null && O < s || O < i)
             return {
               continuous: !0
             };
         }
-        this.$_lastUpdateScrollPosition = f.start;
+        this.$_lastUpdateScrollPosition = h.start;
         const _ = this.buffer;
-        if (f.start -= _, f.end += _, i === null) {
-          let O, N = 0, F = a - 1, k = ~~(a / 2), d;
+        if (h.start -= _, h.end += _, i === null) {
+          let O, N = 0, F = a - 1, k = ~~(a / 2), c;
           do
-            d = k, O = l[k].accumulator, O < f.start ? N = k : k < a - 1 && l[k + 1].accumulator > f.start && (F = k), k = ~~((N + F) / 2);
-          while (k !== d);
-          for (k < 0 && (k = 0), h = k, S = l[a - 1].accumulator, p = k; p < a && l[p].accumulator < f.end; p++)
+            c = k, O = l[k].accumulator, O < h.start ? N = k : k < a - 1 && l[k + 1].accumulator > h.start && (F = k), k = ~~((N + F) / 2);
+          while (k !== c);
+          for (k < 0 && (k = 0), m = k, S = l[a - 1].accumulator, f = k; f < a && l[f].accumulator < h.end; f++)
             ;
-          p === -1 ? p = o.length - 1 : (p++, p > a && (p = a));
+          f === -1 ? f = o.length - 1 : (f++, f > a && (f = a));
         } else
-          h = ~~(f.start / i), p = Math.ceil(f.end / i), h < 0 && (h = 0), p > a && (p = a), S = a * i;
+          m = ~~(h.start / i), f = Math.ceil(h.end / i), m < 0 && (m = 0), f > a && (f = a), S = a * i;
       }
-      p - h > Ue.itemsLimit && this.itemsLimitError(), this.totalSize = S;
+      f - m > Ue.itemsLimit && this.itemsLimitError(), this.totalSize = S;
       let u;
-      const E = h <= this.$_endIndex && p >= this.$_startIndex;
+      const E = m <= this.$_endIndex && f >= this.$_startIndex;
       if (this.$_continuous !== E) {
         if (E) {
-          c.clear(), v.clear();
-          for (let f = 0, _ = m.length; f < _; f++)
-            u = m[f], this.unuseView(u);
+          p.clear(), v.clear();
+          for (let h = 0, _ = d.length; h < _; h++)
+            u = d[h], this.unuseView(u);
         }
         this.$_continuous = E;
       } else if (E)
-        for (let f = 0, _ = m.length; f < _; f++)
-          u = m[f], u.nr.used && (e && (u.nr.index = o.findIndex(
+        for (let h = 0, _ = d.length; h < _; h++)
+          u = d[h], u.nr.used && (e && (u.nr.index = o.findIndex(
             (O) => r ? O[r] === u.item[r] : O === u.item
-          )), (u.nr.index === -1 || u.nr.index < h || u.nr.index >= p) && this.unuseView(u));
+          )), (u.nr.index === -1 || u.nr.index < m || u.nr.index >= f) && this.unuseView(u));
       const B = E ? null : /* @__PURE__ */ new Map();
       let x, I, V, L;
-      for (let f = h; f < p; f++) {
-        x = o[f];
+      for (let h = m; h < f; h++) {
+        x = o[h];
         const _ = r ? x[r] : x;
         if (_ == null)
           throw new Error(`Key is ${_} on item (keyField is '${r}')`);
-        if (u = c.get(_), !i && !l[f].size) {
+        if (u = p.get(_), !i && !l[h].size) {
           u && this.unuseView(u);
           continue;
         }
-        u ? (u.nr.used = !0, u.item = x) : (I = x[s], V = v.get(I), E ? V && V.length ? (u = V.pop(), u.item = x, u.nr.used = !0, u.nr.index = f, u.nr.key = _, u.nr.type = I) : u = this.addView(m, f, x, _, I) : (L = B.get(I) || 0, (!V || L >= V.length) && (u = this.addView(m, f, x, _, I), this.unuseView(u, !0), V = v.get(I)), u = V[L], u.item = x, u.nr.used = !0, u.nr.index = f, u.nr.key = _, u.nr.type = I, B.set(I, L + 1), L++), c.set(_, u)), i === null ? u.position = l[f - 1].accumulator : u.position = f * i;
+        u ? (u.nr.used = !0, u.item = x) : (I = x[n], V = v.get(I), E ? V && V.length ? (u = V.pop(), u.item = x, u.nr.used = !0, u.nr.index = h, u.nr.key = _, u.nr.type = I) : u = this.addView(d, h, x, _, I) : (L = B.get(I) || 0, (!V || L >= V.length) && (u = this.addView(d, h, x, _, I), this.unuseView(u, !0), V = v.get(I)), u = V[L], u.item = x, u.nr.used = !0, u.nr.index = h, u.nr.key = _, u.nr.type = I, B.set(I, L + 1), L++), p.set(_, u)), i === null ? u.position = l[h - 1].accumulator : u.position = h * i;
       }
-      return this.$_startIndex = h, this.$_endIndex = p, this.emitUpdate && this.$emit("update", h, p), clearTimeout(this.$_sortTimer), this.$_sortTimer = setTimeout(this.sortViews, 300), {
+      return this.$_startIndex = m, this.$_endIndex = f, this.emitUpdate && this.$emit("update", m, f), clearTimeout(this.$_sortTimer), this.$_sortTimer = setTimeout(this.sortViews, 300), {
         continuous: E
       };
     },
@@ -500,23 +500,23 @@ var se = {
     },
     getScroll() {
       const { $el: e, direction: t } = this, i = t === "vertical";
-      let n;
+      let s;
       if (this.pageMode) {
-        const s = e.getBoundingClientRect(), r = i ? s.height : s.width;
-        let o = -(i ? s.top : s.left), a = i ? window.innerHeight : window.innerWidth;
-        o < 0 && (a += o, o = 0), o + a > r && (a = r - o), n = {
+        const n = e.getBoundingClientRect(), r = i ? n.height : n.width;
+        let o = -(i ? n.top : n.left), a = i ? window.innerHeight : window.innerWidth;
+        o < 0 && (a += o, o = 0), o + a > r && (a = r - o), s = {
           start: o,
           end: o + a
         };
       } else
-        i ? n = {
+        i ? s = {
           start: e.scrollTop,
           end: e.scrollTop + e.clientHeight
-        } : n = {
+        } : s = {
           start: e.scrollLeft,
           end: e.scrollLeft + e.clientWidth
         };
-      return n;
+      return s;
     },
     applyPageMode() {
       this.pageMode ? this.addListeners() : this.removeListeners();
@@ -553,11 +553,11 @@ const et = {
   key: 1,
   class: "vue-recycle-scroller__slot"
 };
-function it(e, t, i, n, s, r) {
+function it(e, t, i, s, n, r) {
   const o = ge("ResizeObserver"), a = we("observe-visibility");
   return G((y(), A("div", {
     class: ["vue-recycle-scroller", {
-      ready: s.ready,
+      ready: n.ready,
       "page-mode": i.pageMode,
       [`direction-${e.direction}`]: !0
     }],
@@ -568,15 +568,15 @@ function it(e, t, i, n, s, r) {
     ])) : T("v-if", !0),
     J("div", {
       ref: "wrapper",
-      style: { [e.direction === "vertical" ? "minHeight" : "minWidth"]: s.totalSize + "px" },
+      style: { [e.direction === "vertical" ? "minHeight" : "minWidth"]: n.totalSize + "px" },
       class: "vue-recycle-scroller__item-wrapper"
     }, [
-      (y(!0), A(R, null, Q(s.pool, (l) => (y(), A("div", {
+      (y(!0), A(R, null, Q(n.pool, (l) => (y(), A("div", {
         key: l.nr.id,
-        style: s.ready ? { transform: `translate${e.direction === "vertical" ? "Y" : "X"}(${l.position}px)` } : null,
-        class: ["vue-recycle-scroller__item-view", { hover: s.hoverKey === l.nr.key }],
-        onMouseenter: (c) => s.hoverKey = l.nr.key,
-        onMouseleave: t[1] || (t[1] = (c) => s.hoverKey = null)
+        style: n.ready ? { transform: `translate${e.direction === "vertical" ? "Y" : "X"}(${l.position}px)` } : null,
+        class: ["vue-recycle-scroller__item-view", { hover: n.hoverKey === l.nr.key }],
+        onMouseenter: (p) => n.hoverKey = l.nr.key,
+        onMouseleave: t[1] || (t[1] = (p) => n.hoverKey = null)
       }, [
         K(e.$slots, "default", {
           item: l.item,
@@ -607,9 +607,9 @@ const j = function(e) {
   };
 }, st = function(e, t) {
   t === void 0 && (t = document);
-  for (var i = [], n = e.parentNode; n !== t; ) {
-    var s = n;
-    i.push(s), n = s.parentNode;
+  for (var i = [], s = e.parentNode; s !== t; ) {
+    var n = s;
+    i.push(n), s = n.parentNode;
   }
   return i.push(t), i;
 }, nt = function(e) {
@@ -622,30 +622,30 @@ const j = function(e) {
   const i = {
     defaultArray: e.value,
     get: () => e.value,
-    push: (n, s, r = null) => {
-      const o = e.value.find((a) => a.key == n);
-      o ? (o.value = s, o.data = r) : e.value.push({ value: s, key: n, data: r });
+    push: (s, n, r = null) => {
+      const o = e.value.find((a) => a.key == s);
+      o ? (o.value = n, o.data = r) : e.value.push({ value: n, key: s, data: r });
     },
-    addRange: (n) => {
-      for (let s of n)
-        e.actions.push(s.key, s.value, s.data);
+    addRange: (s) => {
+      for (let n of s)
+        e.actions.push(n.key, n.value, n.data);
     },
-    remove: (n) => {
-      e.value.splice(e.value.findIndex((s) => s.key == n), 1);
+    remove: (s) => {
+      e.value.splice(e.value.findIndex((n) => n.key == s), 1);
     },
     clear: () => {
       e.value = [];
     },
-    sort: (n = null) => {
-      n == null && (n = (s, r) => s.value.localeCompare(r.value)), e.value = e.value.sort(n);
+    sort: (s = null) => {
+      s == null && (s = (n, r) => n.value.localeCompare(r.value)), e.value = e.value.sort(s);
     },
-    setDefault: function(n) {
-      this.defaultArray = n;
+    setDefault: function(s) {
+      this.defaultArray = s;
     },
     restoreDefault: function() {
       e.value = this.defaultArray;
     },
-    filter: function(n) {
+    filter: function(s) {
     }
   };
   window.ExtraSelectOptions[t] = i, e.actions = i;
@@ -653,54 +653,54 @@ const j = function(e) {
 let lt = 1;
 const ot = (e) => {
   e && (e.style.display = "none", nt(e));
-}, at = (e, t, i, n) => {
+}, at = (e, t, i, s) => {
   var o, a;
-  const s = C([]);
+  const n = C([]);
   H(() => {
-    s.value = i;
+    n.value = i;
   });
   const r = C([]);
   return H(() => {
     r.value = t;
-  }), e && (s.value = Array.apply(null, e.selectedOptions).map((l) => l.value).filter((l) => l), r.value = Array.apply(null, e.options).reduce((l, c) => (l.push({ value: c.text, key: c.value, data: c.dataset }), l), [])), rt(r, (a = (o = e == null ? void 0 : e.id) != null ? o : n) != null ? a : "extraselect_" + (++lt).toString()), { options: r, selectedOptions: s };
+  }), e && (n.value = Array.apply(null, e.selectedOptions).map((l) => l.value).filter((l) => l), r.value = Array.apply(null, e.options).reduce((l, p) => (l.push({ value: p.text, key: p.value, data: p.dataset }), l), [])), rt(r, (a = (o = e == null ? void 0 : e.id) != null ? o : s) != null ? a : "extraselect_" + (++lt).toString()), { options: r, selectedOptions: n };
 }, ue = async function(e, t = null, i = {}) {
   var r;
-  const n = {
+  const s = {
     method: "POST",
     credentials: "include",
     ...i,
     headers: { "Content-Type": "application/json", ...(r = i.headers) != null ? r : {} },
     body: JSON.stringify({ search: t, ...i.body })
   };
-  return await (await fetch(e, n)).json();
-}, ut = (e, t, i, n, s, r = "limited", o = {}) => {
-  const a = C(0), l = C(!1), c = M(() => l.value || a.value > 0);
+  return await (await fetch(e, s)).json();
+}, ut = (e, t, i, s, n, r = "limited", o = {}) => {
+  const a = C(0), l = C(!1), p = M(() => l.value || a.value > 0);
   if (t != null && t.length > 0)
     if (i) {
       const v = [];
-      H((m) => {
-        if (n.value.length >= s) {
-          let h = !0;
+      H((d) => {
+        if (s.value.length >= n) {
+          let m = !0;
           switch (r) {
             case "always":
               break;
             default:
             case "limited":
-              h = !v.includes(n.value);
+              m = !v.includes(s.value);
               break;
             case "complete":
-              h = v.reduce((p, S) => p && !n.value.startsWith(S), !0);
+              m = v.reduce((f, S) => f && !s.value.startsWith(S), !0);
               break;
           }
-          if (h) {
+          if (m) {
             l.value = !0;
-            const p = setTimeout(() => {
-              v.push(n.value), a.value += 1, ue(t, n.value, o).then((S) => {
+            const f = setTimeout(() => {
+              v.push(s.value), a.value += 1, ue(t, s.value, o).then((S) => {
                 e.actions.addRange(S), e.actions.sort(), a.value -= 1, l.value = !1;
               });
             }, 500);
-            m(() => {
-              clearTimeout(p);
+            d(() => {
+              clearTimeout(f);
             });
           }
         }
@@ -709,46 +709,46 @@ const ot = (e) => {
       ue(t, null, o).then((v) => {
         e.actions.addRange(v), e.actions.sort();
       });
-  return { searchingFlag: c };
+  return { searchingFlag: p };
 }, ct = (e, t) => {
-  const i = C(""), n = C([]), s = function(r, o) {
+  const i = C(""), s = C([]), n = function(r, o) {
     return r.value.filter((l) => o.length > 0 ? l.value.toLowerCase().includes(o.toLowerCase()) : !0);
   };
   return H(() => {
-    i.value.length >= t ? n.value = s(e, i.value) : n.value = [];
-  }), { filterText: i, filteredOptions: n };
-}, dt = (e, t, i, n, s) => {
-  const r = function(c, v) {
-    const h = document.createElement("canvas").getContext("2d");
-    return h.font = v, h.measureText(c).width;
-  }, o = function() {
-    var c = j(i.value), v = j(document.querySelector("body"));
-    n.value.style.top = -v.top + c.top;
-  }, a = M(() => {
-    var v;
-    const c = (v = j(i.value).width) != null ? v : 100;
-    if (s === "inherit")
-      return c;
-    if (s == null || s === "dynamic") {
+    i.value.length >= t ? s.value = n(e, i.value) : s.value = [];
+  }), { filterText: i, filteredOptions: s };
+}, dt = (e, t, i, s, n, r) => {
+  const o = function(v, d) {
+    const f = document.createElement("canvas").getContext("2d");
+    return f.font = d, f.measureText(v).width;
+  }, a = function() {
+    var v = j(s.value), d = j(document.querySelector("body"));
+    n.value.style.top = -d.top + v.top;
+  }, l = M(() => {
+    var d;
+    const v = (d = j(s.value).width) != null ? d : 100;
+    if (r === "inherit")
+      return v;
+    if (r == null || r === "dynamic") {
       const m = getComputedStyle(document.querySelector("body")).font;
-      return Math.max(c, Math.max(...e.value.map((h) => r(h.value, m))) + 15);
+      return Math.max(v, Math.max(...e.value.map((f) => o(f.value, m))) + 15);
     }
-    return s;
-  }), l = C({
+    return r;
+  }), p = C({
     position: "absolute",
     "min-width": "max-content"
   });
   return _e(() => {
-    t.value.length < 0 && console.log("empty selection");
-    var c = j(i.value), v = j(document.querySelector("body"));
-    l.value = {
+    i.value < 0 && console.log("is open"), t.value.length < 0 && console.log("empty selection");
+    var v = j(s.value), d = j(document.querySelector("body"));
+    p.value = {
       position: "absolute",
       "min-width": "max-content",
-      width: a.value.toString() + "px",
-      top: (-v.top + c.top + c.height).toString() + "px",
-      left: (-v.left + c.left).toString() + "px"
+      width: l.value.toString() + "px",
+      top: (-d.top + v.top + v.height).toString() + "px",
+      left: (-d.left + v.left).toString() + "px"
     };
-  }), { dropdownStyle: l, placeDropdown: o };
+  }), { dropdownStyle: p, placeDropdown: a };
 }, ft = {
   key: 0,
   class: "extra-select selection"
@@ -781,63 +781,63 @@ const ot = (e) => {
   emits: ["update:modelValue"],
   setup(e, { emit: t }) {
     var N, F, k;
-    const i = e, n = M(() => {
-      var d, b;
-      return (b = (d = i.originalNode) == null ? void 0 : d.multiple) != null ? b : i.multiple;
-    }), { options: s, selectedOptions: r } = at(i.originalNode, i.options, i.modelValue), o = (N = i.originalNode) == null ? void 0 : N.classList, a = Object.values((k = (F = i.originalNode) == null ? void 0 : F.style) != null ? k : {});
+    const i = e, s = M(() => {
+      var c, b;
+      return (b = (c = i.originalNode) == null ? void 0 : c.multiple) != null ? b : i.multiple;
+    }), { options: n, selectedOptions: r } = at(i.originalNode, i.options, i.modelValue), o = (N = i.originalNode) == null ? void 0 : N.classList, a = Object.values((k = (F = i.originalNode) == null ? void 0 : F.style) != null ? k : {});
     ot(i.originalNode);
-    const { filterText: l, filteredOptions: c } = ct(s, i.minChars), { searchingFlag: v } = ut(
-      s,
+    const { filterText: l, filteredOptions: p } = ct(n, i.minChars), { searchingFlag: v } = ut(
+      n,
       i.url,
       i.searchableUrl,
       l,
       i.minChars,
       i.fetchMode,
       i.fetchOptions
-    ), m = C(null), h = C(null), p = C(null), S = C(!1), u = function(d) {
-      const b = st(d.target);
-      b.push(d.target), !b.includes(m.value) && !b.includes(h.value) && (S.value = !1);
+    ), d = C(null), m = C(null), f = C(null), S = C(!1), u = function(c) {
+      const b = st(c.target);
+      b.push(c.target), !b.includes(d.value) && !b.includes(m.value) && (S.value = !1);
     };
     Se(() => {
       if (i.originalNode) {
-        for (let d of o)
-          d != "extraselect" && m.value.classList.add(d);
-        for (let d of a)
-          m.value.style[d] = i.originalNode.style[d];
-        a.includes("background-color") || (m.value.style.backgroundColor = "white");
+        for (let c of o)
+          c != "extraselect" && d.value.classList.add(c);
+        for (let c of a)
+          d.value.style[c] = i.originalNode.style[c];
+        a.includes("background-color") || (d.value.style.backgroundColor = "white");
       }
       window.document.addEventListener("mousedown", u), window.document.addEventListener("focusin", u);
     }), ke(() => {
       window.document.removeEventListener("mousedown", u), window.document.removeEventListener("focusin", u);
     });
-    const { dropdownStyle: E, placeDropdown: B } = dt(s, r, m, h, i.maxWidth), x = (d) => {
-      n.value ? r.value.includes(d) ? r.value.splice(r.value.indexOf(d), 1) : r.value.push(d) : (r.value = [d], S.value = !1), t("update:modelValue", r.value);
-    }, I = (d) => {
-      V(d, !1), l.value = "";
-    }, V = (d, b = null) => {
-      b == null && (b = !f.value), b ? r.value = s.value.map((g) => g.key) : r.value = [], t("update:modelValue", r.value);
+    const { dropdownStyle: E, placeDropdown: B } = dt(n, r, S, d, m, i.maxWidth), x = (c) => {
+      s.value ? r.value.includes(c) ? r.value.splice(r.value.indexOf(c), 1) : r.value.push(c) : (r.value = [c], S.value = !1), t("update:modelValue", r.value);
+    }, I = (c) => {
+      V(c, !1), l.value = "";
+    }, V = (c, b = null) => {
+      b == null && (b = !h.value), b ? r.value = n.value.map((g) => g.key) : r.value = [], t("update:modelValue", r.value);
     }, L = () => {
-      _.value ? c.value.forEach((d) => {
-        r.value.includes(d.key) && r.value.splice(r.value.indexOf(d.key), 1);
-      }) : c.value.forEach((d) => {
-        r.value.includes(d.key) || r.value.push(d.key);
+      _.value ? p.value.forEach((c) => {
+        r.value.includes(c.key) && r.value.splice(r.value.indexOf(c.key), 1);
+      }) : p.value.forEach((c) => {
+        r.value.includes(c.key) || r.value.push(c.key);
       }), t("update:modelValue", r.value);
     };
     H(() => {
       S.value ? (B(), i.search && ie(() => {
-        p.value.focus({ focusVisible: !0 });
+        f.value.focus({ focusVisible: !0 });
       })) : l.value = "";
     });
-    const f = M(() => r.value.length == s.value.length), _ = M(() => c.value.reduce((d, b) => d && r.value.includes(b.key), !0));
+    const h = M(() => r.value.length == n.value.length), _ = M(() => p.value.reduce((c, b) => c && r.value.includes(b.key), !0));
     M(() => r.value.length == 0);
     const O = M(() => {
-      const d = r.value.map((b) => {
+      const c = r.value.map((b) => {
         var g;
-        return (g = s.value.find((P) => P.key == b)) == null ? void 0 : g.value;
+        return (g = n.value.find((P) => P.key == b)) == null ? void 0 : g.value;
       }).join(", ");
-      return d.length > 0 ? d : "--";
+      return c.length > 0 ? c : "--";
     });
-    return (d, b) => (y(), z(R, null, [
+    return (c, b) => (y(), z(R, null, [
       i.showSelected ? (y(), z("div", ft, [
         (y(!0), z(R, null, Q(w(r), (g) => {
           var P;
@@ -846,7 +846,7 @@ const ot = (e) => {
             onClick: (ne) => x(g),
             class: "selection-badge"
           }, [
-            re(X((P = w(s).find((ne) => ne.key == g)) == null ? void 0 : P.value) + " ", 1),
+            re(X((P = w(n).find((ne) => ne.key == g)) == null ? void 0 : P.value) + " ", 1),
             $("div", {
               class: "selection-remove",
               innerHTML: i.removeIcon
@@ -858,7 +858,7 @@ const ot = (e) => {
         onFocus: b[0] || (b[0] = (g) => S.value = !0),
         onClick: b[1] || (b[1] = (g) => S.value = !0),
         ref_key: "inputNode",
-        ref: m,
+        ref: d,
         value: w(O),
         class: "extra-select extra-select-input",
         readonly: ""
@@ -867,13 +867,13 @@ const ot = (e) => {
         G($("div", {
           class: ze(["extra-select dropdown", { searching: w(v) > 0 }]),
           ref_key: "dropdownNode",
-          ref: h,
+          ref: m,
           style: Oe(w(E))
         }, [
           i.search ? (y(), z("div", mt, [
             G($("input", {
               ref_key: "searchNode",
-              ref: p,
+              ref: f,
               class: "extra-select-search",
               "onUpdate:modelValue": b[2] || (b[2] = (g) => $e(l) ? l.value = g : null),
               type: "text",
@@ -887,7 +887,7 @@ const ot = (e) => {
             ])
           ])) : T("", !0),
           w(l).length >= i.minChars ? (y(), z(R, { key: 1 }, [
-            w(n) ? (y(), z("div", yt, [
+            w(s) ? (y(), z("div", yt, [
               w(l).length == 0 ? (y(), z("div", {
                 key: 0,
                 onClick: V,
@@ -895,13 +895,13 @@ const ot = (e) => {
               }, [
                 $("div", bt, [
                   $("input", {
-                    checked: w(f),
+                    checked: w(h),
                     type: "checkbox"
                   }, null, 8, gt),
                   wt
                 ])
               ])) : T("", !0),
-              w(c).length > 0 && w(l).length > 0 ? (y(), z("div", {
+              w(p).length > 0 && w(l).length > 0 ? (y(), z("div", {
                 key: 1,
                 onClick: L,
                 class: "all-select"
@@ -919,10 +919,10 @@ const ot = (e) => {
                 onClick: I
               }, "Clear")
             ])) : T("", !0),
-            w(c).length == 0 ? (y(), z("div", zt, "No matches found")) : T("", !0)
+            w(p).length == 0 ? (y(), z("div", zt, "No matches found")) : T("", !0)
           ], 64)) : (y(), z("div", Ot, "Insert at least " + X(i.minChars) + " characters", 1)),
           J(w(se), {
-            items: w(c),
+            items: w(p),
             "item-size": 32,
             "key-field": "key",
             class: "scroller"
@@ -934,7 +934,7 @@ const ot = (e) => {
                 style: { height: "32px" }
               }, [
                 $("div", xt, [
-                  w(n) ? (y(), z("input", {
+                  w(s) ? (y(), z("input", {
                     key: 0,
                     checked: w(r).includes(g.key),
                     type: "checkbox"
