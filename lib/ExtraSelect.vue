@@ -1,4 +1,7 @@
 <script setup>
+import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
+import './sass/extraselect.scss'
+
 import { RecycleScroller } from "vue-virtual-scroller";
 import { offset, getParents } from "./windowUtils";
 import {

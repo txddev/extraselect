@@ -29,7 +29,7 @@ const maxWidth = ref("dynamic")
 const search = ref(true)
 const minChars= ref(0)
 const showSelected = ref(false)
-const removeIcon = ref(null)
+const removeIcon = ref("X")
 
   // fetchMode: { type: String, default: "limited" },
   // fetchOptions: { type: Object, default: {} },

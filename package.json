@@ -1,26 +1,35 @@
 {
   "name": "extraselect",
-  "files": ["dist"],  
+  "files": [
+    "dist"
+  ],
   "main": "./dist/extraselect.umd.cjs",
   "module": "./dist/extraselect.js",
   "exports": {
     ".": {
-      "import": "./dist/extraselect.js",
-      "require": "./dist/extraselect.umd.cjs"
+      "import": "./dist/extraselect.js"
     },
-    "./dist/style.css": {
-      "import": "./dist/style.css",
-      "require": "./dist/style.css"
-    } 
+    "./wrapped": {
+      "import": "./dist/wrapped/extraselect.js"
+    },
+    "./css/": {
+      "import": "./dist/css/",
+      "require": "./dist/css/"
+    },
+    "./src/": {
+      "import": "./lib/"
+    }
   },
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vue-tsc --noEmit && vite build && vite build -c wrapper.config.ts && vite build -c styles.config.ts",
+    "build:styles": "vue-tsc --noEmit && vite build -c styles.config.ts",
+    "build:wrapper": "vue-tsc --noEmit && vite build -c wrapper.config.ts",
+    "build:es": "vue-tsc --noEmit && vite build",
     "styles": "vite build -c styles.config.ts",
-
     "preview": "vite preview"
   },
   "dependencies": {
@@ -32,6 +41,8 @@
     "sass": "^1.55.0",
     "typescript": "^4.6.4",
     "vite": "^3.1.0",
+    "vite-plugin-css-injected-by-js": "^2.1.0",
+    "vite-plugin-singlefile": "^0.12.1",
     "vue-tsc": "^0.40.4"
   }
 }

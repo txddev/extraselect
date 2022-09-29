@@ -6,18 +6,20 @@ import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 export default defineConfig({
   plugins: [vue(),cssInjectedByJsPlugin()],
   build: {    
+    emptyOutDir: false,
     lib: {
-      formats:["es"],
-      entry: './lib/ExtraSelect.vue',
+      formats:["es","iife"],
+      entry: './lib/main.js',
       name: 'Extraselect',
       // the proper extensions will be added
-      fileName: 'extraselect'
+      fileName: 'wrapped/extraselect'
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
       // into your library
       external: ['vue'],
       output: {
+        assetFileNames: "wrapped/extraselect.[ext]",
         // Provide global variables to use in the UMD build
         // for externalized deps
         globals: {

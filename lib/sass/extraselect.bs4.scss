@@ -1,0 +1,72 @@
+// variables
+$primary: var(--primary);
+$dark: #495057;
+$focus: #80bdff;
+$shadow: rgba(0,123,255,.25);
+
+
+// component
+.extra-select{
+    &.extra-select-input{
+        width: 100%;
+        height: calc(1.5em + .75rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: $dark;
+        background-color: #fff;
+        border: 1px solid $input-gray;
+        border-radius: .25rem;
+        &:focus{
+            color: $dark;
+            background-color: #fff;
+            border-color: $focus;
+            outline: 0;
+            box-shadow: 0 0 0 .2rem $shadow;
+        }
+    }
+    &.dropdown {
+        border: 1px solid $gray-border;
+        border-radius: 3px;
+        box-shadow: 0 0 8px $box-shadow;
+        & .extra-select-search{
+            border-radius: 3px;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: $dark;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid $input-gray;
+            position: relative;
+            &:focus{
+                color: $dark;
+                background-color: #fff;
+                border-color: $focus;
+                outline: 0;
+                box-shadow: 0 0 0 .2rem $shadow;
+            }
+        }
+    }
+    &.dropdown.searching .input-searching::after{
+        content: "searching..";
+        position: absolute;
+        right: 17px;
+        top: 17px;
+        color: $primary;
+        font-size: 13px;
+        font-style: italic;
+    }
+    & .allselect-clear{
+        & div {
+            padding: 0.1rem 0.5rem;
+        }
+        & .clear{
+            color: $primary; 
+            &:hover{
+                filter: brightness(85%);
+            }
+        }
+    }
+}
