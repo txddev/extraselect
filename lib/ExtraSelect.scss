@@ -2,11 +2,6 @@
 $primary: #11c3c3;
 $primary-darker: darken($primary, 10%);
 
-// general
-.pointer{
-    cursor: pointer;
-}
-
 .extra-select {
     &.dropdown {
         background-color: white;
