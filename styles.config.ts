@@ -5,22 +5,24 @@ import { defineConfig } from 'vite'
 // https://vitejs.dev/config/
 export default defineConfig({
   
-  build: {  
-    lib: {
-      formats:["es","iife"],
-      
-      name: 'Extraselect',
-      // the proper extensions will be added
-      fileName: 'extraselect-bs'
-    },  
+  build: {
+    emptyOutDir: false,
     rollupOptions: {
-      input:{
-        bs5: fileURLToPath(new URL('./lib/bootstrap5.scss', import.meta.url)),
-        bs4: fileURLToPath(new URL('./lib/bootstrap4.scss', import.meta.url)),
-      },
+      input:[
+        './lib/sass/extraselect.bs3.scss',
+        './lib/sass/extraselect.bs4.scss',
+        './lib/sass/extraselect.bs5.scss',
+      ],
+      // {
+      //   extraselect: fileURLToPath(new URL('./lib/ExtraSelect.scss', import.meta.url)),
+      //   'extraselect.bs3': fileURLToPath(new URL('./lib/bootstrap3.scss', import.meta.url)),
+      //   'extraselect.bs4': fileURLToPath(new URL('./lib/bootstrap4.scss', import.meta.url)),
+      //   'extraselect.bs5': fileURLToPath(new URL('./lib/bootstrap5.scss', import.meta.url)),
+      // },
       output: [
         {
-          dir: 'styles'
+          assetFileNames: "[name].[ext]",
+          dir: 'dist/css'
         }
       ]
     }

@@ -1,0 +1,1 @@
+import{pushScopeId as o,popScopeId as r}from"vue";o("data-v-b329ee4c");r();var e=!1;if(typeof window<"u"){e=!1;try{var s=Object.defineProperty({},"passive",{get:function(){e=!0}});window.addEventListener("test",null,s)}catch{}}
