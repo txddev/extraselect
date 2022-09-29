@@ -1,6 +1,5 @@
 <script setup>
-import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
-import './sass/extraselect.scss'
+
 
 import { RecycleScroller } from "vue-virtual-scroller";
 import { offset, getParents } from "./windowUtils";
@@ -36,6 +35,10 @@ const isMultiple = computed(() => props.originalNode?.multiple ?? props.multiple
 
 
 const { options, selectedOptions } = loadOptions(props.originalNode,props.options,props.modelValue);
+
+const originalClassList = props.originalNode?.classList;
+const originalCssStyles = Object.values(props.originalNode?.style ?? {});
+
 prepareOriginalNode(props.originalNode);
 const emit = defineEmits(['update:modelValue'])
 
@@ -70,6 +73,24 @@ const autoCloseHandler = function (e) {
 };
 
 onMounted(() => {
+
+  if(props.originalNode){
+    for(let cssClass of originalClassList){
+      if(cssClass != "extraselect"){
+        inputNode.value.classList.add(cssClass)
+      }
+    }
+    
+    for(let cssStyle of originalCssStyles){
+      
+        inputNode.value.style[cssStyle] = props.originalNode.style[cssStyle]
+      
+    }
+    if(!originalCssStyles.includes('background-color')){
+      inputNode.value.style.backgroundColor = 'white'
+    }
+  }
+
   window.document.addEventListener("mousedown", autoCloseHandler);
   window.document.addEventListener("focusin", autoCloseHandler);
 });

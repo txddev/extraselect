@@ -1,48 +1,31 @@
+@import 'extraselect.scss';
 // variables
-$primary: var(--primary);
-
+:root{
+    --es-primary:var(--primary);
+}
 
 // component
 .extra-select{
-    &.extra-select-input{
-        width: 100%;
-        height: calc(1.5em + .75rem + 2px);
-        padding: .375rem .75rem;
-        font-size: 1rem;
-        font-weight: 400;
-        line-height: 1.5;
-        color: #495057;
-        background-color: #fff;
-        border: 1px solid #ced4da;
-        border-radius: .25rem;
-        &:focus{
-            color: #495057;
-            background-color: #fff;
-            border-color: #80bdff;
-            outline: 0;
-            box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
-        }
-    }
     &.dropdown {
-        border: 1px solid rgb(180, 180, 180);
+        border: 1px solid var(--es-gray-border);
         border-radius: 3px;
-        box-shadow: 0 0 8px rgba(0,0,0,.075);
+        box-shadow: 0 0 8px var(--es-box-shadow);
         & .extra-select-search{
             border-radius: 3px;
             font-size: 1rem;
             font-weight: 400;
             line-height: 1.5;
-            color: #495057;
+            color: var(--es-dark);
             background-color: #fff;
             background-clip: padding-box;
-            border: 1px solid #ced4da;
+            border: 1px solid var(--es-input-gray);
             position: relative;
             &:focus{
-                color: #495057;
+                color: var(--es-dark);
                 background-color: #fff;
-                border-color: #80bdff;
+                border-color: var(--es-focus);
                 outline: 0;
-                box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
+                box-shadow: 0 0 0 .2rem var(--es-shadow);
             }
         }
     }
@@ -51,7 +34,7 @@ $primary: var(--primary);
         position: absolute;
         right: 17px;
         top: 17px;
-        color: $primary;
+        color: var(--es-primary);
         font-size: 13px;
         font-style: italic;
     }
@@ -60,7 +43,7 @@ $primary: var(--primary);
             padding: 0.1rem 0.5rem;
         }
         & .clear{
-            color: $primary; 
+            color: var(--es-primary); 
             &:hover{
                 filter: brightness(85%);
             }

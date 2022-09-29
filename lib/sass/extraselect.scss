@@ -1,37 +1,56 @@
-// variables
-$primary: #11c3c3;
-$primary-darker: darken($primary, 10%);
+@import 'vue-virtual-scroller/dist/vue-virtual-scroller.css';
+
+// generali 
+$dark-gray: #333 !default;
+$gray-border: rgb(180, 180, 180) !default;
+$input-gray: #ced4da !default;
+$box-shadow: rgba(0,0,0,.075) !default;
+$light-gray: #eff0f0;
+
+:root{
+    --es-primary: purple;
+    --es-dark: #495057;
+    --es-focus: #80bdff;
+    --es-shadow: rgba(0,123,255,.25);
+    --es-dark-gray: #{$dark-gray};
+    --es-gray-border: #{$gray-border};
+    --es-input-gray: #{$input-gray};
+    --es-box-shadow: #{$box-shadow};
+    --es-light-gray: #{$light-gray};
+}
 
 .extra-select {
     &.selection{
         display:flex;
         flex-wrap: wrap;
         & > .selection-badge {
-            background-color: lightgray;
+            background-color: var(--es-primary);
+            color: white;
             gap:0.3rem;
-            font-size: 0.9rem;
+            font-size: 14px;
             display:flex;
             margin: 0.5rem 0.2rem;
             padding: 0.1rem 0.5rem;
             border-radius: 1.5rem;
             cursor: pointer;
             &:hover{
+                background-color: silver;
                 & > .selection-remove {
-                  color: #333;
-                  text-shadow: 1px 0 0 #333, 0 -1px 0 #333, 0 1px 0 #333, -1px 0 0 #333;
+                  color: var(-es-dark-gray);
+                  text-shadow: 1px 0 0 var(-es-dark-gray), 0 -1px 0 var(-es-dark-gray), 0 1px 0 var(-es-dark-gray), -1px 0 0 var(-es-dark-gray);
                 }
             }
         }
     }
     
     &.dropdown {
-        border: 1px solid rgb(180, 180, 180);
-        box-shadow: 0 0 8px rgba(0,0,0,.075);
+        border: 1px solid var(-es-gray-border);
+        box-shadow: 0 0 8px var(-es-box-shadow);
         background-color: white;
         padding-top:0.5rem;
         padding-left: 0;
         &.searching {
-            background-color:#f8f8f8;
+            background-color:var(--es-light-gray);
         }
         & .extra-select-search {
             margin: 0.4rem;
@@ -43,23 +62,22 @@ $primary-darker: darken($primary, 10%);
         width: 100%;
         justify-content: flex-end;
         align-items: center;
-        border-bottom: 1px solid #ced4da;
+        border-bottom: 1px solid var(--es-input-gray);
         & .all-select{
             flex-grow: 1;
             margin-right: 0.5rem;
             cursor: pointer;
             &:hover{
-                background-color: #eff0f0;
+                background-color: var(--es-light-gray);
             }
         }
         & .clear{
-            
-            color: $primary;
+            color: var(--es-primary);
             font-weight: bold;
             padding: 0 1rem 0 0.5rem;
             cursor: pointer;
             &:hover{
-                color: $primary-darker;
+                filter: brightness(75%);
                 background-color: transparent !important;
             }
         }
@@ -94,7 +112,7 @@ $primary-darker: darken($primary, 10%);
         padding: 0 1rem;
     }
     .vue-recycle-scroller__item-view.hover{
-        background-color: #eff0f0;
+        background-color: var(--es-light-gray);
         cursor: pointer;
     }
 }

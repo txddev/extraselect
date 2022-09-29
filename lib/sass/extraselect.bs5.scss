@@ -1,56 +1,39 @@
-// variables
-$primary: #250b7f;
-$primary-darker: darken($primary, 10%);
+@import 'extraselect.scss';
+// bootstrap 5
+:root{
+    --es-primary:var(--primary);
+    --es-dark:var(--bs-dark);
+    --es-focus: #86b7fe;
+    --es-shadow: rgba(13,110,253,.25);
+
+}
 
 // component
 .extra-select{
-    &.extra-select-input{
-        display: block;
-        width: 100%;
-        padding: .375rem .75rem;
-        font-size: 1rem;
-        font-weight: 400;
-        line-height: 1.5;
-        color: #212529;
-        background-color: #fff;
-        background-clip: padding-box;
-        border: 1px solid #ced4da;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        border-radius: .25rem;
-        &:focus{
-            color: #212529;
-            background-color: #fff;
-            border-color: #86b7fe;
-            outline: 0;
-            box-shadow: 0 0 0 .25rem rgba(13,110,253,.25);
-        }
-    }
     &.dropdown {
-        border: 1px solid rgb(180, 180, 180);
+        border: 1px solid var(--es-gray-border);
         border-radius: .25rem;
-        box-shadow: 0 0 8px rgba(0,0,0,.075);
+        box-shadow: 0 0 8px var(--es-box-shadow);
         & .extra-select-search{
             display: block;
             padding: .375rem .75rem;
             font-size: 1rem;
             font-weight: 400;
             line-height: 1.5;
-            color: #212529;
+            color:var(--es-dark);
             background-color: #fff;
             background-clip: padding-box;
-            border: 1px solid #ced4da;
+            border: 1px solid var(--es-input-gray);
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
             border-radius: .25rem;
             &:focus{
-                color: #212529;
+                color:var(--es-dark);
                 background-color: #fff;
-                border-color: #86b7fe;
+                border-color: var(--es-focus);
                 outline: 0;
-                box-shadow: 0 0 0 .25rem rgba(13,110,253,.25);
+                box-shadow: 0 0 0 .25rem var(--es-shadow);
             }
         }
     }
@@ -59,7 +42,7 @@ $primary-darker: darken($primary, 10%);
         position: absolute;
         right: 23px;
         top: 25px;
-        color: $primary;
+        color: var(--es-primary);
         font-size: 13px;
         font-style: italic;
     }
