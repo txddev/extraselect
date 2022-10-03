@@ -29,9 +29,11 @@ const props = defineProps({
   showSelected: { type: Boolean, default: false },
   fetchMode: { type: String, default: "limited" },
   fetchOptions: { type: Object, default: {} },
-  removeIcon: {type: String, default: "X"}
+  removeIcon: {type: String, default: "X"},
+  dropdownContainer: {type: String, default: "body" }
 });
 const isMultiple = computed(() => props.originalNode?.multiple ?? props.multiple)
+
 
 
 const { options, selectedOptions } = loadOptions(props.originalNode,props.options,props.modelValue);
@@ -58,6 +60,7 @@ const inputNode = ref(null);
 const dropdownNode = ref(null);
 const searchNode = ref(null);
 const open = ref(false);
+const dropdownCointainerNode = ref(null)
 
 
 const autoCloseHandler = function (e) {
@@ -73,7 +76,8 @@ const autoCloseHandler = function (e) {
 };
 
 onMounted(() => {
-
+  dropdownCointainerNode.value = getParents(inputNode.value).find(el => el.matches(props.dropdownContainer))
+  if(dropdownCointainerNode.value == null) dropdownCointainerNode.value = document.querySelector("body")
   if(props.originalNode){
     for(let cssClass of originalClassList){
       if(cssClass != "extraselect"){
@@ -100,7 +104,7 @@ onUnmounted(() => {
 });
 
 
-const {dropdownStyle,placeDropdown} = loadStyling(options,selectedOptions,open,inputNode,dropdownNode,props.maxWidth)
+const {dropdownStyle} = loadStyling(options,selectedOptions,open,inputNode,dropdownNode,props.maxWidth)
 
 const toggleOption = (key) => {
   if (isMultiple.value) {
@@ -150,7 +154,7 @@ const toggleFiltered = () => {
 
 watchEffect(() => {
   if (open.value) {
-    placeDropdown();
+    
     if (props.search) {
       nextTick(() => {
         searchNode.value.focus({ focusVisible: true });
@@ -194,7 +198,7 @@ const placeholder = computed(() => {
     class="extra-select extra-select-input"
     readonly=""
   />
-  <Teleport to="body">
+  <Teleport v-if="dropdownCointainerNode" :to="dropdownCointainerNode">
     <div
       class="extra-select dropdown"
       :class="{searching: searchingFlag>0}"
