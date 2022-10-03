@@ -1,7 +1,8 @@
 {
   "name": "extraselect",
   "files": [
-    "dist"
+    "dist",
+    "lib"
   ],
   "main": "./dist/extraselect.umd.cjs",
   "module": "./dist/extraselect.js",
