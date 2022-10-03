@@ -1,5 +1,5 @@
 (function(){"use strict";try{if(typeof document!="undefined"){var e=document.createElement("style");e.appendChild(document.createTextNode("")),document.head.appendChild(e)}}catch(t){console.error("vite-plugin-css-injected-by-js",t)}})();
-import { pushScopeId as pe, popScopeId as me, nextTick as te, openBlock as y, createBlock as A, withScopeId as ye, markRaw as be, shallowReactive as ge, resolveComponent as we, resolveDirective as _e, withDirectives as Y, renderSlot as W, createCommentVNode as E, createVNode as G, Fragment as j, renderList as J, ref as C, watchEffect as R, computed as M, watchPostEffect as Se, onMounted as ke, onUnmounted as ze, createElementBlock as z, unref as w, createTextVNode as se, toDisplayString as K, createElementVNode as O, Teleport as le, normalizeClass as $e, normalizeStyle as Oe, isRef as xe, vModelText as Ie, withCtx as Ce, vShow as Ve } from "vue";
+import { pushScopeId as pe, popScopeId as me, nextTick as te, openBlock as y, createBlock as A, withScopeId as ye, markRaw as ge, shallowReactive as be, resolveComponent as we, resolveDirective as _e, withDirectives as Y, renderSlot as W, createCommentVNode as E, createVNode as G, Fragment as j, renderList as J, ref as C, watchEffect as R, computed as M, watchPostEffect as Se, onMounted as ke, onUnmounted as ze, createElementBlock as z, unref as w, createTextVNode as se, toDisplayString as K, createElementVNode as O, Teleport as le, normalizeClass as $e, normalizeStyle as Oe, isRef as xe, vModelText as Ie, withCtx as Ce, vShow as Ve } from "vue";
 function Te() {
   var e = window.navigator.userAgent, t = e.indexOf("MSIE ");
   if (t > 0)
@@ -400,13 +400,13 @@ var ie = {
   },
   methods: {
     addView(e, t, i, n, s) {
-      const l = be({
+      const l = ge({
         id: et++,
         index: t,
         used: !0,
         key: n,
         type: s
-      }), o = ge({
+      }), o = be({
         item: i,
         position: 0,
         nr: l
@@ -755,7 +755,7 @@ const ot = (e) => {
 }, yt = {
   key: 0,
   class: "allselect-clear"
-}, bt = { class: "row-input" }, gt = ["checked"], wt = /* @__PURE__ */ O("b", null, "Select all", -1), _t = { class: "row-input" }, St = ["checked"], kt = /* @__PURE__ */ O("b", null, "Select Filtered", -1), zt = {
+}, gt = { class: "row-input" }, bt = ["checked"], wt = /* @__PURE__ */ O("b", null, "Select all", -1), _t = { class: "row-input" }, St = ["checked"], kt = /* @__PURE__ */ O("b", null, "Select Filtered", -1), zt = {
   key: 1,
   class: "no-matches"
 }, $t = { key: 2 }, Ot = ["onClick"], xt = { class: "row-input" }, It = ["checked"], Ct = ["value"], Tt = {
@@ -774,14 +774,14 @@ const ot = (e) => {
     fetchMode: { type: String, default: "limited" },
     fetchOptions: { type: Object, default: {} },
     removeIcon: { type: String, default: "X" },
-    dropdownContainer: { type: String, default: "body" }
+    dropdownContainer: { type: String, default: null }
   },
   emits: ["update:modelValue"],
   setup(e, { emit: t }) {
     var N, F, k;
     const i = e, n = M(() => {
-      var c, b;
-      return (b = (c = i.originalNode) == null ? void 0 : c.multiple) != null ? b : i.multiple;
+      var c, g;
+      return (g = (c = i.originalNode) == null ? void 0 : c.multiple) != null ? g : i.multiple;
     }), { options: s, selectedOptions: l } = at(i.originalNode, i.options, i.modelValue), o = (N = i.originalNode) == null ? void 0 : N.classList, a = Object.values((k = (F = i.originalNode) == null ? void 0 : F.style) != null ? k : {});
     ot(i.originalNode);
     const { filterText: r, filteredOptions: d } = ct(s, i.minChars), { searchingFlag: m } = ut(
@@ -793,11 +793,11 @@ const ot = (e) => {
       i.fetchMode,
       i.fetchOptions
     ), p = C(null), h = C(null), v = C(null), S = C(!1), u = C(null), x = function(c) {
-      const b = ue(c.target);
-      b.push(c.target), !b.includes(p.value) && !b.includes(h.value) && (S.value = !1);
+      const g = ue(c.target);
+      g.push(c.target), !g.includes(p.value) && !g.includes(h.value) && (S.value = !1);
     };
     ke(() => {
-      if (u.value = ue(p.value).find((c) => c.matches(i.dropdownContainer)), u.value == null && (u.value = document.querySelector("body")), i.originalNode) {
+      if (i.dropdownContainer && (u.value = ue(p.value).find((c) => c instanceof Element && c.matches(i.dropdownContainer))), u.value == null && (u.value = document.querySelector("body")), i.originalNode) {
         for (let c of o)
           c != "extraselect" && p.value.classList.add(c);
         for (let c of a)
@@ -812,8 +812,8 @@ const ot = (e) => {
       n.value ? l.value.includes(c) ? l.value.splice(l.value.indexOf(c), 1) : l.value.push(c) : (l.value = [c], S.value = !1), t("update:modelValue", l.value);
     }, V = (c) => {
       T(c, !1), r.value = "";
-    }, T = (c, b = null) => {
-      b == null && (b = !f.value), b ? l.value = s.value.map((g) => g.key) : l.value = [], t("update:modelValue", l.value);
+    }, T = (c, g = null) => {
+      g == null && (g = !f.value), g ? l.value = s.value.map((b) => b.key) : l.value = [], t("update:modelValue", l.value);
     }, L = () => {
       _.value ? d.value.forEach((c) => {
         l.value.includes(c.key) && l.value.splice(l.value.indexOf(c.key), 1);
@@ -826,25 +826,25 @@ const ot = (e) => {
         v.value.focus({ focusVisible: !0 });
       }) : r.value = "";
     });
-    const f = M(() => l.value.length == s.value.length), _ = M(() => d.value.reduce((c, b) => c && l.value.includes(b.key), !0));
+    const f = M(() => l.value.length == s.value.length), _ = M(() => d.value.reduce((c, g) => c && l.value.includes(g.key), !0));
     M(() => l.value.length == 0);
     const $ = M(() => {
-      const c = l.value.map((b) => {
-        var g;
-        return (g = s.value.find((P) => P.key == b)) == null ? void 0 : g.value;
+      const c = l.value.map((g) => {
+        var b;
+        return (b = s.value.find((P) => P.key == g)) == null ? void 0 : b.value;
       }).join(", ");
       return c.length > 0 ? c : "--";
     });
-    return (c, b) => (y(), z(j, null, [
+    return (c, g) => (y(), z(j, null, [
       i.showSelected ? (y(), z("div", ft, [
-        (y(!0), z(j, null, J(w(l), (g) => {
+        (y(!0), z(j, null, J(w(l), (b) => {
           var P;
           return y(), z("div", {
-            key: g,
-            onClick: (ne) => I(g),
+            key: b,
+            onClick: (ne) => I(b),
             class: "selection-badge"
           }, [
-            se(K((P = w(s).find((ne) => ne.key == g)) == null ? void 0 : P.value) + " ", 1),
+            se(K((P = w(s).find((ne) => ne.key == b)) == null ? void 0 : P.value) + " ", 1),
             O("div", {
               class: "selection-remove",
               innerHTML: i.removeIcon
@@ -853,8 +853,8 @@ const ot = (e) => {
         }), 128))
       ])) : E("", !0),
       O("input", {
-        onFocus: b[0] || (b[0] = (g) => S.value = !0),
-        onClick: b[1] || (b[1] = (g) => S.value = !0),
+        onFocus: g[0] || (g[0] = (b) => S.value = !0),
+        onClick: g[1] || (g[1] = (b) => S.value = !0),
         ref_key: "inputNode",
         ref: p,
         value: w($),
@@ -876,7 +876,7 @@ const ot = (e) => {
               ref_key: "searchNode",
               ref: v,
               class: "extra-select-search",
-              "onUpdate:modelValue": b[2] || (b[2] = (g) => xe(r) ? r.value = g : null),
+              "onUpdate:modelValue": g[2] || (g[2] = (b) => xe(r) ? r.value = b : null),
               type: "text",
               autocomplete: "off",
               autocorrect: "off",
@@ -894,11 +894,11 @@ const ot = (e) => {
                 onClick: T,
                 class: "all-select"
               }, [
-                O("div", bt, [
+                O("div", gt, [
                   O("input", {
                     checked: w(f),
                     type: "checkbox"
-                  }, null, 8, gt),
+                  }, null, 8, bt),
                   wt
                 ])
               ])) : E("", !0),
@@ -928,19 +928,19 @@ const ot = (e) => {
             "key-field": "key",
             class: "scroller"
           }, {
-            default: Ce(({ item: g }) => [
+            default: Ce(({ item: b }) => [
               O("div", {
                 class: "dropdown-row",
-                onClick: (P) => I(g.key),
+                onClick: (P) => I(b.key),
                 style: { height: "32px" }
               }, [
                 O("div", xt, [
                   w(n) ? (y(), z("input", {
                     key: 0,
-                    checked: w(l).includes(g.key),
+                    checked: w(l).includes(b.key),
                     type: "checkbox"
                   }, null, 8, It)) : E("", !0),
-                  se(" " + K(g.value), 1)
+                  se(" " + K(b.value), 1)
                 ])
               ], 8, Ot)
             ]),
@@ -954,10 +954,10 @@ const ot = (e) => {
         key: 2,
         to: i.originalNode
       }, [
-        (y(!0), z(j, null, J(w(l), (g) => (y(), z("option", {
-          key: g,
+        (y(!0), z(j, null, J(w(l), (b) => (y(), z("option", {
+          key: b,
           selected: "selected",
-          value: g
+          value: b
         }, null, 8, Ct))), 128))
       ], 8, ["to"])) : E("", !0)
     ], 64));

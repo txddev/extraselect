@@ -30,7 +30,7 @@ const props = defineProps({
   fetchMode: { type: String, default: "limited" },
   fetchOptions: { type: Object, default: {} },
   removeIcon: {type: String, default: "X"},
-  dropdownContainer: {type: String, default: "body" }
+  dropdownContainer: {type: String, default: null }
 });
 const isMultiple = computed(() => props.originalNode?.multiple ?? props.multiple)
 
@@ -76,7 +76,9 @@ const autoCloseHandler = function (e) {
 };
 
 onMounted(() => {
-  dropdownCointainerNode.value = getParents(inputNode.value).find(el => el.matches(props.dropdownContainer))
+  if(props.dropdownContainer){
+    dropdownCointainerNode.value = getParents(inputNode.value).find(el => el instanceof Element && el.matches(props.dropdownContainer))
+  }
   if(dropdownCointainerNode.value == null) dropdownCointainerNode.value = document.querySelector("body")
   if(props.originalNode){
     for(let cssClass of originalClassList){
