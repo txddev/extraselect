@@ -14,13 +14,13 @@
     </script>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="./dist/style.css" rel="stylesheet">
+    <link href="./dist/extraselect.bs5.css" rel="stylesheet">
     
   </head>
   <body>
     <main>
     <div>
-      <select multiple class="extraselect form-select" name="test[]" data-url="/test_options.json" data-searchable-url="true" data-min-chars="3" data-show-selected="true">
+      <select multiple class="extraselect form-select" name="test[]" data-url="/test_options_big.json" data-searchable-url="true" data-min-chars="3" data-show-selected="true">
         <option value="1"> A</option>
         <option value="2"> B2</option>
         <option value="3"> B3</option>
@@ -33,6 +33,6 @@
   </main>
   <footer>test</footer>
   <script src="https://unpkg.com/vue@3/dist/vue.runtime.global.prod.js"></script>
-  <script src="./dist/extraselect.iife.js"></script>
+  <script src="./dist/wrapped/extraselect.iife.js"></script>
   </body>
 </html>

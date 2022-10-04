@@ -1,5 +1,4 @@
 <script setup>
-
 import { useVirtualList } from '@vueuse/core'
 import { getParents } from "./windowUtils";
 import {
@@ -116,11 +115,9 @@ onUnmounted(() => {
 });
 
 
-const {dropdownStyle} = loadStyling(options,selectedOptions,open,inputNode,dropdownNode,dropdownCointainerNode,props.maxWidth)
+const {dropdownStyle,getTextWidth} = loadStyling(options,selectedOptions,open,inputNode,dropdownNode,dropdownCointainerNode,props.maxWidth)
 
 const toggleOption = (key) => {
-  
-  console.log("toggling",key)
   if (isMultiple.value) {
     if (selectedOptions.value.includes(key)) {
       selectedOptions.value.splice(selectedOptions.value.indexOf(key), 1);
@@ -186,11 +183,28 @@ const FilterSelected = computed(()=>{
 const NoneSelected = computed(()=>selectedOptions.value.length == 0)
 
 const placeholder = computed(() => {
-  const output = selectedOptions.value
-    .map((opt) => options.value.find((el) => el.key == opt)?.value)
-    .join(", ");
-
-  return output.length > 0 ? output : "--";
+  if(AllSelected.value ) return "All selected"
+  if(NoneSelected.value) return "No selection"
+  
+  const inputStyles = inputNode.value ? getComputedStyle(inputNode.value): null
+  const inputLength = inputNode.value?.clientWidth - parseInt(inputStyles?.paddingLeft) - parseInt(inputStyles?.paddingRight)
+  
+  let output = selectedOptions.value.length+" selected - "
+  let first = true
+  for(let key of selectedOptions.value.map((opt) => options.value.find((el) => el.key == opt)?.value)){
+    if(!first){
+      output += ", ";
+    }else{
+      first = false
+    }
+    output += key
+    if(inputLength<getTextWidth(output)){
+      return selectedOptions.value.length+" selected"
+    }
+    
+  }
+  
+  return output;
 });
 
 const { list, containerProps, wrapperProps } = useVirtualList(
@@ -294,28 +308,6 @@ const { list, containerProps, wrapperProps } = useVirtualList(
           </template>
         </div>
       </div>
-      <!-- <recycle-scroller
-        :items="filteredOptions"
-        :item-size="32"
-        key-field="key"
-        class="scroller"
-        v-slot="{ item }"
-      >
-        <div
-          class="dropdown-row"
-          @click.stop.prevent="toggleOption(item.key)"
-          style="height: 32px"
-        >
-          <div class="row-input">
-            <input
-              :checked="selectedOptions.includes(item.key)"
-              v-if="isMultiple"
-              type="checkbox"
-            />
-            {{ item.value }}
-          </div>
-        </div>
-      </recycle-scroller> -->
     </div>
   </Teleport>
   <Teleport v-if="props.originalNode" :to="props.originalNode">

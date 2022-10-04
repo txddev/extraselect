@@ -1,9 +1,11 @@
+@import 'vue-virtual-scroller/dist/vue-virtual-scroller.css';
 // generali 
 $dark-gray: #333 !default;
 $gray-border: rgb(180, 180, 180) !default;
 $input-gray: #ced4da !default;
 $box-shadow: rgba(0,0,0,.075) !default;
 $light-gray: #eff0f0;
+$zindex-popover: 1070 !default;
 
 :root{
     --es-primary: purple;
@@ -42,6 +44,7 @@ $light-gray: #eff0f0;
     }
     
     &.dropdown {
+        z-index: $zindex-popover;
         border: 1px solid var(-es-gray-border);
         box-shadow: 0 0 8px var(-es-box-shadow);
         background-color: white;
