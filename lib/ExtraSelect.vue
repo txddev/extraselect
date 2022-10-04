@@ -1,8 +1,7 @@
 <script setup>
 
-
-import { RecycleScroller } from "vue-virtual-scroller";
-import { offset, getParents } from "./windowUtils";
+import { useVirtualList } from '@vueuse/core'
+import { getParents } from "./windowUtils";
 import {
   ref,
   computed,
@@ -10,6 +9,7 @@ import {
   onMounted,
   onUnmounted,
   watchEffect,
+watch,
 } from "vue";
 import { loadOptions, prepareOriginalNode } from "./composition/options";
 import { loadSearch } from "./composition/search";
@@ -77,7 +77,17 @@ const autoCloseHandler = function (e) {
 
 onMounted(() => {
   if(props.dropdownContainer){
-    dropdownCointainerNode.value = getParents(inputNode.value).find(el => el instanceof Element && el.matches(props.dropdownContainer))
+    let parentFound = false
+    dropdownCointainerNode.value = getParents(inputNode.value).find(el => {
+      if(el instanceof Element){
+        if(el.matches(props.dropdownContainer)){
+          parentFound = true
+        }
+        if(parentFound && ["absolute","relative","fixed","sticky"].includes(getComputedStyle(el).position)) return true
+
+      }
+      return false
+    })
   }
   if(dropdownCointainerNode.value == null) dropdownCointainerNode.value = document.querySelector("body")
   if(props.originalNode){
@@ -106,9 +116,11 @@ onUnmounted(() => {
 });
 
 
-const {dropdownStyle} = loadStyling(options,selectedOptions,open,inputNode,dropdownNode,props.maxWidth)
+const {dropdownStyle} = loadStyling(options,selectedOptions,open,inputNode,dropdownNode,dropdownCointainerNode,props.maxWidth)
 
 const toggleOption = (key) => {
+  
+  console.log("toggling",key)
   if (isMultiple.value) {
     if (selectedOptions.value.includes(key)) {
       selectedOptions.value.splice(selectedOptions.value.indexOf(key), 1);
@@ -153,9 +165,9 @@ const toggleFiltered = () => {
   emit('update:modelValue', selectedOptions.value)
 }
 
-
-watchEffect(() => {
-  if (open.value) {
+watch(open,(newOpen,oldOpen)=>{
+  if(newOpen!= oldOpen){
+    if (newOpen) {
     
     if (props.search) {
       nextTick(() => {
@@ -164,9 +176,9 @@ watchEffect(() => {
     }
   } else {
     filterText.value = "";
+  }  
   }
-});
-
+})
 const AllSelected = computed(()=>selectedOptions.value.length == options.value.length)
 const FilterSelected = computed(()=>{
   return filteredOptions.value.reduce((c,el) => c&& selectedOptions.value.includes(el.key),true) 
@@ -180,6 +192,13 @@ const placeholder = computed(() => {
 
   return output.length > 0 ? output : "--";
 });
+
+const { list, containerProps, wrapperProps } = useVirtualList(
+  filteredOptions,
+  {
+    itemHeight: 32
+  },
+)
 </script>
 
 <template>
@@ -255,7 +274,27 @@ const placeholder = computed(() => {
         </template>
       </template>
       <div v-else >Insert at least {{props.minChars}} characters</div>
-      <recycle-scroller
+      <div v-bind="containerProps" class="scroller">
+        <div v-bind="wrapperProps">
+          <template v-for="item in list" :key="item.index" style="height: 32px">
+            <button
+              class="dropdown-row"
+              @click.stop.prevent="toggleOption(item.data.key)"
+              style="height: 32px"
+            >
+              <div class="row-input">
+                <input
+                  :checked="selectedOptions.includes(item.data.key)"
+                  v-if="isMultiple"
+                  type="checkbox"
+                />
+                {{ item.data.value }}
+              </div>
+            </button>
+          </template>
+        </div>
+      </div>
+      <!-- <recycle-scroller
         :items="filteredOptions"
         :item-size="32"
         key-field="key"
@@ -264,7 +303,7 @@ const placeholder = computed(() => {
       >
         <div
           class="dropdown-row"
-          @click="toggleOption(item.key, $event)"
+          @click.stop.prevent="toggleOption(item.key)"
           style="height: 32px"
         >
           <div class="row-input">
@@ -276,7 +315,7 @@ const placeholder = computed(() => {
             {{ item.value }}
           </div>
         </div>
-      </recycle-scroller>
+      </recycle-scroller> -->
     </div>
   </Teleport>
   <Teleport v-if="props.originalNode" :to="props.originalNode">
