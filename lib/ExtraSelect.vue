@@ -19,7 +19,7 @@ const props = defineProps({
   originalNode: { type: Object, required: false },
   multiple: {type: Boolean, required: false},
   options: { type: Array, required: false },
-  modelValue: { type: Array, required: false },
+  modelValue: { type: Array, required: false,default: [] },
   url: { type:String, required:false },
   maxWidth: { type: String, default: "dynamic" },
   search: { type: Boolean, default: true },
@@ -119,16 +119,17 @@ const {dropdownStyle,getTextWidth} = loadStyling(options,selectedOptions,open,in
 
 const toggleOption = (key) => {
   if (isMultiple.value) {
-    if (selectedOptions.value.includes(key)) {
-      selectedOptions.value.splice(selectedOptions.value.indexOf(key), 1);
+    if (selectedOptions.value.has(key)) {
+      selectedOptions.value.delete(key)
     } else {
-      selectedOptions.value.push(key);
+      selectedOptions.value.set(key,key);
     }
   } else {
-    selectedOptions.value = [key];
+    selectedOptions.value.clear();
+    selectedOptions.value.set(key,key)
     open.value = false;
   }
-  emit('update:modelValue', selectedOptions.value)
+  emit('update:modelValue', Array.from(selectedOptions.value.keys()))
 };
 const clear = ($e) => {
   toggleAll($e,false)
@@ -137,29 +138,30 @@ const clear = ($e) => {
 const toggleAll = (event,state = null) => {
   if(state == null) state = !AllSelected.value
   if(!state){
-    selectedOptions.value = []
+    selectedOptions.value.clear()
   }else{
-    selectedOptions.value = options.value.map((el) => el.key)
+    selectedOptions.value.clear()
+    options.value.forEach((el) => selectedOptions.value.set(el.key,el.key))
   }
-  emit('update:modelValue', selectedOptions.value)
+  emit('update:modelValue', Array.from(selectedOptions.value.keys()))
 }
 
 
 const toggleFiltered = () => {
   if(FilterSelected.value){
     filteredOptions.value.forEach(element => {
-      if(selectedOptions.value.includes(element.key)){
-        selectedOptions.value.splice(selectedOptions.value.indexOf(element.key),1)
+      if(selectedOptions.value.has(element.key)){
+        selectedOptions.value.delete(element.key)
       }
     })
   }else{
     filteredOptions.value.forEach(element => {
-      if(!selectedOptions.value.includes(element.key)){
-        selectedOptions.value.push(element.key)
+      if(!selectedOptions.value.has(element.key)){
+        selectedOptions.value.set(element.key,element.key)
       }
     })
   }
-  emit('update:modelValue', selectedOptions.value)
+  emit('update:modelValue', Array.from(selectedOptions.value.keys()))
 }
 
 watch(open,(newOpen,oldOpen)=>{
@@ -176,11 +178,11 @@ watch(open,(newOpen,oldOpen)=>{
   }  
   }
 })
-const AllSelected = computed(()=>selectedOptions.value.length == options.value.length)
+const AllSelected = computed(()=>selectedOptions.value.size == options.value.length)
 const FilterSelected = computed(()=>{
-  return filteredOptions.value.reduce((c,el) => c&& selectedOptions.value.includes(el.key),true) 
+  return filteredOptions.value.reduce((c,el) => c&& selectedOptions.value.has(el.key),true) 
 })
-const NoneSelected = computed(()=>selectedOptions.value.length == 0)
+const NoneSelected = computed(()=>selectedOptions.value.size == 0)
 
 const placeholder = computed(() => {
   if(AllSelected.value ) return "All selected"
@@ -189,17 +191,17 @@ const placeholder = computed(() => {
   const inputStyles = inputNode.value ? getComputedStyle(inputNode.value): null
   const inputLength = inputNode.value?.clientWidth - parseInt(inputStyles?.paddingLeft) - parseInt(inputStyles?.paddingRight)
   
-  let output = selectedOptions.value.length+" selected - "
+  let output = selectedOptions.value.size+" selected - "
   let first = true
-  for(let key of selectedOptions.value.map((opt) => options.value.find((el) => el.key == opt)?.value)){
+  for(let key of selectedOptions.value){
     if(!first){
       output += ", ";
     }else{
       first = false
     }
-    output += key
+    output += options.map.get(key[0]).value
     if(inputLength<getTextWidth(output)){
-      return selectedOptions.value.length+" selected"
+      return selectedOptions.value.size+" selected"
     }
     
   }
@@ -218,8 +220,8 @@ const { list, containerProps, wrapperProps } = useVirtualList(
 <template>
   <div v-if="props.showSelected" class="extra-select selection">
     <template v-for="opt in selectedOptions" :key="opt">
-      <div @click="toggleOption(opt)" class="selection-badge">
-          {{ options.find(el=>el.key == opt)?.value }}
+      <div @click="toggleOption(opt[0])" class="selection-badge">
+          {{ options.find(el=>el.key == opt[0])?.value }}
         <div class="selection-remove" v-html="props.removeIcon"></div>
       </div>
     </template>
@@ -298,7 +300,7 @@ const { list, containerProps, wrapperProps } = useVirtualList(
             >
               <div class="row-input">
                 <input
-                  :checked="selectedOptions.includes(item.data.key)"
+                  :checked="selectedOptions.has(item.data.key)"
                   v-if="isMultiple"
                   type="checkbox"
                 />
@@ -313,9 +315,9 @@ const { list, containerProps, wrapperProps } = useVirtualList(
   <Teleport v-if="props.originalNode" :to="props.originalNode">
     <option
       v-for="opt in selectedOptions"
-      :key="opt"
+      :key="opt[0]"
       selected="selected"
-      :value="opt"
+      :value="opt[0]"
     ></option>
   </Teleport>
 </template>
