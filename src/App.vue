@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import ExtraSelect from "../lib/ExtraSelect.vue";
 import {ref, watchEffect} from 'vue'
+import { computed } from "@vue/reactivity";
 
 const options = ref([
   {key:1,value:"Opzione 1"},
@@ -31,6 +32,10 @@ const minChars= ref(0)
 const showSelected = ref(false)
 const removeIcon = ref("X")
 
+
+const customLabel = computed(()=>"La mia removeIcon è "+removeIcon.value)
+const customLabelLength = computed(()=>"La mia customlabel è  lunga "+customLabel.value.length+" caratteri")
+
   // fetchMode: { type: String, default: "limited" },
   // fetchOptions: { type: Object, default: {} },
   // url: { type:String, required:false },
@@ -46,6 +51,8 @@ const removeIcon = ref("X")
     <a href="/index-b4.html"> Bootstrap 4</a>
     <a href="/index-b5.html"> Bootstrap 5</a>
     <h2>Vue Component</h2>
+    {{customLabel}}<br/>
+    {{customLabelLength}}
     <div>Selected Options: {{selection.join(", ")}}</div>
     <div><label><input v-model="multiple" type="checkbox" />multiple</label></div>
     <div><label><input v-model="keepOpen" type="checkbox" />keepOpen</label></div>
