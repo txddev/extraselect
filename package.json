@@ -34,8 +34,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.2.37",
-    "@vueuse/core": "^9.3.0"
+    "@txd/utils": "git+https://git.sinergo.it/gitblit/r/txdPackage/jsUtils.git",
+    "@vueuse/core": "^9.3.0",
+    "vue": "^3.2.37"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.1.0",

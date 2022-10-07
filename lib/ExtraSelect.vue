@@ -1,6 +1,6 @@
 <script setup>
 import { useVirtualList } from '@vueuse/core'
-import { getParents } from "./windowUtils";
+import { getParents } from "@txd/utils"
 import {
   ref,
   computed,
@@ -22,7 +22,7 @@ const props = defineProps({
   modelValue: { type: Array, required: false,default: [] },
   url: { type:String, required:false },
   maxWidth: { type: String, default: "dynamic" },
-  search: { type: Boolean, default: true },
+  search: { type: Boolean, default: false },
   searchableUrl: { type: Boolean, default: false },
   minChars: { type: Number, default: 0 },
   showSelected: { type: Boolean, default: false },
@@ -185,28 +185,36 @@ const FilterSelected = computed(()=>{
 const NoneSelected = computed(()=>selectedOptions.value.size == 0)
 
 const placeholder = computed(() => {
-  if(AllSelected.value ) return "All selected"
-  if(NoneSelected.value) return "No selection"
-  
-  const inputStyles = inputNode.value ? getComputedStyle(inputNode.value): null
-  const inputLength = inputNode.value?.clientWidth - parseInt(inputStyles?.paddingLeft) - parseInt(inputStyles?.paddingRight)
-  
-  let output = selectedOptions.value.size+" selected - "
-  let first = true
-  for(let key of selectedOptions.value){
-    if(!first){
-      output += ", ";
-    }else{
-      first = false
-    }
-    output += options.map.get(key[0]).value
-    if(inputLength<getTextWidth(output)){
-      return selectedOptions.value.size+" selected"
+  if(isMultiple.value){
+    if(AllSelected.value ) return "All selected"
+    if(NoneSelected.value) return "No selection"
+    
+    const inputStyles = inputNode.value ? getComputedStyle(inputNode.value): null
+    const inputLength = inputNode.value?.clientWidth - parseInt(inputStyles?.paddingLeft) - parseInt(inputStyles?.paddingRight)
+    
+    let output = selectedOptions.value.size+" selected - "
+    let first = true
+    for(let key of selectedOptions.value){
+      if(!first){
+        output += ", ";
+      }else{
+        first = false
+      }
+      output += options.map.get(key[0]).value
+      if(inputLength<getTextWidth(output)){
+        return selectedOptions.value.size+" selected"
+      }
+      
     }
     
+    return output;
+  }else{
+    for(let key of selectedOptions.value){
+      console.log(key,key[0],options.map.get(key[0]),options.map)
+      return options.map.get(key[0]).value
+    }
   }
-  
-  return output;
+  return "No selection"
 });
 
 const { list, containerProps, wrapperProps } = useVirtualList(

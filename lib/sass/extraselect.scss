@@ -47,14 +47,19 @@ $zindex-popover: 1070 !default;
         border: 1px solid var(-es-gray-border);
         box-shadow: 0 0 8px var(-es-box-shadow);
         background-color: white;
-        padding-top:0.5rem;
+        
         padding-left: 0;
         &.searching {
+            
             background-color:var(--es-light-gray);
         }
-        & .extra-select-search {
-            margin: 0.4rem;
-            width: calc(100% - 1rem);
+        & > .input-searching {
+            padding-top:0.5rem;
+            
+            & .extra-select-search {
+                margin: 0.4rem;
+                width: calc(100% - 1rem);
+            }
         }
     }
     & .allselect-clear{

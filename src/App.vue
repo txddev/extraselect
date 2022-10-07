@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import ExtraSelect from "../lib/ExtraSelect.vue";
-import {ref, watchEffect} from 'vue'
-import { computed } from "@vue/reactivity";
+import {ref, computed} from 'vue'
+
 
 const options = ref([
   {key:1,value:"Opzione 1"},
