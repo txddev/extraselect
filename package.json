@@ -1,5 +1,5 @@
 {
-  "name": "extraselect",
+  "name": "@txd/extraselect",
   "files": [
     "dist",
     "lib"
@@ -21,8 +21,8 @@
       "import": "./lib/"
     }
   },
-  "private": true,
-  "version": "0.0.0",
+  "private": false,
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
