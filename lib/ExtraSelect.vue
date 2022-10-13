@@ -24,6 +24,7 @@ const props = defineProps({
   maxWidth: { type: String, default: "dynamic" },
   search: { type: Boolean, default: false },
   searchableUrl: { type: Boolean, default: false },
+  initialValue: { default: null },
   minChars: { type: Number, default: 0 },
   showSelected: { type: Boolean, default: false },
   fetchMode: { type: String, default: "limited" },
@@ -33,9 +34,7 @@ const props = defineProps({
 });
 const isMultiple = computed(() => props.originalNode?.multiple ?? props.multiple)
 
-
-
-const { options, selectedOptions } = loadOptions(props.originalNode,props.options,props.modelValue);
+const { options, selectedOptions } = loadOptions(props.originalNode,props.options,props.modelValue,props.initialValue);
 
 const originalClassList = props.originalNode?.classList;
 const originalCssStyles = Object.values(props.originalNode?.style ?? {});
@@ -185,6 +184,7 @@ const FilterSelected = computed(()=>{
 const NoneSelected = computed(()=>selectedOptions.value.size == 0)
 
 const placeholder = computed(() => {
+  if(options.value.length < 0) return ""
   if(isMultiple.value){
     if(AllSelected.value ) return "All selected"
     if(NoneSelected.value) return "No selection"
@@ -200,7 +200,7 @@ const placeholder = computed(() => {
       }else{
         first = false
       }
-      output += options.map.get(key[0]).value
+      output += options.map.get(key[0])?.value ?? (searchingFlag.value ? 'Loading...': 'Value not found')
       if(inputLength<getTextWidth(output)){
         return selectedOptions.value.size+" selected"
       }
@@ -210,8 +210,7 @@ const placeholder = computed(() => {
     return output;
   }else{
     for(let key of selectedOptions.value){
-      console.log(key,key[0],options.map.get(key[0]),options.map)
-      return options.map.get(key[0]).value
+      return options.map.get(key[0])?.value ?? (searchingFlag.value ? 'Loading...': 'Value not found')
     }
   }
   return "No selection"

@@ -7,7 +7,7 @@ export default defineConfig({
   build: {    
     lib: {
       formats:["es"],
-      entry: './lib/ExtraSelect.vue',
+      entry: './lib/components.js',
       name: 'Extraselect',
       // the proper extensions will be added
       fileName: 'extraselect'
