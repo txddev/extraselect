@@ -33,7 +33,7 @@
             </p>
             
             <p>
-            <select  class="extraselect form-control" data-initial-value="20" name="test[]" data-url="/test_options.json" data-searchable-url="true">
+            <select multiple class="extraselect form-control" data-initial-value="20" name="test[]" data-url="/test_options.json" data-searchable-url="true">
               
             </select>
           </p>
@@ -58,5 +58,20 @@
       </select> -->
     </div>
     <script type="module" src="/src/main.ts"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+    <script>
+      $(document).on("change",".extrasuggest",function(){
+        console.log("sono un extrasuggest!",$(this).val(),this)
+      })
+      $(document).on("change",".extraselect",function(){
+        console.log("sono un extraselect!",$(this).val(),this)
+      })
+      $(".extrasuggest").on("change",function(){
+        console.log("sono un extrasuggest diretto!",$(this).val(),this)
+      })
+      $(".extraselect").on("change",function(){
+        console.log("sono un extraselect diretto!",$(this).val(),this)
+      })
+    </script> -->
   </body>
 </html>

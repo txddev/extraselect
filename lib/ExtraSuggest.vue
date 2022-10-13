@@ -6,6 +6,7 @@ import {
   onMounted,
   onUnmounted,
   watchEffect,
+watch,
 } from "vue";
 import { loadOptions, prepareOriginalNode } from "./composition/options";
 import { loadSearch } from "./composition/search";
@@ -80,7 +81,7 @@ onMounted(() => {
   if(dropdownCointainerNode.value == null) dropdownCointainerNode.value = document.querySelector("body")
   if(props.originalNode){
     for(let cssClass of originalClassList){
-      if(cssClass != "extraselect"){
+      if(cssClass != "extrasuggest"){
         inputNode.value.classList.add(cssClass)
       }
     }
@@ -100,9 +101,8 @@ onMounted(() => {
       }
     })
 
-    watchEffect(()=>{
-      props.originalNode.value = filterText.value
-    })
+    
+
   }
   
   
@@ -125,9 +125,21 @@ const toggleOption = (key) => {
     filterText.value = options.map.get(key).value
     
     open.value = false;
-  
-  emit('update:modelValue', filterText.value)
 };
+
+const emitModelValue = () => {
+  if(props.originalNode){
+    props.originalNode.value = filterText.value
+    props.originalNode?.dispatchEvent(new Event('change',{ bubbles: true }));
+  }
+  emit('update:modelValue', filterText.value)
+}
+
+watch(() => open.value, (openValue)=>{
+  if(openValue === false){
+    emitModelValue()
+  }
+})
 
 
 const { list, containerProps, wrapperProps } = useVirtualList(

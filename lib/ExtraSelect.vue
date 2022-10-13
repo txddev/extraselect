@@ -116,6 +116,11 @@ onUnmounted(() => {
 
 const {dropdownStyle,getTextWidth} = loadStyling(options,selectedOptions,open,inputNode,dropdownNode,dropdownCointainerNode,props.maxWidth)
 
+const emitModelValue = ( value ) => {
+  props.originalNode?.dispatchEvent(new Event('change',{ bubbles: true }));
+  emit('update:modelValue', value)
+}
+
 const toggleOption = (key) => {
   if (isMultiple.value) {
     if (selectedOptions.value.has(key)) {
@@ -128,7 +133,7 @@ const toggleOption = (key) => {
     selectedOptions.value.set(key,key)
     open.value = false;
   }
-  emit('update:modelValue', Array.from(selectedOptions.value.keys()))
+  emitModelValue(Array.from(selectedOptions.value.keys()))
 };
 const clear = ($e) => {
   toggleAll($e,false)
@@ -142,7 +147,7 @@ const toggleAll = (event,state = null) => {
     selectedOptions.value.clear()
     options.value.forEach((el) => selectedOptions.value.set(el.key,el.key))
   }
-  emit('update:modelValue', Array.from(selectedOptions.value.keys()))
+  emitModelValue(Array.from(selectedOptions.value.keys()))
 }
 
 
@@ -160,7 +165,7 @@ const toggleFiltered = () => {
       }
     })
   }
-  emit('update:modelValue', Array.from(selectedOptions.value.keys()))
+  emitModelValue(Array.from(selectedOptions.value.keys()))
 }
 
 watch(open,(newOpen,oldOpen)=>{

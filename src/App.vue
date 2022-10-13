@@ -25,7 +25,7 @@ const options = ref([
 const selection = ref([])
 
 const multiple = ref(false)
-const keepOpen = ref(false)
+
 const maxWidth = ref("dynamic")
 const search = ref(true)
 const minChars= ref(0)
@@ -55,7 +55,6 @@ const customLabelLength = computed(()=>"La mia customlabel è  lunga "+customLab
     {{customLabelLength}}
     <div>Selected Options: {{selection.join(", ")}}</div>
     <div><label><input v-model="multiple" type="checkbox" />multiple</label></div>
-    <div><label><input v-model="keepOpen" type="checkbox" />keepOpen</label></div>
     <div><label><input v-model="search" type="checkbox" />search</label></div>
     <div><label><input v-model="showSelected" type="checkbox" />showSelected</label></div>
     <div><input v-model="minChars" type="number" />minChars</div>
@@ -64,7 +63,6 @@ const customLabelLength = computed(()=>"La mia customlabel è  lunga "+customLab
     
     <extra-select :options="options" v-model="selection" 
       :multiple="multiple"
-      :keepOpen="keepOpen"
       :maxWidth="maxWidth"
       :search="search"
       :minChars="minChars"
