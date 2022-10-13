@@ -757,6 +757,5 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 export {
   Te as ExtraSelect,
-  Ae as ExtraSuggest,
-  Te as default
+  Ae as ExtraSuggest
 };
