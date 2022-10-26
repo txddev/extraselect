@@ -23,6 +23,7 @@ const props = defineProps({
   minChars: { type: Number, default: 0 },
   fetchMode: { type: String, default: "limited" },
   fetchOptions: { type: Object, default: {} },
+  filterFields: { type: Array, default: [] },
   dropdownContainer: {type: String, default: null }
 });
 
@@ -35,13 +36,14 @@ prepareOriginalNode(props.originalNode);
 const emit = defineEmits(['update:modelValue'])
 
 
-const { filterText, filteredOptions } = loadFilter(options, props.minChars)
+const { filterText, filteredOptions, filterValues } = loadFilter(options, props.filterFields)
 const { searchingFlag } = loadSearch(
   options,
   props.url,
   props.searchableUrl,
   filterText,
   props.minChars,
+  filterValues,
   props.fetchMode,
   props.fetchOptions
 );

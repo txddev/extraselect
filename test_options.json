@@ -3,14 +3,14 @@
         "value": "Giacomo",
         "key": 0,
         "data": {
-            "rif": ""
+            "campo_filtro_2": "20"
         }
     },
     {
         "value": "Gianluca",
         "key": 1,
         "data": {
-            "rif": ""
+            "campo_filtro": "filtro"
         }
     },
     {
@@ -24,7 +24,7 @@
         "value": "Alessio",
         "key": 4,
         "data": {
-            "rif": ""
+            "campo_filtro": "filtro"
         }
     },
     {
@@ -38,7 +38,7 @@
         "value": "Fabio",
         "key": 6,
         "data": {
-            "rif": ""
+            "campo_filtro": "filtro"
         }
     },
     {
@@ -59,7 +59,7 @@
         "value": "Marco",
         "key": 9,
         "data": {
-            "rif": ""
+            "campo_filtro": "filtro2"
         }
     },
     {
