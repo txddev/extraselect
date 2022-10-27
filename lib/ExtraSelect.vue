@@ -119,7 +119,9 @@ onUnmounted(() => {
 const {dropdownStyle,getTextWidth} = loadStyling(options,selectedOptions,open,inputNode,dropdownNode,dropdownCointainerNode,props.maxWidth)
 
 const emitModelValue = ( value ) => {
-  props.originalNode?.dispatchEvent(new Event('change',{ bubbles: true }));
+  nextTick(()=>
+    props.originalNode?.dispatchEvent(new Event('change',{ bubbles: true }))
+  )
   emit('update:modelValue', value)
 }
 
