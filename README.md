@@ -44,6 +44,7 @@ Per l'inclusione standalone il valore può essere impostato tramite dataset dell
 | searchableUrl |  Boolean ( false ) | definisce se usare l'url come sorgente della ricerca |
 | initialValue |  any ( null ) | valore iniziale del campo testuale del select. Usato in modalità standalone  |
 | minChars |  Number ( 0 ) | numero di caratteri necessari per scatenare un evento di ricerca un ajax |
+| filterFields |  Array ( [] ) | in modalità standalone, usa i valori qui assegnati come id per identificare i campi da cui la tendina corrente dipende. dato una chiave \[id_campo_filtro]\, vengono filtrate le opzioni per cui data\[id_campo_filtro\] è uguale al valore del campo. non usare in modalità vue (filtrare i valori a monte)  |
 | fetchMode |  String ( "limited" ) |  Avanzata. regola l'esecuzione delle chiamate ajax quando la chiave di ricerca è una versione più specifica di una chiave già usata  |
 | fetchOptions |  Object ( {} ) | Avanzata. oggetto che viene passato alla chiamata fetch eseguita per raccogliere le opzioni |
 | dropdownContainer | String ( null ) | Avanzata. Definisce quale elemento html usare come contenitore del dropdown. Se null viene usato l'intero body |
@@ -60,6 +61,7 @@ Per l'inclusione standalone il valore può essere impostato tramite dataset dell
 | searchableUrl |  Boolean ( false ) | definisce se usare l'url come sorgente della ricerca |
 standalone  |
 | minChars |  Number ( 0 ) | numero di caratteri necessari per scatenare un evento di ricerca un ajax |
+| filterFields |  Array ( [] ) | in modalità standalone, usa i valori qui assegnati come id per identificare i campi da cui la tendina corrente dipende. dato una chiave \[id_campo_filtro]\, vengono filtrate le opzioni per cui data\[id_campo_filtro\] è uguale al valore del campo. non usare in modalità vue (filtrare i valori a monte)  |
 | fetchMode |  String ( "limited" ) |  Avanzata. regola l'esecuzione delle chiamate ajax quando la chiave di ricerca è una versione più specifica di una chiave già usata  |
 | fetchOptions |  Object ( {} ) | Avanzata. oggetto che viene passato alla chiamata fetch eseguita per raccogliere le opzioni |
 | dropdownContainer | String ( null ) | Avanzata. Definisce quale elemento html usare come contenitore del dropdown. Se null viene usato l'intero body |
