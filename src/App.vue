@@ -1,28 +1,34 @@
 <script setup lang="ts">
 import ExtraSelect from "../lib/ExtraSelect.vue";
+import ExtraSuggest from "../lib/ExtraSuggest.vue";
 import {ref, computed} from 'vue'
 
 
-const options = ref([
-  {key:1,value:"Opzione 1"},
-  {key:2,value:"Opzione 2"},
-  {key:3,value:"Opzione 3"},
-  {key:4,value:"Opzione 4"},
-  {key:5,value:"Opzione 5"},
-  {key:6,value:"Opzione 6"},
-  {key:7,value:"Opzione 7"},
-  {key:8,value:"Opzione 8"},
-  {key:9,value:"Opzione 9"},
-  {key:10,value:"Opzione 10"},
-  {key:11,value:"Opzione 11"},
-  {key:12,value:"Opzione 12"},
-  {key:13,value:"Opzione 13"},
-  {key:14,value:"Opzione 14"},
-  {key:15,value:"Opzione 15"},
-  {key:16,value:"Opzione 16"},
-])
+const options = ref([] as { key: any; value: string; data?: any }[])
+
+setTimeout(()=>{
+  options.value =[
+    {key:1,value:"Opzione 1"},
+    {key:2,value:"Opzione 2"},
+    {key:3,value:"Opzione 3"},
+    {key:4,value:"Opzione 4"},
+    {key:5,value:"Opzione 5"},
+    {key:6,value:"Opzione 6"},
+    {key:7,value:"Opzione 7"},
+    {key:8,value:"Opzione 8"},
+    {key:9,value:"Opzione 9"},
+    {key:10,value:"Opzione 10"},
+    {key:11,value:"Opzione 11"},
+    {key:12,value:"Opzione 12"},
+    {key:13,value:"Opzione 13"},
+    {key:14,value:"Opzione 14"},
+    {key:15,value:"Opzione 15"},
+    {key:16,value:"Opzione 16"},
+];
+},2000)
 
 const selection = ref([])
+const suggest = ref("")
 
 const multiple = ref(false)
 
@@ -69,6 +75,9 @@ const customLabelLength = computed(()=>"La mia customlabel è  lunga "+customLab
       :showSelected="showSelected"
       :remove-icon="removeIcon"
     ></extra-select>
+    <extra-suggest :options="options" v-model="suggest" 
+      
+    ></extra-suggest>
   </div>
   
 </template>

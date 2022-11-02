@@ -12,7 +12,8 @@ import {
   onMounted,
   onUnmounted,
   watchEffect,
-watch,
+  watch,
+  toRef
 } from "vue";
 import { loadOptions, prepareOriginalNode } from "./composition/options";
 import { loadSearch } from "./composition/search";
@@ -33,7 +34,7 @@ const props = defineProps({
   dropdownContainer: {type: String, default: null }
 });
 
-const { options } = loadOptions(null,props.options,[]);
+const { options } = loadOptions(null,toRef(props,'options'),[]);
 
 const originalClassList = props.originalNode?.classList;
 const originalCssStyles = Object.values(props.originalNode?.style ?? {});

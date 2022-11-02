@@ -14,7 +14,8 @@ import {
   onMounted,
   onUnmounted,
   watchEffect,
-watch,
+  watch,
+  toRef
 } from "vue";
 import { loadOptions, prepareOriginalNode } from "./composition/options";
 import { loadSearch } from "./composition/search";
@@ -41,7 +42,7 @@ const props = defineProps({
 });
 const isMultiple = computed(() => props.originalNode?.multiple ?? props.multiple)
 
-const { options, selectedOptions } = loadOptions(props.originalNode,props.options,props.modelValue,props.initialValue);
+const { options, selectedOptions } = loadOptions(props.originalNode,toRef(props,'options'),toRef(props,'modelValue'),props.initialValue);
 
 const originalClassList = props.originalNode?.classList;
 const originalCssStyles = Object.values(props.originalNode?.style ?? {});
