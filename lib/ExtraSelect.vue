@@ -1,3 +1,9 @@
+<script>
+  export default {
+    name: 'ExtraSelect',
+    inheritAttrs: false
+  }
+</script>
 <script setup>
 import { useVirtualList } from '@vueuse/core'
 import { getParents } from "@txd/utils"
@@ -250,6 +256,7 @@ const { list, containerProps, wrapperProps } = useVirtualList(
     :value="placeholder"
     class="extra-select extra-select-input"
     readonly=""
+    v-bind="$attrs"
   />
   <Teleport v-if="dropdownCointainerNode" :to="dropdownCointainerNode">
     <div
