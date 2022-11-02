@@ -34,7 +34,7 @@ const props = defineProps({
   dropdownContainer: {type: String, default: null }
 });
 
-const { options } = loadOptions(null,toRef(props,'options'),[]);
+const { options } = loadOptions(null,toRef(props,'options'),ref([]));
 
 const originalClassList = props.originalNode?.classList;
 const originalCssStyles = Object.values(props.originalNode?.style ?? {});
