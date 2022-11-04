@@ -13,6 +13,9 @@
     "./wrapped": {
       "import": "./dist/wrapped/extraselect.js"
     },
+    "./bundle": {
+      "import": "./dist/bundle/extraselect.js"
+    },
     "./css/": {
       "import": "./dist/css/",
       "require": "./dist/css/"
@@ -26,7 +29,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build && vite build -c wrapper.config.ts && vite build -c styles.config.ts",
+    "build": "vue-tsc --noEmit && vite build && vite build -c wrapper.config.ts && vite build -c styles.config.ts && vite build -c bundle.config.ts",
     "build:styles": "vue-tsc --noEmit && vite build -c styles.config.ts",
     "build:wrapper": "vue-tsc --noEmit && vite build -c wrapper.config.ts",
     "build:es": "vue-tsc --noEmit && vite build",
