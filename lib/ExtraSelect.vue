@@ -42,7 +42,7 @@ const props = defineProps({
 });
 const isMultiple = computed(() => props.originalNode?.multiple ?? props.multiple)
 
-const { options, selectedOptions } = loadOptions(props.originalNode,toRef(props,'options'),toRef(props,'modelValue'),props.initialValue);
+const { options, selectedOptions, onReset } = loadOptions(props.originalNode,toRef(props,'options'),toRef(props,'modelValue'),props.initialValue);
 
 const originalClassList = props.originalNode?.classList;
 const originalCssStyles = Object.values(props.originalNode?.style ?? {});
@@ -112,10 +112,16 @@ onMounted(() => {
     if(!originalCssStyles.includes('background-color')){
       inputNode.value.style.backgroundColor = 'white'
     }
+    
+    let form = getParents(inputNode.value,"form").pop()
+    if(form instanceof HTMLElement && form.matches("form")){
+      form.addEventListener("reset", () => setTimeout(onReset));
+    }
   }
 
   window.document.addEventListener("mousedown", autoCloseHandler);
   window.document.addEventListener("focusin", autoCloseHandler);
+    
 });
 onUnmounted(() => {
   window.document.removeEventListener("mousedown", autoCloseHandler);

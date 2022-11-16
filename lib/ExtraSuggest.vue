@@ -20,6 +20,8 @@ import { loadSearch } from "./composition/search";
 import { loadFilter } from "./composition/filter";
 import { loadStyling } from "./composition/styling";
 
+
+
 const props = defineProps({
   originalNode: { type: Object, required: false },
   options: { type: Array, required: false },
@@ -110,7 +112,16 @@ onMounted(() => {
       }
     })
 
+    const resetValue = filterText.value
     
+    const onReset = () =>{
+        filterText.value = resetValue
+    }
+    
+    let form = getParents(inputNode.value,"form").pop()
+    if(form instanceof HTMLElement && form.matches("form")){
+      form.addEventListener("reset", () => setTimeout(onReset));
+    }
 
   }
   
