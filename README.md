@@ -1,5 +1,14 @@
 # ExtraSelect ed ExtraSuggest
 
+I componenti inclusi in questa libreria supportano 3 esigenze differenti:
+* select semplice
+* multiselect
+* input con autosuggest
+
+Per tutte questi input la libreria fornisce una modalità di caricamento asincrono delle opzioni e/o il caricamento parziale basato su ricerca testuale.
+Inoltre la libreria prevede un supporto nativo al filtraggio basato sul contesto (ovvero sul valore di altri input presenti nella pagina).
+
+
 ## Installazione
 
 ## Sistemi Legacy (non compilati)
