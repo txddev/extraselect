@@ -37,7 +37,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@txd/utils": "git+https://git.sinergo.it/gitblit/r/txdPackage/jsUtils.git",
+    "@txd/utils": "github:txddev/js-utils",
     "@vueuse/core": "^9.3.0",
     "vue": "^3.2.37"
   },
