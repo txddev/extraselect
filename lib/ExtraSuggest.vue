@@ -33,6 +33,7 @@ const props = defineProps({
   fetchMode: { type: String, default: "limited" },
   fetchOptions: { type: Object, default: {} },
   filterFields: { type: Array, default: [] },
+  hardFilterFields: { type: Array, default: [] },
   dropdownContainer: {type: String, default: null }
 });
 
@@ -44,8 +45,17 @@ const originalCssStyles = Object.values(props.originalNode?.style ?? {});
 prepareOriginalNode(props.originalNode);
 const emit = defineEmits(['update:modelValue'])
 
+const toggleOption = (key, forcedState = null) => {
+    if(forcedState === false){
+      filterText.value = ""  
+    }else{
+      filterText.value = options.map.get(key).value
+    }
+    
+    open.value = false;
+};
 
-const { filterText, filteredOptions, filterValues } = loadFilter(options, props.filterFields)
+const { filterText, filteredOptions, filterValues } = loadFilter(options,selectedOptions,toggleOption, props.filterFields,props.hardFilterFields)
 const { searchingFlag } = loadSearch(
   options,
   props.url,
@@ -141,11 +151,7 @@ onUnmounted(() => {
 
 const {dropdownStyle} = loadStyling(options,ref([]),open,inputNode,dropdownNode,dropdownCointainerNode,props.maxWidth)
 
-const toggleOption = (key) => {
-    filterText.value = options.map.get(key).value
-    
-    open.value = false;
-};
+
 
 const emitModelValue = () => {
   if(props.originalNode){

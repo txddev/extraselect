@@ -28,39 +28,44 @@
           <div class="col-lg-12">
             <h2>Bootstrap 4</h2>
             <form>
-              
-            <p>
-              <input id="campo_filtro" class="form-control"/>
-            </p>
-            <p>
-              <input class="extrasuggest form-control" name="test" value="pluto" data-url="/test_options.json" data-searchable-url="true" />
-            </p>
             
             <p>
-              <select class="extraselect form-control" name="test_fisso[]">
-                <option value="1">A</option>
-                <option value="2">B</option>
-                <option value="3">C</option>
-                <option selected value="4">D</option>
-                <option value="5">E</option>
-                <option value="6">F</option>
+              <select id="campo_1" class="extraselect form-control" name="test_1">
+                <option value>--</option>
+                <option selected value="1">A1</option>
+                <option value="2">B1</option>
+                <option value="3">C1</option>
+                <option value="4">D1</option>
+                <option value="5">E1</option>
+                <option value="6">F1</option>
+                <option value="7">G1</option>
               </select>
-            <select id="campo_filtro_2" class="extraselect form-control" data-filter-fields='["campo_filtro"]' data-initial-value="20" name="test[]" data-url="/test_options.json" data-search data-searchable-url="true">
               
+            <select id="campo_2" class="extraselect form-control" data-hard-filter-fields='["campo_1"]' name="test_2">
+              <option value>--</option>
+              <option value="1" data-campo_1="1">A2</option>
+              <option value="2" data-campo_1="2">B2</option>
+              <option selected value="3" data-campo_1="3">C2</option>
+              <option value="4" data-campo_1="4">D2</option>
+              <option value="5" data-campo_1="5">E2</option>
+              <option value="6" data-campo_1="6">F2</option>
+              <option value="7">G2</option>
+            </select>
+            <select class="extraselect form-control" data-hard-filter-fields='["campo_2"]' name="test_3">
+              <option value>--</option>
+              <option value="1" data-campo_2="1">A3</option>
+              <option value="2" data-campo_2="2">B3</option>
+              <option value="3" data-campo_2="3">C3</option>
+              <option value="4" data-campo_2="4">D3</option>
+              <option value="5" data-campo_2="5">E3</option>
+              <option value="6" data-campo_2="6">F3</option>
+              <option selected value="7">G3</option>
             </select>
           </p>
-            <div class="d-flex justify-content-between mt-5 w-100">
-              <select name="" id="" class="form-control">
-                <option data="" type="">ciao</option>
-                <option data="" type="">ciao</option>
-              </select>
-              <input type="text" class="form-control ml-3" placeholder="hohoho">
-            </div>
+          
             <input type="reset">
           </form>
-            <div class="d-flex justify-content-between mt-5 w-100">
-              <div id="app"></div>
-            </div>
+          
           </div>
         </div>
       </div>

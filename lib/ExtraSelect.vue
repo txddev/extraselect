@@ -37,6 +37,7 @@ const props = defineProps({
   fetchMode: { type: String, default: "limited" },
   fetchOptions: { type: Object, default: {} },
   filterFields: { type: Array, default: [] },
+  hardFilterFields: { type: Array, default: [] },
   removeIcon: {type: String, default: "X"},
   dropdownContainer: {type: String, default: null }
 });
@@ -50,8 +51,31 @@ const originalCssStyles = Object.values(props.originalNode?.style ?? {});
 prepareOriginalNode(props.originalNode);
 const emit = defineEmits(['update:modelValue'])
 
+const toggleOption = (key, forcedState = null) => {
+  if (isMultiple.value) {
+      let targetState = forcedState
+      if(targetState == null){
+        targetState = !selectedOptions.value.has(key)
+      }
+      
+      switch(targetState){
+        case true:
+          selectedOptions.value.set(key,key);
+          break;
+        case false:
+          selectedOptions.value.delete(key);
+          break;
+      }
+    
+  } else {
+    selectedOptions.value.clear();
+    if(forcedState !== false) selectedOptions.value.set(key,key)
+    open.value = false;
+  }
+  emitModelValue(Array.from(selectedOptions.value.keys()))
+};
 
-const { filterText, filteredOptions, filterValues } = loadFilter(options, props.filterFields)
+const { filterText, filteredOptions, filterValues } = loadFilter(options,selectedOptions,toggleOption, props.filterFields,props.hardFilterFields)
 const { searchingFlag } = loadSearch(
   options,
   props.url,
@@ -138,20 +162,7 @@ const emitModelValue = ( value ) => {
   emit('update:modelValue', value)
 }
 
-const toggleOption = (key) => {
-  if (isMultiple.value) {
-    if (selectedOptions.value.has(key)) {
-      selectedOptions.value.delete(key)
-    } else {
-      selectedOptions.value.set(key,key);
-    }
-  } else {
-    selectedOptions.value.clear();
-    selectedOptions.value.set(key,key)
-    open.value = false;
-  }
-  emitModelValue(Array.from(selectedOptions.value.keys()))
-};
+
 const clear = ($e) => {
   toggleAll($e,false)
   filterText.value = ""
