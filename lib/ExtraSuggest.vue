@@ -55,7 +55,7 @@ const toggleOption = (key, forcedState = null) => {
     open.value = false;
 };
 
-const { filterText, filteredOptions, filterValues } = loadFilter(options,selectedOptions,toggleOption, props.filterFields,props.hardFilterFields)
+const { filterText, filteredOptions, filterValues } = loadFilter(options,null,toggleOption, props.filterFields,props.hardFilterFields)
 const { searchingFlag } = loadSearch(
   options,
   props.url,
