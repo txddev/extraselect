@@ -1,135 +1,162 @@
 [
     {
-        "value": "Giacomo",
-        "key": 0,
-        "data": {
-            "campo_filtro_2": "20"
-        }
+      "key": "637dfb077ef84a196d4eb4f6",
+      "value": "Cara Hood",
+      "data": {
+        "gender": "female",
+        "category": "green"
+      }
     },
     {
-        "value": "Gianluca",
-        "key": 1,
-        "data": {
-            "campo_filtro": "filtro"
-        }
+      "key": "637dfb07cd059932559e889d",
+      "value": "Hammond Burgess",
+      "data": {
+        "gender": "male",
+        "category": "red"
+      }
     },
     {
-        "value": "Francesco",
-        "key": 2,
-        "data": {
-            "rif": ""
-        }
+      "key": "637dfb0785ace43ec27fd9f3",
+      "value": "Rosella Stokes",
+      "data": {
+        "gender": "female",
+        "category": "red"
+      }
     },
     {
-        "value": "Alessio",
-        "key": 4,
-        "data": {
-            "campo_filtro": "filtro"
-        }
+      "key": "637dfb07112b9e7368b9923e",
+      "value": "Stuart Jennings",
+      "data": {
+        "gender": "male",
+        "category": "green"
+      }
     },
     {
-        "value": "Giacomo",
-        "key": 5,
-        "data": {
-            "rif": ""
-        }
+      "key": "637dfb0794b92b4db625789b",
+      "value": "Kathie Cantu",
+      "data": {
+        "gender": "female",
+        "category": "blue"
+      }
     },
     {
-        "value": "Fabio",
-        "key": 6,
-        "data": {
-            "campo_filtro": "filtro"
-        }
+      "key": "637dfb07e066fb1f8c5d8e86",
+      "value": "Audrey Mullins",
+      "data": {
+        "gender": "female",
+        "category": "green"
+      }
     },
     {
-        "value": "Francesco",
-        "key": 7,
-        "data": {
-            "rif": ""
-        }
+      "key": "637dfb074ce7dbdbf9277f39",
+      "value": "Levy Caldwell",
+      "data": {
+        "gender": "male",
+        "category": "red"
+      }
     },
     {
-        "value": "Fabio",
-        "key": 8,
-        "data": {
-            "rif": ""
-        }
+      "key": "637dfb0733e64f2d7705bb3d",
+      "value": "Corrine Dotson",
+      "data": {
+        "gender": "female",
+        "category": "red"
+      }
     },
     {
-        "value": "Marco",
-        "key": 9,
-        "data": {
-            "campo_filtro": "filtro2"
-        }
+      "key": "637dfb071b9e63c152da4e3c",
+      "value": "Ebony Nelson",
+      "data": {
+        "gender": "female",
+        "category": "red"
+      }
     },
     {
-        "value": "Utente",
-        "key": 10,
-        "data": {
-            "rif": ""
-        }
+      "key": "637dfb0709ccc2c1544ba391",
+      "value": "Emma Wiggins",
+      "data": {
+        "gender": "female",
+        "category": "brown"
+      }
     },
     {
-        "value": "Alida",
-        "key": 11,
-        "data": {
-            "rif": ""
-        }
+      "key": "637dfb072de5777d2d57c248",
+      "value": "Yesenia Drake",
+      "data": {
+        "gender": "female",
+        "category": "green"
+      }
     },
     {
-        "value": "Marco",
-        "key": 12,
-        "data": {
-            "rif": ""
-        }
+      "key": "637dfb076de2245784fdcccb",
+      "value": "Lucia Cohen",
+      "data": {
+        "gender": "female",
+        "category": "brown"
+      }
     },
     {
-        "value": "Sara",
-        "key": 13,
-        "data": {
-            "rif": ""
-        }
+      "key": "637dfb0712271061fb051115",
+      "value": "Jennie Puckett",
+      "data": {
+        "gender": "female",
+        "category": "red"
+      }
     },
     {
-        "value": "Sara",
-        "key": 14,
-        "data": {
-            "rif": ""
-        }
+      "key": "637dfb076de47bc4c4a54402",
+      "value": "Barnes Hurley",
+      "data": {
+        "gender": "male",
+        "category": "brown"
+      }
     },
     {
-        "value": "Luca",
-        "key": 15,
-        "data": {
-            "rif": ""
-        }
+      "key": "637dfb078fc7bf7f1bb386e4",
+      "value": "Brock Kidd",
+      "data": {
+        "gender": "male",
+        "category": "brown"
+      }
     },
     {
-        "value": "Giacomo Giacomo Giacomo Giacomo Giacomo Giacomo Giacomo Giacomo Giacomo Giacomo Giacomo Giacomo Giacomo Giacomo Giacomo Giacomo Giacomo Giacomo Giacomo Gi",
-        "key": 16,
-        "data": {
-            "rif": ""
-        }
+      "key": "637dfb0729d78b41202fb24d",
+      "value": "Foley Conway",
+      "data": {
+        "gender": "male",
+        "category": "green"
+      }
     },
     {
-        "value": "Gianluca",
-        "key": 17,
-        "data": {
-            "rif": ""
-        }
+      "key": "637dfb072d9303a01a946660",
+      "value": "Elba Villarreal",
+      "data": {
+        "gender": "female",
+        "category": "red"
+      }
     },
     {
-        "value": "Francesco",
-        "key": 18,
-        "data": {
-            "rif": ""
-        }
+      "key": "637dfb0705c0f111f5c1aaa3",
+      "value": "Faith Lyons",
+      "data": {
+        "gender": "female",
+        "category": "blue"
+      }
     },
     {
-        "value": "Alessio",
-        "key": 20,
-        "data": {
-            "rif": ""
-        }
+      "key": "637dfb077e06cceae32df942",
+      "value": "Gallegos Frazier",
+      "data": {
+        "gender": "male",
+        "category": "red"
+      }
+    },
+    {
+      "key": "637dfb07d3c0258edc6c7c80",
+      "value": "Estrada Gonzalez",
+      "data": {
+        "gender": "male",
+        "category": "blue"
+      }
     }
-]
+  ]

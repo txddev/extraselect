@@ -29,25 +29,29 @@
           <div class="col-lg-12">
             <h2>Bootstrap 4</h2>
             <p>
-              <input id="campo_filtro" class="form-control"/>
+              <select id="gender" class="form-control">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
             </p>
             <p>
-              <input class="extrasuggest form-control" data-filter-fields='["campo_filtro_2"]' name="test" data-url="/test_options.json" data-searchable-url="true" />
+              <select id="category" class="form-control">
+                <option value="red">Red</option>
+                <option value="blue">Blue</option>
+                <option value="brown">Brown</option>
+                <option value="green">Green</option>
+                
+              </select>
+            </p>
+            <p>
+              <input id="my_test" type="text" name="code" class="form-control extrasuggest input-part-number" placeholder=""  data-url="/test_options.json"  data-searchable-url="" value="0411-310-1605">
             </p>
             
             <p>
-            <select id="campo_filtro_2" class="extraselect form-control" data-filter-fields='["campo_filtro"]' data-initial-value="20" name="test[]" data-url="/test_options.json" data-search data-searchable-url="true">
+            <select id="campo_filtro_2" class="extraselect form-control" data-hard-filter-fields='["gender","category"]'  name="test[]" data-url="/test_options.json" data-search data-searchable-url="true">
               
             </select>
           </p>
-            <div class="d-flex justify-content-between mt-5 w-100">
-              <select name="" id="" class="form-control">
-                <option data="" type="">ciao</option>
-                <option data="" type="">ciao</option>
-              </select>
-              <input type="text" class="form-control ml-3" placeholder="hohoho">
-            </div>
-            
             <div class="d-flex justify-content-between mt-5 w-100">
               <div id="app"></div>
             </div>
