@@ -25,10 +25,10 @@
     }
   },
   "private": false,
-  "version": "1.6.0",
+  "version": "1.6.1",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vue-tsc --noEmit && vite build && vite build -c wrapper.config.ts && vite build -c styles.config.ts && vite build -c bundle.config.ts",
     "build:styles": "vue-tsc --noEmit && vite build -c styles.config.ts",
     "build:wrapper": "vue-tsc --noEmit && vite build -c wrapper.config.ts",
