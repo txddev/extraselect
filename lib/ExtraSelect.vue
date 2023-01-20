@@ -258,7 +258,7 @@ const { list, containerProps, wrapperProps } = useVirtualList(
 </script>
 
 <template>
-  <input v-if="isMultiple&&selectedOptions.size==0" type="hidden" :name="props.originalNode?.replace('[]','')" value/>
+  <input v-if="isMultiple&&selectedOptions.size==0" type="hidden" :name="props.originalNode?.name?.replace('[]','')" value/>
   <div v-if="props.showSelected" class="extra-select selection">
     <template v-for="opt in selectedOptions" :key="opt">
       <div @click="toggleOption(opt[0])" class="selection-badge">
