@@ -338,7 +338,7 @@ const ge = (a) => {
         v(l) && v(t).size == 0 ? (h(), g("input", {
           key: 0,
           type: "hidden",
-          name: (N = e.originalNode) == null ? void 0 : N.name,
+          name: (N = e.originalNode) == null ? void 0 : N.replace("[]", ""),
           value: ""
         }, null, 8, qe)) : O("", !0),
         e.showSelected ? (h(), g("div", Ie, [

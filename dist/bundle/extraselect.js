@@ -3559,7 +3559,7 @@ const yl = (e) => {
         W(s) && W(l).size == 0 ? (G(), oe("input", {
           key: 0,
           type: "hidden",
-          name: (ue = n.originalNode) == null ? void 0 : ue.name,
+          name: (ue = n.originalNode) == null ? void 0 : ue.replace("[]", ""),
           value: ""
         }, null, 8, Cc)) : Te("", !0),
         n.showSelected ? (G(), oe("div", Ec, [
