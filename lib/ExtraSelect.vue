@@ -18,6 +18,7 @@ import {
   toRef
 } from "vue";
 import { loadOptions, prepareOriginalNode } from "./composition/options";
+import { loadLocalization } from "./composition/localization";
 import { loadSearch } from "./composition/search";
 import { loadFilter } from "./composition/filter";
 import { loadStyling } from "./composition/styling";
@@ -26,6 +27,7 @@ const props = defineProps({
   originalNode: { type: Object, required: false },
   multiple: {type: Boolean, required: false},
   options: { type: Array, required: false },
+  localization: { type: Object, required: false, default: {} },
   modelValue: { type: Array, required: false,default: [] },
   url: { type:String, required:false },
   maxWidth: { type: String, default: "dynamic" },
@@ -44,7 +46,7 @@ const props = defineProps({
 const isMultiple = computed(() => props.originalNode?.multiple ?? props.multiple)
 
 const { options, selectedOptions, onReset } = loadOptions(props.originalNode,toRef(props,'options'),toRef(props,'modelValue'),props.initialValue);
-
+const {t: $t} = loadLocalization(props.originalNode,toRef(props,'localization'))
 const originalClassList = props.originalNode?.classList;
 const originalCssStyles = Object.values(props.originalNode?.style ?? {});
 
@@ -219,13 +221,13 @@ const NoneSelected = computed(()=>selectedOptions.value.size == 0)
 const placeholder = computed(() => {
   if(options.value.length < 0) return ""
   if(isMultiple.value){
-    if(NoneSelected.value) return "No selection"
-    if(!props.searchableUrl && AllSelected.value ) return "All selected"
+    if(NoneSelected.value) return $t("No selection")
+    if(!props.searchableUrl && AllSelected.value ) return $$t("All selected")
     
     const inputStyles = inputNode.value ? getComputedStyle(inputNode.value): null
     const inputLength = inputNode.value?.clientWidth - parseInt(inputStyles?.paddingLeft) - parseInt(inputStyles?.paddingRight)
     
-    let output = selectedOptions.value.size+" selected - "
+    let output = $t(":n selected - ",{n:selectedOptions.value.size})
     let first = true
     for(let key of selectedOptions.value){
       if(!first){
@@ -233,9 +235,9 @@ const placeholder = computed(() => {
       }else{
         first = false
       }
-      output += options.map.get(key[0])?.value ?? (searchingFlag.value ? 'Loading...': 'Value not found')
+      output += options.map.get(key[0])?.value ?? (searchingFlag.value ? $t('Loading...'): $t('Value not found'))
       if(inputLength<getTextWidth(output)){
-        return selectedOptions.value.size+" selected"
+        return selectedOptions.value.size+$t(" selected")
       }
       
     }
@@ -243,10 +245,10 @@ const placeholder = computed(() => {
     return output;
   }else{
     for(let key of selectedOptions.value){
-      return options.map.get(key[0])?.value ?? (searchingFlag.value ? 'Loading...': 'Value not found')
+      return options.map.get(key[0])?.value ?? (searchingFlag.value ? $t('Loading...'): $t('Value not found'))
     }
   }
-  return "No selection"
+  return $t("No selection")
 });
 
 const { list, containerProps, wrapperProps } = useVirtualList(
@@ -295,7 +297,7 @@ const { list, containerProps, wrapperProps } = useVirtualList(
           autocorrect="off"
           autocapitilize="off"
           spellcheck="false"
-          placeholder="Cerca..."
+          :placeholder="$t('Search...')"
         />
       </div>
       <template v-if="filterText.length >= props.minChars">
@@ -307,7 +309,7 @@ const { list, containerProps, wrapperProps } = useVirtualList(
               class="all-select"
             >
               <div class="row-input">
-                <input :checked="AllSelected" type="checkbox" /><b>Select all</b>
+                <input :checked="AllSelected" type="checkbox" /><b>{{$t("Select all")}}</b>
               </div>
             </div>
             <div
@@ -316,11 +318,11 @@ const { list, containerProps, wrapperProps } = useVirtualList(
             class="all-select"
           >
             <div class="row-input">
-              <input :checked="FilterSelected" type="checkbox" /><b>Select Filtered</b>
+              <input :checked="FilterSelected" type="checkbox" /><b>{{$t("Select Filtered")}}</b>
             </div>
           </div>
 
-            <div class="clear" @click="clear">Clear</div>
+            <div class="clear" @click="clear">{{$t("Clear")}}</div>
             
           </div>
           
@@ -328,10 +330,10 @@ const { list, containerProps, wrapperProps } = useVirtualList(
         </template>
         <template v-if="filteredOptions.length == 0">
           
-          <div class="no-matches">No matches found</div>
+          <div class="no-matches">{{$t("No matches found")}}</div>
         </template>
       </template>
-      <div v-else >Insert at least {{props.minChars}} characters</div>
+      <div v-else >{{$t("Insert at least :n characters",{n:props.minChars})}}</div>
       <div v-bind="containerProps" class="scroller">
         <div v-bind="wrapperProps">
           <template v-for="item in list" :key="item.index" style="height: 32px">

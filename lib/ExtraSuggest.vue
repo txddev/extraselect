@@ -16,6 +16,7 @@ import {
   toRef
 } from "vue";
 import { loadOptions, prepareOriginalNode } from "./composition/options";
+import { loadLocalization } from "./composition/localization";
 import { loadSearch } from "./composition/search";
 import { loadFilter } from "./composition/filter";
 import { loadStyling } from "./composition/styling";
@@ -25,6 +26,7 @@ import { loadStyling } from "./composition/styling";
 const props = defineProps({
   originalNode: { type: Object, required: false },
   options: { type: Array, required: false },
+  localization: { type: Object, required: false, default: {} },
   modelValue: { type: String, required: false },
   maxWidth: { type: String, default: "dynamic" },
   url: { type:String, required:false },
@@ -38,7 +40,7 @@ const props = defineProps({
 });
 
 const { options } = loadOptions(props.originalNode,toRef(props,'options'),ref([]));
-
+const {t: $t} = loadLocalization(props.originalNode,toRef(props,'localization'))
 const originalClassList = props.originalNode?.classList;
 const originalCssStyles = Object.values(props.originalNode?.style ?? {});
 
@@ -197,10 +199,10 @@ const { list, containerProps, wrapperProps } = useVirtualList(
         
         <template v-if="filteredOptions.length == 0">
           
-          <div class="no-matches">No matches found</div>
+          <div class="no-matches">{{$t("No matches found")}}</div>
         </template>
       </template>
-      <div v-else >Insert at least {{props.minChars}} characters</div>
+      <div v-else >{{$t("Insert at least :n characters",{n:props.minChars})}}</div>
       <div v-bind="containerProps" class="scroller">
         <div v-bind="wrapperProps">
           <template v-for="item in list" :key="item.index" style="height: 32px">
