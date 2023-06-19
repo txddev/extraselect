@@ -115,9 +115,9 @@ const Pe = (l = null) => {
     }
   };
   window.ExtraSelectLocalization[v] = e, l.actions = e;
-}, xe = (l, v) => {
+}, Be = 0, xe = (l, v) => {
   var a;
-  return Se(v, (a = l == null ? void 0 : l.id) != null ? a : "extraselect_" + (++count).toString()), { propLocalization: v, t: (n, t = {}) => {
+  return Se(v, (a = l == null ? void 0 : l.id) != null ? a : "extraselect_" + (++Be).toString()), { propLocalization: v, t: (n, t = {}) => {
     var r;
     let m = (r = v.value[n]) != null ? r : window.ExtraSelectLocalization.defaults.get(n);
     return m == null && (window.ExtraSelectLocalization.defaults.push(n, n), m = n), Ie(m, t);
@@ -229,22 +229,22 @@ const Pe = (l = null) => {
       left: g.toString() + "px"
     };
   }), { dropdownStyle: d, getTextWidth: p };
-}, Be = ["name"], He = {
+}, He = ["name"], Ue = {
   key: 1,
   class: "extra-select selection"
-}, Ue = ["onClick"], We = ["innerHTML"], De = ["value"], Je = {
+}, We = ["onClick"], De = ["innerHTML"], Je = ["value"], Ke = {
   key: 0,
   class: "input-searching"
-}, Ke = ["placeholder"], Xe = {
+}, Xe = ["placeholder"], Ge = {
   key: 0,
   class: "allselect-clear"
-}, Ge = { class: "row-input" }, Qe = ["checked"], Ye = { class: "row-input" }, Ze = ["checked"], Re = {
+}, Qe = { class: "row-input" }, Ye = ["checked"], Ze = { class: "row-input" }, Re = ["checked"], et = {
   key: 1,
   class: "no-matches"
-}, et = { key: 2 }, tt = ["onClick"], lt = { class: "row-input" }, at = ["checked"], nt = ["value"], st = {
+}, tt = { key: 2 }, lt = ["onClick"], at = { class: "row-input" }, nt = ["checked"], st = ["value"], ot = {
   name: "ExtraSelect",
   inheritAttrs: !1
-}, ot = /* @__PURE__ */ Object.assign(st, {
+}, rt = /* @__PURE__ */ Object.assign(ot, {
   props: {
     originalNode: { type: Object, required: !1 },
     multiple: { type: Boolean, required: !1 },
@@ -374,8 +374,8 @@ const Pe = (l = null) => {
           type: "hidden",
           name: (H = (O = e.originalNode) == null ? void 0 : O.name) == null ? void 0 : H.replace("[]", ""),
           value: ""
-        }, null, 8, Be)) : F("", !0),
-        e.showSelected ? (w(), k("div", He, [
+        }, null, 8, He)) : F("", !0),
+        e.showSelected ? (w(), k("div", Ue, [
           (w(!0), k(M, null, Q(i(t), (_) => {
             var N;
             return w(), k("div", {
@@ -387,8 +387,8 @@ const Pe = (l = null) => {
               C("div", {
                 class: "selection-remove",
                 innerHTML: e.removeIcon
-              }, null, 8, We)
-            ], 8, Ue);
+              }, null, 8, De)
+            ], 8, We);
           }), 128))
         ])) : F("", !0),
         C("input", Y({
@@ -399,7 +399,7 @@ const Pe = (l = null) => {
           value: i(Oe),
           class: "extra-select extra-select-input",
           readonly: ""
-        }, o.$attrs), null, 16, De),
+        }, o.$attrs), null, 16, Je),
         z.value ? (w(), te(le, {
           key: 2,
           to: z.value
@@ -410,7 +410,7 @@ const Pe = (l = null) => {
             ref: L,
             style: ve(i(R))
           }, [
-            e.search ? (w(), k("div", Je, [
+            e.search ? (w(), k("div", Ke, [
               Z(C("input", {
                 ref_key: "searchNode",
                 ref: B,
@@ -422,22 +422,22 @@ const Pe = (l = null) => {
                 autocapitilize: "off",
                 spellcheck: "false",
                 placeholder: i(r)("Search...")
-              }, null, 8, Ke), [
+              }, null, 8, Xe), [
                 [ze, i(f)]
               ])
             ])) : F("", !0),
             i(f).length >= e.minChars ? (w(), k(M, { key: 1 }, [
-              i(a) ? (w(), k("div", Xe, [
+              i(a) ? (w(), k("div", Ge, [
                 i(f).length == 0 ? (w(), k("div", {
                   key: 0,
                   onClick: x,
                   class: "all-select"
                 }, [
-                  C("div", Ge, [
+                  C("div", Qe, [
                     C("input", {
                       checked: i(E),
                       type: "checkbox"
-                    }, null, 8, Qe),
+                    }, null, 8, Ye),
                     C("b", null, A(i(r)("Select all")), 1)
                   ])
                 ])) : F("", !0),
@@ -446,11 +446,11 @@ const Pe = (l = null) => {
                   onClick: S,
                   class: "all-select"
                 }, [
-                  C("div", Ye, [
+                  C("div", Ze, [
                     C("input", {
                       checked: i($),
                       type: "checkbox"
-                    }, null, 8, Ze),
+                    }, null, 8, Re),
                     C("b", null, A(i(r)("Select Filtered")), 1)
                   ])
                 ])) : F("", !0),
@@ -459,8 +459,8 @@ const Pe = (l = null) => {
                   onClick: J
                 }, A(i(r)("Clear")), 1)
               ])) : F("", !0),
-              i(c).length == 0 ? (w(), k("div", Re, A(i(r)("No matches found")), 1)) : F("", !0)
-            ], 64)) : (w(), k("div", et, A(i(r)("Insert at least :n characters", { n: e.minChars })), 1)),
+              i(c).length == 0 ? (w(), k("div", et, A(i(r)("No matches found")), 1)) : F("", !0)
+            ], 64)) : (w(), k("div", tt, A(i(r)("Insert at least :n characters", { n: e.minChars })), 1)),
             C("div", Y(i(Fe), { class: "scroller" }), [
               C("div", he(ye(i(Ae))), [
                 (w(!0), k(M, null, Q(i(Ne), (_) => (w(), k("button", {
@@ -469,15 +469,15 @@ const Pe = (l = null) => {
                   onClick: me((N) => d(_.data.key), ["stop", "prevent"]),
                   style: { height: "32px" }
                 }, [
-                  C("div", lt, [
+                  C("div", at, [
                     i(a) ? (w(), k("input", {
                       key: 0,
                       checked: i(t).has(_.data.key),
                       type: "checkbox"
-                    }, null, 8, at)) : F("", !0),
+                    }, null, 8, nt)) : F("", !0),
                     re(" " + A(_.data.value), 1)
                   ])
-                ], 8, tt))), 128))
+                ], 8, lt))), 128))
               ], 16)
             ], 16)
           ], 6), [
@@ -492,18 +492,18 @@ const Pe = (l = null) => {
             key: _[0],
             selected: "selected",
             value: _[0]
-          }, null, 8, nt))), 128))
+          }, null, 8, st))), 128))
         ], 8, ["to"])) : F("", !0)
       ], 64);
     };
   }
-}), rt = {
+}), ut = {
   key: 0,
   class: "no-matches"
-}, ut = { key: 1 }, it = ["onClick"], ct = { class: "row-input" }, dt = {
+}, it = { key: 1 }, ct = ["onClick"], dt = { class: "row-input" }, ft = {
   name: "ExtraSuggest",
   inheritAttrs: !1
-}, ft = /* @__PURE__ */ Object.assign(dt, {
+}, vt = /* @__PURE__ */ Object.assign(ft, {
   props: {
     originalNode: { type: Object, required: !1 },
     options: { type: Array, required: !1 },
@@ -597,8 +597,8 @@ const Pe = (l = null) => {
           style: ve(i(B))
         }, [
           i(p).length >= e.minChars ? (w(), k(M, { key: 0 }, [
-            i(s).length == 0 ? (w(), k("div", rt, A(i(n)("No matches found")), 1)) : F("", !0)
-          ], 64)) : (w(), k("div", ut, A(i(n)("Insert at least :n characters", { n: e.minChars })), 1)),
+            i(s).length == 0 ? (w(), k("div", ut, A(i(n)("No matches found")), 1)) : F("", !0)
+          ], 64)) : (w(), k("div", it, A(i(n)("Insert at least :n characters", { n: e.minChars })), 1)),
           C("div", Y(i(j), { class: "scroller" }), [
             C("div", he(ye(i(R))), [
               (w(!0), k(M, null, Q(i(z), (E) => (w(), k("button", {
@@ -607,8 +607,8 @@ const Pe = (l = null) => {
                 onClick: me(($) => r(E.data.key), ["stop", "prevent"]),
                 style: { height: "32px" }
               }, [
-                C("div", ct, A(E.data.value), 1)
-              ], 8, it))), 128))
+                C("div", dt, A(E.data.value), 1)
+              ], 8, ct))), 128))
             ], 16)
           ], 16)
         ], 6), [
@@ -617,9 +617,9 @@ const Pe = (l = null) => {
       ], 8, ["to"])) : F("", !0)
     ], 64));
   }
-}), yt = ot, mt = ft;
+}), mt = rt, gt = vt;
 export {
-  yt as ExtraSelect,
-  mt as ExtraSuggest,
-  yt as default
+  mt as ExtraSelect,
+  gt as ExtraSuggest,
+  mt as default
 };

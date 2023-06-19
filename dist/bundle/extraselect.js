@@ -3336,9 +3336,9 @@ const Is = (e = null) => {
     }
   };
   window.ExtraSelectLocalization[t] = n, e.actions = n;
-}, xl = (e, t) => {
+}, Ac = 0, xl = (e, t) => {
   var s;
-  return wl(t, (s = e == null ? void 0 : e.id) != null ? s : "extraselect_" + (++count).toString()), { propLocalization: t, t: (r, l = {}) => {
+  return wl(t, (s = e == null ? void 0 : e.id) != null ? s : "extraselect_" + (++Ac).toString()), { propLocalization: t, t: (r, l = {}) => {
     var i;
     let o = (i = t.value[r]) != null ? i : window.ExtraSelectLocalization.defaults.get(r);
     return o == null && (window.ExtraSelectLocalization.defaults.push(r, r), o = r), Tc(o, l);
@@ -3450,22 +3450,22 @@ const Is = (e = null) => {
       left: b.toString() + "px"
     };
   }), { dropdownStyle: d, getTextWidth: c };
-}, Ac = ["name"], Sc = {
+}, Sc = ["name"], Ic = {
   key: 1,
   class: "extra-select selection"
-}, Ic = ["onClick"], Fc = ["innerHTML"], Mc = ["value"], kc = {
+}, Fc = ["onClick"], Mc = ["innerHTML"], kc = ["value"], Nc = {
   key: 0,
   class: "input-searching"
-}, Nc = ["placeholder"], Pc = {
+}, Pc = ["placeholder"], Lc = {
   key: 0,
   class: "allselect-clear"
-}, Lc = { class: "row-input" }, Rc = ["checked"], jc = { class: "row-input" }, Bc = ["checked"], Hc = {
+}, Rc = { class: "row-input" }, jc = ["checked"], Bc = { class: "row-input" }, Hc = ["checked"], $c = {
   key: 1,
   class: "no-matches"
-}, $c = { key: 2 }, Uc = ["onClick"], Dc = { class: "row-input" }, Kc = ["checked"], Vc = ["value"], zc = {
+}, Uc = { key: 2 }, Dc = ["onClick"], Kc = { class: "row-input" }, Vc = ["checked"], zc = ["value"], Wc = {
   name: "ExtraSelect",
   inheritAttrs: !1
-}, Wc = /* @__PURE__ */ Object.assign(zc, {
+}, qc = /* @__PURE__ */ Object.assign(Wc, {
   props: {
     originalNode: { type: Object, required: !1 },
     multiple: { type: Boolean, required: !1 },
@@ -3595,8 +3595,8 @@ const Is = (e = null) => {
           type: "hidden",
           name: (Je = (ie = n.originalNode) == null ? void 0 : ie.name) == null ? void 0 : Je.replace("[]", ""),
           value: ""
-        }, null, 8, Ac)) : Te("", !0),
-        n.showSelected ? (Z(), le("div", Sc, [
+        }, null, 8, Sc)) : Te("", !0),
+        n.showSelected ? (Z(), le("div", Ic, [
           (Z(!0), le(de, null, hn(U(l), (ue) => {
             var ye;
             return Z(), le("div", {
@@ -3608,8 +3608,8 @@ const Is = (e = null) => {
               ce("div", {
                 class: "selection-remove",
                 innerHTML: n.removeIcon
-              }, null, 8, Fc)
-            ], 8, Ic);
+              }, null, 8, Mc)
+            ], 8, Fc);
           }), 128))
         ])) : Te("", !0),
         ce("input", Yt({
@@ -3620,7 +3620,7 @@ const Is = (e = null) => {
           value: U(mt),
           class: "extra-select extra-select-input",
           readonly: ""
-        }, N.$attrs), null, 16, Mc),
+        }, N.$attrs), null, 16, kc),
         $.value ? (Z(), xn(ts, {
           key: 2,
           to: $.value
@@ -3631,7 +3631,7 @@ const Is = (e = null) => {
             ref: A,
             style: St(U(K))
           }, [
-            n.search ? (Z(), le("div", kc, [
+            n.search ? (Z(), le("div", Nc, [
               _n(ce("input", {
                 ref_key: "searchNode",
                 ref: j,
@@ -3643,22 +3643,22 @@ const Is = (e = null) => {
                 autocapitilize: "off",
                 spellcheck: "false",
                 placeholder: U(i)("Search...")
-              }, null, 8, Nc), [
+              }, null, 8, Pc), [
                 [ls, U(h)]
               ])
             ])) : Te("", !0),
             U(h).length >= n.minChars ? (Z(), le(de, { key: 1 }, [
-              U(s) ? (Z(), le("div", Pc, [
+              U(s) ? (Z(), le("div", Lc, [
                 U(h).length == 0 ? (Z(), le("div", {
                   key: 0,
                   onClick: k,
                   class: "all-select"
                 }, [
-                  ce("div", Lc, [
+                  ce("div", Rc, [
                     ce("input", {
                       checked: U(V),
                       type: "checkbox"
-                    }, null, 8, Rc),
+                    }, null, 8, jc),
                     ce("b", null, He(U(i)("Select all")), 1)
                   ])
                 ])) : Te("", !0),
@@ -3667,11 +3667,11 @@ const Is = (e = null) => {
                   onClick: L,
                   class: "all-select"
                 }, [
-                  ce("div", jc, [
+                  ce("div", Bc, [
                     ce("input", {
                       checked: U(oe),
                       type: "checkbox"
-                    }, null, 8, Bc),
+                    }, null, 8, Hc),
                     ce("b", null, He(U(i)("Select Filtered")), 1)
                   ])
                 ])) : Te("", !0),
@@ -3680,8 +3680,8 @@ const Is = (e = null) => {
                   onClick: M
                 }, He(U(i)("Clear")), 1)
               ])) : Te("", !0),
-              U(p).length == 0 ? (Z(), le("div", Hc, He(U(i)("No matches found")), 1)) : Te("", !0)
-            ], 64)) : (Z(), le("div", $c, He(U(i)("Insert at least :n characters", { n: n.minChars })), 1)),
+              U(p).length == 0 ? (Z(), le("div", $c, He(U(i)("No matches found")), 1)) : Te("", !0)
+            ], 64)) : (Z(), le("div", Uc, He(U(i)("Insert at least :n characters", { n: n.minChars })), 1)),
             ce("div", Yt(U(pe), { class: "scroller" }), [
               ce("div", _r(As(U(re))), [
                 (Z(!0), le(de, null, hn(U(Pt), (ue) => (Z(), le("button", {
@@ -3690,15 +3690,15 @@ const Is = (e = null) => {
                   onClick: pl((ye) => d(ue.data.key), ["stop", "prevent"]),
                   style: { height: "32px" }
                 }, [
-                  ce("div", Dc, [
+                  ce("div", Kc, [
                     U(s) ? (Z(), le("input", {
                       key: 0,
                       checked: U(l).has(ue.data.key),
                       type: "checkbox"
-                    }, null, 8, Kc)) : Te("", !0),
+                    }, null, 8, Vc)) : Te("", !0),
                     ns(" " + He(ue.data.value), 1)
                   ])
-                ], 8, Uc))), 128))
+                ], 8, Dc))), 128))
               ], 16)
             ], 16)
           ], 6), [
@@ -3713,18 +3713,18 @@ const Is = (e = null) => {
             key: ue[0],
             selected: "selected",
             value: ue[0]
-          }, null, 8, Vc))), 128))
+          }, null, 8, zc))), 128))
         ], 8, ["to"])) : Te("", !0)
       ], 64);
     };
   }
-}), qc = {
+}), Jc = {
   key: 0,
   class: "no-matches"
-}, Jc = { key: 1 }, Qc = ["onClick"], Yc = { class: "row-input" }, Xc = {
+}, Qc = { key: 1 }, Yc = ["onClick"], Xc = { class: "row-input" }, Zc = {
   name: "ExtraSuggest",
   inheritAttrs: !1
-}, Zc = /* @__PURE__ */ Object.assign(Xc, {
+}, Gc = /* @__PURE__ */ Object.assign(Zc, {
   props: {
     originalNode: { type: Object, required: !1 },
     options: { type: Array, required: !1 },
@@ -3818,8 +3818,8 @@ const Is = (e = null) => {
           style: St(U(j))
         }, [
           U(c).length >= n.minChars ? (Z(), le(de, { key: 0 }, [
-            U(a).length == 0 ? (Z(), le("div", qc, He(U(r)("No matches found")), 1)) : Te("", !0)
-          ], 64)) : (Z(), le("div", Jc, He(U(r)("Insert at least :n characters", { n: n.minChars })), 1)),
+            U(a).length == 0 ? (Z(), le("div", Jc, He(U(r)("No matches found")), 1)) : Te("", !0)
+          ], 64)) : (Z(), le("div", Qc, He(U(r)("Insert at least :n characters", { n: n.minChars })), 1)),
           ce("div", Yt(U(B), { class: "scroller" }), [
             ce("div", _r(As(U(K))), [
               (Z(!0), le(de, null, hn(U($), (V) => (Z(), le("button", {
@@ -3828,8 +3828,8 @@ const Is = (e = null) => {
                 onClick: pl((oe) => i(V.data.key), ["stop", "prevent"]),
                 style: { height: "32px" }
               }, [
-                ce("div", Yc, He(V.data.value), 1)
-              ], 8, Qc))), 128))
+                ce("div", Xc, He(V.data.value), 1)
+              ], 8, Yc))), 128))
             ], 16)
           ], 16)
         ], 6), [
@@ -3838,7 +3838,7 @@ const Is = (e = null) => {
       ], 8, ["to"])) : Te("", !0)
     ], 64));
   }
-}), Gc = Is, Tl = {
+}), eu = Is, Tl = {
   init: function() {
     document.querySelectorAll(".extraselect").forEach(function(e) {
       Tl.bindNew(e);
@@ -3856,7 +3856,7 @@ const Is = (e = null) => {
       t.originalNode = e;
       const n = document.createElement("div");
       e.parentNode.insertBefore(n, e.nextSibling), n.dataset.isVue = !0, n.style.display = "contents";
-      const s = ml(Wc, t);
+      const s = ml(qc, t);
       s.mount(n), e.addEventListener("remove", function() {
         s.unmount(), n.remove(), e.remove(), pt.remove(e, "extra-select");
       });
@@ -3880,7 +3880,7 @@ const Is = (e = null) => {
       t.originalNode = e;
       const n = document.createElement("div");
       e.parentNode.insertBefore(n, e.nextSibling), n.dataset.isVue = !0, n.style.display = "contents";
-      const s = ml(Zc, t);
+      const s = ml(Gc, t);
       s.mount(n), e.addEventListener("remove", function() {
         s.unmount(), n.remove(), e.remove(), pt.remove(e, "extra-suggest");
       });
@@ -3893,5 +3893,5 @@ document.addEventListener("DOMContentLoaded", function() {
 export {
   Tl as ExtraSelect,
   Al as ExtraSuggest,
-  Gc as loadExtraSelectDefaultLocalization
+  eu as loadExtraSelectDefaultLocalization
 };
