@@ -118,25 +118,25 @@ onMounted(() => {
     
     filterText.value = props.originalNode.value
     
-    watchEffect(()=>{
-      if(props.modelValue != null){
-        filterText.value = props.modelValue
-      }
-    })
-
-    const resetValue = filterText.value
-    
-    const onReset = () =>{
-        filterText.value = resetValue
-    }
     
     let form = getParents(inputNode.value,"form").pop()
     if(form instanceof HTMLElement && form.matches("form")){
       form.addEventListener("reset", () => setTimeout(onReset));
     }
-
+    
   }
   
+  watchEffect(()=>{
+    if(props.modelValue != null){
+      filterText.value = props.modelValue
+    }
+  })
+
+  const resetValue = filterText.value
+  
+  const onReset = () =>{
+      filterText.value = resetValue
+  }
   
 
   window.document.addEventListener("mousedown", autoCloseHandler);
