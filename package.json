@@ -25,7 +25,7 @@
     }
   },
   "private": false,
-  "version": "1.7.0",
+  "version": "1.7.4",
   "type": "module",
   "scripts": {
     "dev": "vite --host",
