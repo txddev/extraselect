@@ -222,7 +222,7 @@ const placeholder = computed(() => {
   if(options.value.length < 0) return ""
   if(isMultiple.value){
     if(NoneSelected.value) return $t("No selection")
-    if(!props.searchableUrl && AllSelected.value ) return $$t("All selected")
+    if(!props.searchableUrl && AllSelected.value ) return $t("All selected")
     
     const inputStyles = inputNode.value ? getComputedStyle(inputNode.value): null
     const inputLength = inputNode.value?.clientWidth - parseInt(inputStyles?.paddingLeft) - parseInt(inputStyles?.paddingRight)

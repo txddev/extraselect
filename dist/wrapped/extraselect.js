@@ -562,7 +562,7 @@ const Me = (t, l) => {
         if (He.value)
           return s("No selection");
         if (!e.searchableUrl && E.value)
-          return $$t("All selected");
+          return s("All selected");
         const z = m.value ? getComputedStyle(m.value) : null, Y = ((c = m.value) == null ? void 0 : c.clientWidth) - parseInt(z == null ? void 0 : z.paddingLeft) - parseInt(z == null ? void 0 : z.paddingRight);
         let Z = s(":n selected - ", { n: a.value.size }), pe = !0;
         for (let Qe of a.value)

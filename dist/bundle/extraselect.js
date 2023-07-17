@@ -3572,7 +3572,7 @@ const xl = (e, t) => {
         if (Se.value)
           return i("No selection");
         if (!n.searchableUrl && K.value)
-          return $$t("All selected");
+          return i("All selected");
         const ye = E.value ? getComputedStyle(E.value) : null, _e = ((k = E.value) == null ? void 0 : k.clientWidth) - parseInt(ye == null ? void 0 : ye.paddingLeft) - parseInt(ye == null ? void 0 : ye.paddingRight);
         let De = i(":n selected - ", { n: l.value.size }), Lt = !0;
         for (let Qe of l.value)
