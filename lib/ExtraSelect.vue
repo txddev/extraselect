@@ -131,12 +131,7 @@ onMounted(() => {
     }
     
     for(let cssStyle of originalCssStyles){
-      
-        inputNode.value.style[cssStyle] = props.originalNode.style[cssStyle]
-      
-    }
-    if(!originalCssStyles.includes('background-color')){
-      inputNode.value.style.backgroundColor = 'white'
+        inputNode.value.style[cssStyle] = props.originalNode.style[cssStyle] 
     }
     
     let form = getParents(inputNode.value,"form").pop()
