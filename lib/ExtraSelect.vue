@@ -138,6 +138,14 @@ onMounted(() => {
     if(form instanceof HTMLElement && form.matches("form")){
       form.addEventListener("reset", () => setTimeout(onReset));
     }
+    
+    props.originalNode.toggleValue = toggleOption
+    props.originalNode.setValues = (values) => {
+      selectedOptions.value.clear()
+      for(let value of values){
+        toggleOption(value)
+      }
+    }
   }
 
   window.document.addEventListener("mousedown", autoCloseHandler);

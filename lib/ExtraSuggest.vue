@@ -121,6 +121,10 @@ onMounted(() => {
       form.addEventListener("reset", () => setTimeout(onReset));
     }
     
+    props.originalNode.addEventListener("change",()=>{
+      emitModelValue(true)
+    })
+    
   }
   
   watchEffect(()=>{
@@ -152,10 +156,14 @@ const {dropdownStyle} = loadStyling(options,ref([]),open,inputNode,dropdownNode,
 
 
 
-const emitModelValue = () => {
+const emitModelValue = (external = false) => {
   if(props.originalNode){
-    props.originalNode.value = filterText.value
-    props.originalNode?.dispatchEvent(new Event('change',{ bubbles: true }));
+    if(external){
+      filterText.value = props.originalNode.value
+    }else{
+      props.originalNode.value = filterText.value
+      props.originalNode?.dispatchEvent(new Event('change',{ bubbles: true }));
+    }
   }
   emit('update:modelValue', filterText.value)
 }

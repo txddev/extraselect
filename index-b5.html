@@ -32,10 +32,12 @@
         <div class="row">
           <div class="col-lg-12">
             <h2>Bootstrap 5</h2>
-            <select multiple class="extraselect form-select" name="test[]" data-url="/test_options_big.json">
+            <select multiple class="extraselect form-select" name="test" data-url="/test_options.json">
               <option value="1"> A</option>
               <option value="2"> B</option>
             </select>
+            <input class="extrasuggest form-control" name="test_input" data-url="/test_options.json">
+              
             <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#machine-add-choice">
               Launch demo modal
             </button>
@@ -74,6 +76,6 @@
         <option value="2"> B</option>
       </select> -->
     </div>
-    
+    <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
