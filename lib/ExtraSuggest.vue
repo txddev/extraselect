@@ -36,7 +36,8 @@ const props = defineProps({
   fetchOptions: { type: Object, default: {} },
   filterFields: { type: Array, default: [] },
   hardFilterFields: { type: Array, default: [] },
-  dropdownContainer: {type: String, default: null }
+  dropdownContainer: {type: String, default: null },
+  disabled: {type: Boolean, default: false }
 });
 
 const { options } = loadOptions(props.originalNode,toRef(props,'options'),ref([]));
@@ -73,7 +74,11 @@ const inputNode = ref(null);
 const dropdownNode = ref(null);
 const open = ref(false);
 const dropdownCointainerNode = ref(null)
-
+function setOpen(value){
+  if(!props.disabled){
+    open.value = value
+  }
+}
 
 const autoCloseHandler = function (e) {
   const elements = getParents(e.target);
@@ -185,12 +190,13 @@ const { list, containerProps, wrapperProps } = useVirtualList(
 
 <template>
   <input
-    @focus="open = true"
-    @click="open = true"
+    @focus="setOpen(true)"
+    @click="setOpen(true)"
     ref="inputNode"
     v-model="filterText"
     class="extra-select extra-select-input"
     v-bind="$attrs"
+    :disabled="disabled"
   />
   <Teleport v-if="dropdownCointainerNode" :to="dropdownCointainerNode">
     <div

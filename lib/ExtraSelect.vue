@@ -41,7 +41,8 @@ const props = defineProps({
   filterFields: { type: Array, default: [] },
   hardFilterFields: { type: Array, default: [] },
   removeIcon: {type: String, default: "X"},
-  dropdownContainer: {type: String, default: null }
+  dropdownContainer: {type: String, default: null },
+  disabled: {type: Boolean, default: false }
 });
 const isMultiple = computed(() => props.originalNode?.multiple ?? props.multiple)
 
@@ -93,6 +94,13 @@ const inputNode = ref(null);
 const dropdownNode = ref(null);
 const searchNode = ref(null);
 const open = ref(false);
+
+function setOpen(value){
+  if(!props.disabled){
+    open.value = value
+  }
+}
+
 const dropdownCointainerNode = ref(null)
 
 
@@ -274,13 +282,14 @@ const { list, containerProps, wrapperProps } = useVirtualList(
     
   </div>
   <input
-    @focus="open = true"
-    @click="open = true"
+    @focus="setOpen(true)"
+    @click="setOpen(true)"
     ref="inputNode"
     :value="placeholder"
     class="extra-select extra-select-input"
     readonly=""
     v-bind="$attrs"
+    :disabled="disabled"
   />
   <Teleport v-if="dropdownCointainerNode" :to="dropdownCointainerNode">
     <div
