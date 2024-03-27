@@ -90,6 +90,10 @@ const { searchingFlag } = loadSearch(
   props.fetchOptions
 );
 
+
+
+
+
 const inputNode = ref(null);
 const dropdownNode = ref(null);
 const searchNode = ref(null);
@@ -100,6 +104,11 @@ function setOpen(value){
     open.value = value
   }
 }
+
+watch(filterText,()=>{
+  dropdownNode.value.querySelector(".scroller").scrollTop = 0
+})
+
 
 const dropdownCointainerNode = ref(null)
 

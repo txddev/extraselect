@@ -80,6 +80,10 @@ function setOpen(value){
   }
 }
 
+watch(filterText,()=>{
+  dropdownNode.value.querySelector(".scroller").scrollTop = 0
+})
+
 const autoCloseHandler = function (e) {
   const elements = getParents(e.target);
   elements.push(e.target);
