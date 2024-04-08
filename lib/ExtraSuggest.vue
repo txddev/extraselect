@@ -87,12 +87,15 @@ watch(filterText,()=>{
 const autoCloseHandler = function (e) {
   const elements = getParents(e.target);
   elements.push(e.target);
-
+  
   if (
     !elements.includes(inputNode.value) &&
     !elements.includes(dropdownNode.value)
   ) {
     open.value = false;
+  }else{
+    e.stopImmediatePropagation()
+    e.preventDefault()
   }
 };
 
@@ -195,7 +198,7 @@ const { list, containerProps, wrapperProps } = useVirtualList(
 <template>
   <input
     @focus="setOpen(true)"
-    @click="setOpen(true)"
+    @click.stop.prevent="setOpen(true)"
     ref="inputNode"
     v-model="filterText"
     class="extra-select extra-select-input"

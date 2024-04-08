@@ -116,12 +116,15 @@ const dropdownCointainerNode = ref(null)
 const autoCloseHandler = function (e) {
   const elements = getParents(e.target);
   elements.push(e.target);
-
+  
   if (
     !elements.includes(inputNode.value) &&
     !elements.includes(dropdownNode.value)
   ) {
     open.value = false;
+  }else{
+    e.stopImmediatePropagation()
+    e.preventDefault()
   }
 };
 
@@ -283,7 +286,7 @@ const { list, containerProps, wrapperProps } = useVirtualList(
   <input v-if="isMultiple&&selectedOptions.size==0" type="hidden" :name="props.originalNode?.name?.replace('[]','')" value/>
   <div v-if="props.showSelected" class="extra-select selection">
     <template v-for="opt in selectedOptions" :key="opt">
-      <div @click="toggleOption(opt[0])" class="selection-badge">
+      <div @click.stop.prevent="toggleOption(opt[0])" class="selection-badge">
           {{ options.find(el=>el.key == opt[0])?.value }}
         <div class="selection-remove" v-html="props.removeIcon"></div>
       </div>
@@ -292,7 +295,7 @@ const { list, containerProps, wrapperProps } = useVirtualList(
   </div>
   <input
     @focus="setOpen(true)"
-    @click="setOpen(true)"
+    @click.stop.prevent="setOpen(true)"
     ref="inputNode"
     :value="placeholder"
     class="extra-select extra-select-input"
@@ -326,7 +329,7 @@ const { list, containerProps, wrapperProps } = useVirtualList(
           <div class="allselect-clear">
             <div
               v-if="filterText.length == 0"
-              @click="toggleAll"
+              @click.stop.prevent="toggleAll"
               class="all-select"
             >
               <div class="row-input">
@@ -335,7 +338,7 @@ const { list, containerProps, wrapperProps } = useVirtualList(
             </div>
             <div
             v-if="filteredOptions.length > 0 && filterText.length > 0"
-            @click="toggleFiltered"
+            @click.stop.prevent="toggleFiltered"
             class="all-select"
           >
             <div class="row-input">
@@ -343,7 +346,7 @@ const { list, containerProps, wrapperProps } = useVirtualList(
             </div>
           </div>
 
-            <div class="clear" @click="clear">{{$t("Clear")}}</div>
+            <div class="clear" @click.stop.prevent="clear">{{$t("Clear")}}</div>
             
           </div>
           
