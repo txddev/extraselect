@@ -3282,7 +3282,6 @@ let Oc = 1;
 const _l = (e) => {
   e && (e.style.display = "none", Sl(e));
 }, bl = (e, t, n, s) => {
-  var c;
   const r = te(/* @__PURE__ */ new Map());
   Yt(() => {
     if (Array.isArray(n.value)) {
@@ -3315,13 +3314,14 @@ const _l = (e) => {
       r.value.set(ct(a), ct(a));
   else
     s != null && r.value.set(ct(s), ct(s));
-  Ec(l, r, (c = e == null ? void 0 : e.id) != null ? c : "extraselect_" + (++Oc).toString());
-  const o = [];
+  let o = e == null ? void 0 : e.id;
+  (o == null || o === "" || o == 0) && (o = "extraselect_" + (++Oc).toString()), Ec(l, r, o);
+  const i = [];
   return r.value.forEach((a, d) => {
-    o.push([d, a]);
+    i.push([d, a]);
   }), { options: l, selectedOptions: r, onReset: () => {
     r.value.clear();
-    for (let [a, d] of o)
+    for (let [a, d] of i)
       r.value.set(a, d);
   } };
 };
