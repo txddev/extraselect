@@ -93,9 +93,6 @@ const autoCloseHandler = function (e) {
     !elements.includes(dropdownNode.value)
   ) {
     open.value = false;
-  }else{
-    e.stopImmediatePropagation()
-    e.preventDefault()
   }
 };
 
@@ -198,7 +195,7 @@ const { list, containerProps, wrapperProps } = useVirtualList(
 <template>
   <input
     @focus="setOpen(true)"
-    @click.stop.prevent="setOpen(true)"
+    @click="setOpen(true)"
     ref="inputNode"
     v-model="filterText"
     class="extra-select extra-select-input"
