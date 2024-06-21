@@ -3,7 +3,7 @@
       "key": "637dfb077ef84a196d4eb4f6",
       "value": "Cara Hood",
       "data": {
-        "gender": "female",
+        "gender": ["female","male"],
         "category": "green"
       }
     },

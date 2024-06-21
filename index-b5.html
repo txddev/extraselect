@@ -32,11 +32,14 @@
         <div class="row">
           <div class="col-lg-12">
             <h2>Bootstrap 5</h2>
-            <select multiple class="extraselect form-select" data-search name="test" data-url="/test_options.json">
-              <option value="1"> A</option>
-              <option value="2"> B</option>
+            <select class="form-select" id="gender" >
+              <option value="">--</option>
+              <option value="female"> F</option>
+              <option value="male"> M</option>
+              <option value="other"> Other</option>
             </select>
-            <input class="extrasuggest form-control" name="test_input" data-url="/test_options.json">
+            
+            <input class="extrasuggest form-control" name="test_input" data-filter-fields='["gender"]' data-url="/test_options.json">
               
             <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#machine-add-choice">
               Launch demo modal
