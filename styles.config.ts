@@ -21,7 +21,9 @@ export default defineConfig({
       // },
       output: [
         {
-          assetFileNames: "[name].[ext]",
+          assetFileNames: (assetInfo) => {
+            return assetInfo.originalFileName?.replace("lib/sass/","").replace(".scss","[extname]") ?? "[name][extname]"
+          },
           dir: 'dist/css'
         }
       ]

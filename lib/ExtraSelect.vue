@@ -1,10 +1,5 @@
-<script>
-  export default {
-    name: 'ExtraSelect',
-    inheritAttrs: false
-  }
-</script>
-<script setup>
+
+<script setup lang="ts">
 import { useVirtualList } from '@vueuse/core'
 import { getParents } from "@txd/utils"
 import {
@@ -22,28 +17,49 @@ import { loadLocalization } from "./composition/localization";
 import { loadSearch } from "./composition/search";
 import { loadFilter } from "./composition/filter";
 import { loadStyling } from "./composition/styling";
+import { Option, OptionKey, OptionValue, TargetHTMLElement } from '../types';
 
-const props = defineProps({
-  originalNode: { type: Object, required: false },
-  multiple: {type: Boolean, required: false},
-  options: { type: Array, required: false },
-  localization: { type: Object, required: false, default: {} },
-  modelValue: { type: Array, required: false,default: [] },
-  url: { type:String, required:false },
-  maxWidth: { type: String, default: "dynamic" },
-  search: { type: Boolean, default: false },
-  searchableUrl: { type: Boolean, default: false },
-  initialValue: { default: null },
-  minChars: { type: Number, default: 0 },
-  showSelected: { type: Boolean, default: false },
-  fetchMode: { type: String, default: "limited" },
-  fetchOptions: { type: Object, default: {} },
-  filterFields: { type: Array, default: [] },
-  hardFilterFields: { type: Array, default: [] },
-  removeIcon: {type: String, default: "X"},
-  dropdownContainer: {type: String, default: null },
-  disabled: {type: Boolean, default: false }
+
+
+defineOptions({
+  name: 'ExtraSelect',
+  inheritAttrs: false
+})
+
+const props = withDefaults(defineProps<{
+  modelValue?: OptionValue[],
+  originalNode?: TargetHTMLElement,
+  multiple: boolean,
+  options: Option[],
+  localization?: Record<string,string>
+  url?: string,
+  maxWidth: "dynamic"|"inherit"|string,
+  minChars: number,
+  search: boolean,
+  searchableUrl?: boolean,
+  initialValue?: OptionValue[]
+  showSelected: boolean,
+  fetchMode?: "always"|"limited"|"complete",
+  fetchOptions?: RequestInit,
+  filterFields?: string[],
+  hardFilterFields?: string[],
+  removeIcon: string,
+  dropdownContainer?: string,
+  disabled?: boolean
+}>(),{
+  modelValue: ()=> [],
+  options: ()=>[],
+  maxWidth: "dynamic",
+  minChars: 0,
+  fetchMode:"limited",
+  fetchOptions: ()=>({}),
+  filterFields: ()=>[],
+  hardFilterFields: ()=>[],
+  removeIcon: "X",
+  localization: () => ({}),
+  
 });
+
 const isMultiple = computed(() => props.originalNode?.multiple ?? props.multiple)
 
 const { options, selectedOptions, onReset } = loadOptions(props.originalNode,toRef(props,'options'),toRef(props,'modelValue'),props.initialValue);
@@ -54,7 +70,7 @@ const originalCssStyles = Object.values(props.originalNode?.style ?? {});
 prepareOriginalNode(props.originalNode);
 const emit = defineEmits(['update:modelValue'])
 
-const toggleOption = (key, forcedState = null) => {
+const toggleOption = (key: OptionKey, forcedState : boolean|null = null) => {
   if (isMultiple.value) {
       let targetState = forcedState
       if(targetState == null){
@@ -95,7 +111,7 @@ const { searchingFlag } = loadSearch(
 
 
 const inputNode = ref(null);
-const dropdownNode = ref(null);
+const dropdownNode = ref<HTMLDivElement>();
 const searchNode = ref(null);
 const open = ref(false);
 
@@ -106,11 +122,14 @@ function setOpen(value){
 }
 
 watch(filterText,()=>{
-  dropdownNode.value.querySelector(".scroller").scrollTop = 0
+  let scroller = dropdownNode.value?.querySelector(".scroller")
+  if(scroller){
+    scroller.scrollTop = 0
+  }
 })
 
 
-const dropdownCointainerNode = ref(null)
+const dropdownCointainerNode = ref<HTMLElement|null>(null)
 
 
 const autoCloseHandler = function (e) {
@@ -129,11 +148,12 @@ const autoCloseHandler = function (e) {
 };
 
 onMounted(() => {
-  if(props.dropdownContainer){
+  if(props.dropdownContainer != null){
+    const containerSelector = props.dropdownContainer
     let parentFound = false
     dropdownCointainerNode.value = getParents(inputNode.value).find(el => {
       if(el instanceof Element){
-        if(el.matches(props.dropdownContainer)){
+        if(el.matches(containerSelector)){
           parentFound = true
         }
         if(parentFound && ["absolute","relative","fixed","sticky"].includes(getComputedStyle(el).position)) return true
