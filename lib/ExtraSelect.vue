@@ -10,7 +10,8 @@ import {
   onUnmounted,
   watchEffect,
   watch,
-  toRef
+  toRef,
+  Ref
 } from "vue";
 import { loadOptions, prepareOriginalNode } from "./composition/options";
 import { loadLocalization } from "./composition/localization";
@@ -28,7 +29,7 @@ defineOptions({
 
 const props = withDefaults(defineProps<{
   modelValue?: OptionValue[],
-  originalNode?: TargetHTMLElement,
+  originalNode?: TargetHTMLElement|null,
   multiple: boolean,
   options: Option[],
   localization?: Record<string,string>
@@ -48,6 +49,7 @@ const props = withDefaults(defineProps<{
   disabled?: boolean
 }>(),{
   modelValue: ()=> [],
+  originalNode: null,
   options: ()=>[],
   maxWidth: "dynamic",
   minChars: 0,
@@ -64,7 +66,7 @@ const isMultiple = computed(() => props.originalNode?.multiple ?? props.multiple
 
 const { options, selectedOptions, onReset } = loadOptions(props.originalNode,toRef(props,'options'),toRef(props,'modelValue'),props.initialValue);
 const {t: $t} = loadLocalization(props.originalNode,toRef(props,'localization'))
-const originalClassList = props.originalNode?.classList;
+
 const originalCssStyles = Object.values(props.originalNode?.style ?? {});
 
 prepareOriginalNode(props.originalNode);
@@ -110,7 +112,7 @@ const { searchingFlag } = loadSearch(
 
 
 
-const inputNode = ref(null);
+const inputNode = ref<HTMLInputElement>();
 const dropdownNode = ref<HTMLDivElement>();
 const searchNode = ref(null);
 const open = ref(false);
@@ -164,14 +166,16 @@ onMounted(() => {
   }
   if(dropdownCointainerNode.value == null) dropdownCointainerNode.value = document.querySelector("body")
   if(props.originalNode){
-    for(let cssClass of originalClassList){
+    for(let cssClass of props.originalNode.classList){
       if(cssClass != "extraselect"){
-        inputNode.value.classList.add(cssClass)
+        inputNode.value?.classList.add(cssClass)
       }
     }
     
     for(let cssStyle of originalCssStyles){
+      if(inputNode.value){
         inputNode.value.style[cssStyle] = props.originalNode.style[cssStyle] 
+      }
     }
     
     let form = getParents(inputNode.value,"form").pop()
@@ -179,13 +183,16 @@ onMounted(() => {
       form.addEventListener("reset", () => setTimeout(onReset));
     }
     
-    props.originalNode.toggleValue = toggleOption
-    props.originalNode.setValues = (values) => {
-      selectedOptions.value.clear()
-      for(let value of values){
-        toggleOption(value)
-      }
-    }
+    Object.assign(props.originalNode,{
+        toggleValue: toggleOption,
+        setValues: (values) => {
+          selectedOptions.value.clear()
+          for(let value of values){
+            toggleOption(value)
+          }
+        }
+    })
+    
   }
 
   window.document.addEventListener("mousedown", autoCloseHandler);
@@ -198,9 +205,17 @@ onUnmounted(() => {
 });
 
 
-const {dropdownStyle,getTextWidth} = loadStyling(options,selectedOptions,open,inputNode,dropdownNode,dropdownCointainerNode,props.maxWidth)
 
-const emitModelValue = ( value ) => {
+const { list, containerProps, wrapperProps } = useVirtualList(
+  filteredOptions,
+  {
+    itemHeight: 32
+  },
+)
+
+const {dropdownStyle,getTextWidth} = loadStyling(options,selectedOptions,open,inputNode,dropdownNode,dropdownCointainerNode,props.maxWidth, wrapperProps)
+
+const emitModelValue = ( value : OptionValue[] ) => {
   nextTick(()=>
     props.originalNode?.dispatchEvent(new Event('change',{ bubbles: true }))
   )
@@ -208,11 +223,11 @@ const emitModelValue = ( value ) => {
 }
 
 
-const clear = ($e) => {
+const clear = ($e:unknown) => {
   toggleAll($e,false)
   filterText.value = ""
 }
-const toggleAll = (event,state = null) => {
+const toggleAll = (event : unknown,state : boolean|null = null) => {
   if(state == null) state = !AllSelected.value
   if(!state){
     selectedOptions.value.clear()
@@ -294,12 +309,6 @@ const placeholder = computed(() => {
   return $t("No selection")
 });
 
-const { list, containerProps, wrapperProps } = useVirtualList(
-  filteredOptions,
-  {
-    itemHeight: 32
-  },
-)
 </script>
 
 <template>

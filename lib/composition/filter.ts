@@ -1,6 +1,7 @@
-import { nextTick, ref, watchEffect } from "vue"
+import { nextTick, Ref, ref, watchEffect } from "vue"
+import { Option } from "../../types"
 
-export const loadFilter = (options,selectedOptions,toggleOption, filterFields = [], hardFilterFields = []) => {
+export const loadFilter = (options : Ref<Option[]>,selectedOptions,toggleOption, filterFields = [], hardFilterFields = []) => {
     
     const filterText = ref("")
     const filteredOptions = ref([])
