@@ -1,10 +1,5 @@
-<script>
-  export default {
-    name: 'ExtraSuggest',
-    inheritAttrs: false
-  }
-</script>
-<script setup>
+
+<script setup lang="ts">
 import { useVirtualList } from '@vueuse/core'
 import { getParents } from "@txd/utils"
 import {
@@ -20,6 +15,12 @@ import { loadLocalization } from "./composition/localization";
 import { loadSearch } from "./composition/search";
 import { loadFilter } from "./composition/filter";
 import { loadStyling } from "./composition/styling";
+
+
+defineOptions({
+  name: 'ExtraSuggest',
+  inheritAttrs: false
+})
 
 
 

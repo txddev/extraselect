@@ -213,7 +213,7 @@ const { list, containerProps, wrapperProps } = useVirtualList(
   },
 )
 
-const {dropdownStyle,getTextWidth} = loadStyling(options,selectedOptions,open,inputNode,dropdownNode,dropdownCointainerNode,props.maxWidth, wrapperProps)
+const {dropdownStyle,getTextWidth} = loadStyling(options,selectedOptions,open,inputNode,dropdownNode,dropdownCointainerNode,props.maxWidth)
 
 const emitModelValue = ( value : OptionValue[] ) => {
   nextTick(()=>

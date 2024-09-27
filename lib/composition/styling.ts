@@ -1,4 +1,4 @@
-import { computed,  ref,  watchPostEffect } from "vue";
+import { computed,  ref,  watch,  watchEffect,  watchPostEffect } from "vue";
 import { offset } from "@txd/utils";
 
 export const loadStyling = (options,selectedOptions,open,inputNode,dropdownNode,containerNode,propMaxWidth) => {
@@ -12,6 +12,21 @@ export const loadStyling = (options,selectedOptions,open,inputNode,dropdownNode,
         return context.measureText(text).width;
     };
       
+    const inputBoundingRect = ref<DOMRect>(inputNode.value?.getBoundingClientRect())
+    
+    function updateBoundingRect(){
+      inputBoundingRect.value = inputNode.value.getBoundingClientRect()
+    }
+    
+    let monitoringInterval : number|undefined
+    watch(open,(val)=>{
+      if(val){
+        monitoringInterval = setInterval(updateBoundingRect,100)
+      }else{
+        clearInterval(monitoringInterval)
+      }
+    })
+    
     
     
     const maxWidth = computed(() => {
