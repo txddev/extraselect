@@ -67,7 +67,7 @@ const customLabelLength = computed(()=>"La mia customlabel è  lunga "+customLab
     <div><input v-model="maxWidth" type="text" />maxWidth</div>
     <div><input v-model="removeIcon" type="text" />removeIcon</div>
     
-    <extra-select :options="options" v-model="selection" 
+    <extra-select id="sampleList" :options="options" v-model="selection" 
       :multiple="multiple"
       :maxWidth="maxWidth"
       :search="search"

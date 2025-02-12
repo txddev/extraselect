@@ -5,6 +5,7 @@
   }
 </script>
 <script setup>
+import { useAttrs } from 'vue'
 import { useVirtualList } from '@vueuse/core'
 import { getParents } from "@txd/utils"
 import {
@@ -46,7 +47,9 @@ const props = defineProps({
 });
 const isMultiple = computed(() => props.originalNode?.multiple ?? props.multiple)
 
-const { options, selectedOptions, onReset } = loadOptions(props.originalNode,toRef(props,'options'),toRef(props,'modelValue'),props.initialValue);
+
+let attrs = useAttrs()
+const { options, selectedOptions, onReset } = loadOptions(props.originalNode,toRef(props,'options'),toRef(props,'modelValue'),props.initialValue, props.originalNode?.id ?? attrs.id ?? null);
 const {t: $t} = loadLocalization(props.originalNode,toRef(props,'localization'))
 const originalClassList = props.originalNode?.classList;
 const originalCssStyles = Object.values(props.originalNode?.style ?? {});
