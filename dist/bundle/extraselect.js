@@ -4859,10 +4859,8 @@ const Uo = (e, t) => {
           t[r] = e.dataset[r];
         }
       t.disabled = e.disabled, t.originalNode = e;
-      const n = document.createElement("div");
-      e.parentNode.insertBefore(n, e.nextSibling), n.dataset.isVue = !0, n.style.display = "contents";
-      const s = Ao(pu, t);
-      s.mount(n), e.addEventListener("remove", function() {
+      const n = document.createDocumentFragment(), s = Ao(pu, t);
+      s.mount(n), e.parentNode.insertBefore(n, e.nextSibling), e.addEventListener("remove", function() {
         s.unmount(), n.remove(), e.remove(), Ne.remove(e, "extra-select");
       });
     });
@@ -4883,10 +4881,8 @@ const Uo = (e, t) => {
           t[r] = e.dataset[r];
         }
       t.disabled = e.disabled, t.originalNode = e;
-      const n = document.createElement("div");
-      e.parentNode.insertBefore(n, e.nextSibling), n.dataset.isVue = !0, n.style.display = "contents";
-      const s = Ao(wu, t);
-      s.mount(n), e.addEventListener("remove", function() {
+      const n = document.createDocumentFragment(), s = Ao(wu, t);
+      s.mount(n), e.parentNode.insertBefore(n, e.nextSibling), e.addEventListener("remove", function() {
         s.unmount(), n.remove(), e.remove(), Ne.remove(e, "extra-suggest");
       });
     });
