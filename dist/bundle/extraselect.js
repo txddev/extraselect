@@ -4203,7 +4203,7 @@ const at = (e) => {
       e.value.splice(e.value.findIndex((o) => o.key == r), 1);
     },
     clear: () => {
-      e.value = [];
+      e.value = [], e.rebuildMap();
     },
     sort: (r = null) => {
       r == null && (r = (o, l) => o.value.localeCompare(l.value)), e.value = e.value.sort(r);

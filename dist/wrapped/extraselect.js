@@ -334,7 +334,7 @@ const H = (t) => {
       t.value.splice(t.value.findIndex((s) => s.key == n), 1);
     },
     clear: () => {
-      t.value = [];
+      t.value = [], t.rebuildMap();
     },
     sort: (n = null) => {
       n == null && (n = (s, o) => s.value.localeCompare(o.value)), t.value = t.value.sort(n);

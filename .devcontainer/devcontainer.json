@@ -4,9 +4,7 @@
 	"name": "Node.js & TypeScript",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
-	"features": {
-		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
-	},
+	
 	"remoteUser": "root",
 	"mounts": [
 		// "source=/docker/txd_docker/nginx_rproxy/vhosts,target=/docker/txd_docker/nginx_rproxy/vhosts,type=bind,readonly,consistency=cached"
