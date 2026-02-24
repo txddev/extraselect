@@ -1,10 +1,10 @@
-import { ref as S, watchEffect as Y, computed as P, nextTick as ue, watchPostEffect as Be, useAttrs as ke, toRef as Q, watch as ne, onMounted as be, onUnmounted as Se, openBlock as g, createElementBlock as k, Fragment as q, unref as h, createCommentVNode as V, renderList as ae, withModifiers as B, createTextVNode as ge, toDisplayString as z, createElementVNode as C, mergeProps as se, createBlock as ie, Teleport as de, withDirectives as oe, normalizeClass as xe, normalizeStyle as Ce, isRef as _e, vModelText as Pe, normalizeProps as Ee, guardReactiveProps as Ne, vShow as Le, vModelDynamic as He } from "vue";
+import { ref as x, watchEffect as Y, computed as P, nextTick as ue, watchPostEffect as Be, useAttrs as ke, toRef as Q, watch as ne, onMounted as be, onUnmounted as Se, openBlock as w, createElementBlock as b, Fragment as q, unref as h, createCommentVNode as V, renderList as ae, withModifiers as B, createTextVNode as ge, toDisplayString as T, createElementVNode as _, mergeProps as se, createBlock as ie, Teleport as ce, withDirectives as oe, normalizeClass as xe, normalizeStyle as Ce, isRef as _e, vModelText as Pe, normalizeProps as Ee, guardReactiveProps as Ne, vShow as Le, vModelDynamic as He } from "vue";
 import { useVirtualList as Oe } from "@vueuse/core";
-import { empty as Ue, offset as le, getParents as D } from "@txd/utils";
+import { empty as We, offset as le, getParents as D } from "@txd/utils";
 const I = (t) => {
   let i = parseInt(t);
   return i == t ? i : t;
-}, We = (t) => {
+}, Ue = (t) => {
   try {
     var i = JSON.parse(t);
     if (i && typeof i == "object")
@@ -14,17 +14,17 @@ const I = (t) => {
   return t;
 }, De = (t, i, e) => {
   window.ExtraSelectOptions == null && (window.ExtraSelectOptions = {});
-  const d = {
+  const c = {
     defaultArray: t.value,
     get: () => t.value,
     push: (a, n, l = null) => {
       parseInt(a) == a && (a = parseInt(a));
-      const y = t.map.get(a);
-      if (y)
-        y.value = n, y.data = l;
+      const k = t.map.get(a);
+      if (k)
+        k.value = n, k.data = l;
       else {
-        let f = { value: n, key: a, data: l };
-        t.value.push(f), t.map.set(f.key, f);
+        let d = { value: n, key: a, data: l };
+        t.value.push(d), t.map.set(d.key, d);
       }
     },
     addRange: (a) => {
@@ -63,206 +63,219 @@ const I = (t) => {
       }
     }
   };
-  window.ExtraSelectOptions[e] = d, t.actions = d;
+  window.ExtraSelectOptions[e] = c, t.actions = c;
 };
 let Je = 1;
 const Ae = (t) => {
-  t && (t.style.display = "none", Ue(t));
-}, Fe = (t, i, e, d, a = null) => {
-  const n = S(/* @__PURE__ */ new Map());
+  t && (t.style.display = "none", We(t));
+}, Fe = (t, i, e, c, a = null) => {
+  const n = x(/* @__PURE__ */ new Map());
   Y(() => {
     if (Array.isArray(e.value)) {
       n.value.clear();
-      for (let u of e.value)
-        n.value.set(u, u);
+      for (let o of e.value)
+        n.value.set(o, o);
     }
   });
-  const l = S([]);
+  const l = x([]);
   if (l.map = /* @__PURE__ */ new Map(), l.rebuildMap = () => {
     if (l.map.clear(), l.value)
-      for (let u of l.value)
-        l.map.set(u.key, u);
+      for (let o of l.value)
+        l.map.set(o.key, o);
   }, Y(() => {
-    i.value && (l.value = i.value.map((u) => ({ ...u, key: I(u.key) })), l.rebuildMap());
+    i.value && (l.value = i.value.map((o) => ({ ...o, key: I(o.key) })), l.rebuildMap());
   }), t) {
     if (n.value.clear(), t.matches("select")) {
-      for (let u of Array.apply(null, t.selectedOptions).map((s) => I(s.value)).filter((s) => s != null))
-        n.value.set(u, u);
-      l.value = Array.apply(null, t.options).reduce((u, s) => (u.push({
-        value: s.text,
-        key: I(s.value),
-        data: Object.keys(s.dataset).reduce((v, p) => (v[p] = We(s.dataset[p]), v), {})
-      }), u), []);
+      for (let o of Array.apply(null, t.selectedOptions).map((f) => I(f.value)).filter((f) => f != null))
+        n.value.set(o, o);
+      l.value = Array.apply(null, t.options).reduce((o, f) => (o.push({
+        value: f.text,
+        key: I(f.value),
+        data: Object.keys(f.dataset).reduce((v, m) => (v[m] = Ue(f.dataset[m]), v), {})
+      }), o), []);
     }
     if (t.matches("input")) {
-      let u = t.value;
-      u != null && u.length > 0 && (l.value = [{ value: u, key: u }]);
+      let o = t.value;
+      o != null && o.length > 0 && (l.value = [{ value: o, key: o }]);
     }
     l.rebuildMap();
   }
-  if (Array.isArray(d))
-    for (let u of d)
-      n.value.set(I(u), I(u));
+  if (Array.isArray(c))
+    for (let o of c)
+      n.value.set(I(o), I(o));
   else
-    d != null && n.value.set(I(d), I(d));
+    c != null && n.value.set(I(c), I(c));
   (a == null || a === "" || a == 0) && (a = "extraselect_" + (++Je).toString()), De(l, n, a);
-  const y = [];
-  return n.value.forEach((u, s) => {
-    y.push([s, u]);
+  const k = [];
+  return n.value.forEach((o, f) => {
+    k.push([f, o]);
   }), { options: l, selectedOptions: n, onReset: () => {
     n.value.clear();
-    for (let [u, s] of y)
-      n.value.set(u, s);
+    for (let [o, f] of k)
+      n.value.set(o, f);
   } };
 };
-S({});
+x({});
 function Xe(t, i = {}) {
   for (let e in i)
     t = t.replace(`:${e}`, i[e]);
   return t;
 }
 const Ge = (t = null) => {
-  var d, a;
+  var c, a;
   window.ExtraSelectLocalization == null && (window.ExtraSelectLocalization = {});
-  let e = { ...(a = (d = window.ExtraSelectLocalization.defaults) == null ? void 0 : d.defaultArray) != null ? a : {} };
-  Object.assign(e, t != null ? t : {}), Ve(S(e), "defaults");
+  let e = { ...(a = (c = window.ExtraSelectLocalization.defaults) == null ? void 0 : c.defaultArray) != null ? a : {} };
+  Object.assign(e, t != null ? t : {}), Ve(x(e), "defaults");
 }, Ve = (t, i) => {
   window.ExtraSelectLocalization == null && (window.ExtraSelectLocalization = {}, Ge());
   const e = {
     defaultArray: t.value,
     list: () => t.value,
-    get: (d) => {
+    get: (c) => {
       var a;
-      return (a = t.value[d]) != null ? a : null;
+      return (a = t.value[c]) != null ? a : null;
     },
-    push: (d, a) => {
-      t.value[d] = a;
+    push: (c, a) => {
+      t.value[c] = a;
     }
   };
   window.ExtraSelectLocalization[i] = e, t.actions = e;
 };
 let Qe = 0;
-const ze = (t, i) => {
-  var d;
-  return Ve(i, (d = t == null ? void 0 : t.id) != null ? d : "extraselect_" + (++Qe).toString()), { propLocalization: i, t: (a, n = {}) => {
-    var y;
-    let l = (y = i.value[a]) != null ? y : window.ExtraSelectLocalization.defaults.get(a);
+const Te = (t, i) => {
+  var c;
+  return Ve(i, (c = t == null ? void 0 : t.id) != null ? c : "extraselect_" + (++Qe).toString()), { propLocalization: i, t: (a, n = {}) => {
+    var k;
+    let l = (k = i.value[a]) != null ? k : window.ExtraSelectLocalization.defaults.get(a);
     return l == null && (window.ExtraSelectLocalization.defaults.push(a, a), l = a), Xe(l, n);
   } };
 }, we = async function(t, i = null, e = {}) {
   var n;
-  const d = {
+  const c = {
     method: "POST",
     credentials: "include",
     ...e,
     headers: { "Content-Type": "application/json", ...(n = e.headers) != null ? n : {} },
     body: JSON.stringify({ search: i, ...e.body })
   };
-  return await (await fetch(t, d)).json();
-}, Me = (t, i, e, d, a, n, l = "limited", y = {}) => {
-  const f = S(0), u = S(!1), s = P(() => u.value || f.value > 0);
+  return await (await fetch(t, c)).json();
+}, ze = (t, i, e, c, a, n, l = "limited", k = {}) => {
+  const d = x(0), o = x(!1), f = P(() => o.value || d.value > 0);
   if (i != null && i.length > 0)
     if (e) {
       const v = {};
-      Y((p) => {
-        var m;
-        const c = (m = JSON.stringify(n.value)) != null ? m : "default";
-        if (v[c] == null && (v[c] = []), d.value.length >= a) {
-          let E = !0;
+      Y((m) => {
+        var y;
+        const r = (y = JSON.stringify(n.value)) != null ? y : "default";
+        if (v[r] == null && (v[r] = []), c.value.length >= a) {
+          let g = !0;
           switch (l) {
             case "always":
               break;
             default:
             case "limited":
-              E = !v[c].includes(d.value);
+              g = !v[r].includes(c.value);
               break;
             case "complete":
-              E = v[c].reduce((w, b) => w && !d.value.startsWith(b), !0);
+              g = v[r].reduce((S, p) => S && !c.value.startsWith(p), !0);
               break;
           }
-          if (E) {
-            u.value = !0;
-            const w = setTimeout(() => {
-              v[c].push(d.value), f.value += 1, y.body = { ...y.body, ...n.value }, we(i, d.value, y).then((b) => {
-                t.actions.addRange(b), t.actions.sort(), f.value -= 1, u.value = !1;
+          if (g) {
+            o.value = !0;
+            const S = setTimeout(() => {
+              v[r].push(c.value), d.value += 1, k.body = { ...k.body, ...n.value }, we(i, c.value, k).then((p) => {
+                t.actions.addRange(p), t.actions.sort(), d.value -= 1, o.value = !1;
               });
             }, 500);
-            p(() => {
-              clearTimeout(w);
+            m(() => {
+              clearTimeout(S);
             });
           }
         }
       });
     } else
-      we(i, null, y).then((v) => {
+      we(i, null, k).then((v) => {
         t.actions.addRange(v), t.actions.sort();
       });
-  return { searchingFlag: s };
-}, $e = (t, i, e, d = [], a = []) => {
-  const n = S(""), l = S([]), y = S({}), f = { ...d.reduce((s, v) => (s[v] = !1, s), {}), ...a.reduce((s, v) => (s[v] = !0, s), {}) };
-  for (let s in f) {
-    let v = f[s], p = document.getElementById(s);
-    y.value[s] = p == null ? void 0 : p.value, p && p.addEventListener("change", (c) => {
-      y.value[s] = c.target.value, v && ue(() => {
+  return { searchingFlag: f };
+}, Me = (t, i, e, c = [], a = [], n = "exact") => {
+  const l = x(""), k = x([]), d = x({}), o = { ...c.reduce((v, m) => (v[m] = !1, v), {}), ...a.reduce((v, m) => (v[m] = !0, v), {}) };
+  for (let v in o) {
+    let m = o[v], r = document.getElementById(v);
+    d.value[v] = r == null ? void 0 : r.value, r && r.addEventListener("change", (y) => {
+      d.value[v] = y.target.value, m && ue(() => {
         if (i != null)
-          for (let m of Array.from(i.value.keys()))
-            l.value.find((E) => E.key == m) || e(m, !1);
+          for (let g of Array.from(i.value.keys()))
+            k.value.find((S) => S.key == g) || e(g, !1);
         else
-          l.value.find((m) => m.key == n.value) || e(n.value, !1);
+          k.value.find((g) => g.key == l.value) || e(l.value, !1);
       });
     });
   }
-  const u = function(s, v) {
-    let p = s.value;
-    return Object.keys(y.value).length > 0 && (p = p.filter((c) => {
-      var m, E;
-      for (let w in y.value)
-        if ((f[w] ? !0 : ((m = y.value[w]) != null ? m : "").length > 0) && ((E = c.data) == null ? void 0 : E.hasOwnProperty(w))) {
-          if (Array.isArray(c.data[w])) {
-            if (!c.data[w].includes(y.value[w]))
+  const f = function(v, m) {
+    let r = v.value;
+    if (Object.keys(d.value).length > 0 && (r = r.filter((y) => {
+      var g, S;
+      for (let p in d.value)
+        if ((o[p] ? !0 : ((g = d.value[p]) != null ? g : "").length > 0) && ((S = y.data) == null ? void 0 : S.hasOwnProperty(p))) {
+          if (Array.isArray(y.data[p])) {
+            if (!y.data[p].includes(d.value[p]))
               return !1;
-          } else if (c.data[w] != y.value[w])
+          } else if (y.data[p] != d.value[p])
             return !1;
         }
       return !0;
-    })), v.length > 0 && (p = p.filter((c) => c.value.toLowerCase().includes(v.toLowerCase()))), p;
+    })), m.length > 0)
+      switch (n) {
+        case "loose":
+          const y = m.toLowerCase().split(" ").filter((g) => g.length > 0);
+          r = r.filter((g) => {
+            const S = g.value.toLowerCase();
+            return y.every((p) => S.includes(p));
+          });
+          break;
+        default:
+          r = r.filter((g) => g.value.toLowerCase().includes(m.toLowerCase()));
+          break;
+      }
+    return r;
   };
   return Y(() => {
-    l.value = u(t, n.value);
-  }), { filterText: n, filteredOptions: l, filterValues: y };
-}, qe = (t, i, e, d, a, n, l) => {
-  const y = getComputedStyle(document.querySelector("body")).font, f = function(v) {
-    const c = document.createElement("canvas").getContext("2d");
-    return c.font = y, c.measureText(v).width;
-  }, u = P(() => {
-    var p, c;
-    const v = (p = le(d.value).width) != null ? p : 100;
+    k.value = f(t, l.value);
+  }), { filterText: l, filteredOptions: k, filterValues: d };
+}, $e = (t, i, e, c, a, n, l) => {
+  const k = getComputedStyle(document.querySelector("body")).font, d = function(v) {
+    const r = document.createElement("canvas").getContext("2d");
+    return r.font = k, r.measureText(v).width;
+  }, o = P(() => {
+    var m, r;
+    const v = (m = le(c.value).width) != null ? m : 100;
     if (l === "inherit")
       return v;
     if (l == null || l === "dynamic") {
-      const m = (c = parseInt(getComputedStyle(document.querySelector("html"))["font-size"])) != null ? c : 16;
-      return Math.max(v, Math.max(...t.value.map((E) => f(E.value))) + 20 + m * 3);
+      const y = (r = parseInt(getComputedStyle(document.querySelector("html"))["font-size"])) != null ? r : 16;
+      return Math.max(v, Math.max(...t.value.map((g) => d(g.value))) + 20 + y * 3);
     }
     return l;
-  }), s = S({
+  }), f = x({
     position: "absolute",
     "min-width": "max-content"
   });
   return Be(() => {
     e.value < 0 && console.log("is open"), i.value.size < 0 && console.log("empty selection");
-    var v = le(d.value), p = le(null);
+    var v = le(c.value), m = le(null);
     if (n.value && ["absolute", "relative", "fixed", "sticky"].includes(getComputedStyle(n.value).position))
-      var p = le(n.value);
-    let c = -p.left + v.left;
-    const m = window.document.documentElement.clientWidth;
-    c + u.value > m && (c = m - u.value), s.value = {
+      var m = le(n.value);
+    let r = -m.left + v.left;
+    const y = window.document.documentElement.clientWidth;
+    r + o.value > y && (r = y - o.value), f.value = {
       position: "absolute",
       "min-width": "max-content",
-      width: u.value.toString() + "px",
-      top: (-p.top + v.top + v.height).toString() + "px",
-      left: c.toString() + "px"
+      width: o.value.toString() + "px",
+      top: (-m.top + v.top + v.height).toString() + "px",
+      left: r.toString() + "px"
     };
-  }), { dropdownStyle: s, getTextWidth: f };
+  }), { dropdownStyle: f, getTextWidth: d };
 }, Ye = ["name"], Ze = {
   key: 1,
   class: "extra-select selection"
@@ -275,7 +288,7 @@ const ze = (t, i) => {
 }, nt = { class: "row-input" }, st = ["checked"], ot = { class: "row-input" }, rt = ["checked"], ut = {
   key: 1,
   class: "no-matches"
-}, it = { key: 2 }, dt = ["onClick"], ct = { class: "row-input" }, ft = ["checked"], vt = ["value"], pt = {
+}, it = { key: 2 }, ct = ["onClick"], dt = { class: "row-input" }, ft = ["checked"], vt = ["value"], pt = {
   name: "ExtraSelect",
   inheritAttrs: !1
 }, ht = Object.assign(pt, {
@@ -288,6 +301,7 @@ const ze = (t, i) => {
     url: { type: String, required: !1 },
     maxWidth: { type: String, default: "dynamic" },
     search: { type: Boolean, default: !1 },
+    matchType: { type: String, default: "exact" },
     searchableUrl: { type: Boolean, default: !1 },
     initialValue: { default: null },
     minChars: { type: Number, default: 0 },
@@ -302,249 +316,249 @@ const ze = (t, i) => {
   },
   emits: ["update:modelValue"],
   setup(t, { emit: i }) {
-    var ce, fe, ve, pe, he, me;
-    const e = t, d = P(() => {
-      var o, r;
-      return (r = (o = e.originalNode) == null ? void 0 : o.multiple) != null ? r : e.multiple;
+    var de, fe, ve, pe, he, ye;
+    const e = t, c = P(() => {
+      var s, u;
+      return (u = (s = e.originalNode) == null ? void 0 : s.multiple) != null ? u : e.multiple;
     });
     let a = ke();
-    const { options: n, selectedOptions: l, onReset: y } = Fe(e.originalNode, Q(e, "options"), Q(e, "modelValue"), e.initialValue, (ve = (fe = (ce = e.originalNode) == null ? void 0 : ce.id) != null ? fe : a.id) != null ? ve : null), { t: f } = ze(e.originalNode, Q(e, "localization")), u = (pe = e.originalNode) == null ? void 0 : pe.classList, s = Object.values((me = (he = e.originalNode) == null ? void 0 : he.style) != null ? me : {});
+    const { options: n, selectedOptions: l, onReset: k } = Fe(e.originalNode, Q(e, "options"), Q(e, "modelValue"), e.initialValue, (ve = (fe = (de = e.originalNode) == null ? void 0 : de.id) != null ? fe : a.id) != null ? ve : null), { t: d } = Te(e.originalNode, Q(e, "localization")), o = (pe = e.originalNode) == null ? void 0 : pe.classList, f = Object.values((ye = (he = e.originalNode) == null ? void 0 : he.style) != null ? ye : {});
     Ae(e.originalNode);
-    const v = i, p = (o, r = null) => {
-      if (d.value) {
-        let O = r;
-        switch (O == null && (O = !l.value.has(o)), O) {
+    const v = i, m = (s, u = null) => {
+      if (c.value) {
+        let O = u;
+        switch (O == null && (O = !l.value.has(s)), O) {
           case !0:
-            l.value.set(o, o);
+            l.value.set(s, s);
             break;
           case !1:
-            l.value.delete(o);
+            l.value.delete(s);
             break;
         }
       } else
-        l.value.clear(), r !== !1 && l.value.set(o, o), M.value = !1;
-      U(Array.from(l.value.keys()));
-    }, { filterText: c, filteredOptions: m, filterValues: E } = $e(n, l, p, e.filterFields, e.hardFilterFields), { searchingFlag: w } = Me(
+        l.value.clear(), u !== !1 && l.value.set(s, s), M.value = !1;
+      W(Array.from(l.value.keys()));
+    }, { filterText: r, filteredOptions: y, filterValues: g } = Me(n, l, m, e.filterFields, e.hardFilterFields, e.matchType), { searchingFlag: S } = ze(
       n,
       e.url,
       e.searchableUrl,
-      c,
+      r,
       e.minChars,
-      E,
+      g,
       e.fetchMode,
       e.fetchOptions
-    ), b = S(null), T = S(null), j = S(null), M = S(!1);
-    function J(o) {
-      e.disabled || (M.value = o);
+    ), p = x(null), z = x(null), j = x(null), M = x(!1);
+    function J(s) {
+      e.disabled || (M.value = s);
     }
-    ne(c, () => {
-      T.value.querySelector(".scroller").scrollTop = 0;
+    ne(r, () => {
+      z.value.querySelector(".scroller").scrollTop = 0;
     });
-    const $ = S(null), H = function(o) {
-      const r = D(o.target);
-      r.push(o.target), !r.includes(b.value) && !r.includes(T.value) ? M.value = !1 : (o.stopImmediatePropagation(), o.preventDefault());
+    const $ = x(null), H = function(s) {
+      const u = D(s.target);
+      u.push(s.target), !u.includes(p.value) && !u.includes(z.value) ? M.value = !1 : (s.stopImmediatePropagation(), s.preventDefault());
     };
     be(() => {
       if (e.dropdownContainer) {
-        let o = !1;
-        $.value = D(b.value).find((r) => !!(r instanceof Element && (r.matches(e.dropdownContainer) && (o = !0), o && ["absolute", "relative", "fixed", "sticky"].includes(getComputedStyle(r).position))));
+        let s = !1;
+        $.value = D(p.value).find((u) => !!(u instanceof Element && (u.matches(e.dropdownContainer) && (s = !0), s && ["absolute", "relative", "fixed", "sticky"].includes(getComputedStyle(u).position))));
       }
       if ($.value == null && ($.value = document.querySelector("body")), e.originalNode) {
-        for (let r of u)
-          r != "extraselect" && b.value.classList.add(r);
-        for (let r of s)
-          b.value.style[r] = e.originalNode.style[r];
-        let o = D(b.value, "form").pop();
-        o instanceof HTMLElement && o.matches("form") && o.addEventListener("reset", () => setTimeout(y)), e.originalNode.toggleValue = p, e.originalNode.setValues = (r) => {
+        for (let u of o)
+          u != "extraselect" && p.value.classList.add(u);
+        for (let u of f)
+          p.value.style[u] = e.originalNode.style[u];
+        let s = D(p.value, "form").pop();
+        s instanceof HTMLElement && s.matches("form") && s.addEventListener("reset", () => setTimeout(k)), e.originalNode.toggleValue = m, e.originalNode.setValues = (u) => {
           l.value.clear();
-          for (let O of r)
-            p(O);
+          for (let O of u)
+            m(O);
         };
       }
       window.document.addEventListener("mousedown", H), window.document.addEventListener("focusin", H);
     }), Se(() => {
       window.document.removeEventListener("mousedown", H), window.document.removeEventListener("focusin", H);
     });
-    const { dropdownStyle: re, getTextWidth: Z } = qe(n, l, M, b, T, $, e.maxWidth), U = (o) => {
+    const { dropdownStyle: re, getTextWidth: Z } = $e(n, l, M, p, z, $, e.maxWidth), W = (s) => {
       ue(
         () => {
-          var r;
-          return (r = e.originalNode) == null ? void 0 : r.dispatchEvent(new Event("change", { bubbles: !0 }));
+          var u;
+          return (u = e.originalNode) == null ? void 0 : u.dispatchEvent(new Event("change", { bubbles: !0 }));
         }
-      ), v("update:modelValue", o);
-    }, K = (o) => {
-      X(o, !1), c.value = "";
-    }, X = (o, r = null) => {
-      r == null && (r = !W.value), r ? (l.value.clear(), n.value.forEach((O) => l.value.set(O.key, O.key))) : l.value.clear(), U(Array.from(l.value.keys()));
+      ), v("update:modelValue", s);
+    }, K = (s) => {
+      X(s, !1), r.value = "";
+    }, X = (s, u = null) => {
+      u == null && (u = !U.value), u ? (l.value.clear(), n.value.forEach((O) => l.value.set(O.key, O.key))) : l.value.clear(), W(Array.from(l.value.keys()));
     }, R = () => {
-      N.value ? m.value.forEach((o) => {
-        l.value.has(o.key) && l.value.delete(o.key);
-      }) : m.value.forEach((o) => {
-        l.value.has(o.key) || l.value.set(o.key, o.key);
-      }), U(Array.from(l.value.keys()));
+      N.value ? y.value.forEach((s) => {
+        l.value.has(s.key) && l.value.delete(s.key);
+      }) : y.value.forEach((s) => {
+        l.value.has(s.key) || l.value.set(s.key, s.key);
+      }), W(Array.from(l.value.keys()));
     };
-    ne(M, (o, r) => {
-      o != r && (o ? e.search && ue(() => {
+    ne(M, (s, u) => {
+      s != u && (s ? e.search && ue(() => {
         j.value.focus({ focusVisible: !0 });
-      }) : c.value = "");
+      }) : r.value = "");
     });
-    const W = P(() => l.value.size == n.value.length), N = P(() => m.value.reduce((o, r) => o && l.value.has(r.key), !0)), x = P(() => l.value.size == 0), L = P(() => {
-      var o, r, O, G, _;
+    const U = P(() => l.value.size == n.value.length), N = P(() => y.value.reduce((s, u) => s && l.value.has(u.key), !0)), C = P(() => l.value.size == 0), L = P(() => {
+      var s, u, O, G, E;
       if (n.value.length < 0)
         return "";
-      if (d.value) {
-        if (x.value)
-          return f("No selection");
-        if (!e.searchableUrl && W.value)
-          return f("All selected");
-        const F = b.value ? getComputedStyle(b.value) : null, ee = ((o = b.value) == null ? void 0 : o.clientWidth) - parseInt(F == null ? void 0 : F.paddingLeft) - parseInt(F == null ? void 0 : F.paddingRight);
-        let te = f(":n selected - ", { n: l.value.size }), ye = !0;
+      if (c.value) {
+        if (C.value)
+          return d("No selection");
+        if (!e.searchableUrl && U.value)
+          return d("All selected");
+        const F = p.value ? getComputedStyle(p.value) : null, ee = ((s = p.value) == null ? void 0 : s.clientWidth) - parseInt(F == null ? void 0 : F.paddingLeft) - parseInt(F == null ? void 0 : F.paddingRight);
+        let te = d(":n selected - ", { n: l.value.size }), me = !0;
         for (let Ie of l.value)
-          if (ye ? ye = !1 : te += ", ", te += (O = (r = n.map.get(Ie[0])) == null ? void 0 : r.value) != null ? O : w.value ? f("Loading...") : f("Value not found"), ee < Z(te))
-            return l.value.size + f(" selected");
+          if (me ? me = !1 : te += ", ", te += (O = (u = n.map.get(Ie[0])) == null ? void 0 : u.value) != null ? O : S.value ? d("Loading...") : d("Value not found"), ee < Z(te))
+            return l.value.size + d(" selected");
         return te;
       } else
         for (let F of l.value)
-          return (_ = (G = n.map.get(F[0])) == null ? void 0 : G.value) != null ? _ : w.value ? f("Loading...") : f("Value not found");
-      return f("No selection");
-    }), { list: A, containerProps: Te, wrapperProps: je } = Oe(
-      m,
+          return (E = (G = n.map.get(F[0])) == null ? void 0 : G.value) != null ? E : S.value ? d("Loading...") : d("Value not found");
+      return d("No selection");
+    }), { list: A, containerProps: qe, wrapperProps: je } = Oe(
+      y,
       {
         itemHeight: 32
       }
     );
-    return (o, r) => {
+    return (s, u) => {
       var O, G;
-      return g(), k(q, null, [
-        d.value && h(l).size == 0 ? (g(), k("input", {
+      return w(), b(q, null, [
+        c.value && h(l).size == 0 ? (w(), b("input", {
           key: 0,
           type: "hidden",
           name: (G = (O = e.originalNode) == null ? void 0 : O.name) == null ? void 0 : G.replace("[]", ""),
           value: ""
         }, null, 8, Ye)) : V("", !0),
-        e.showSelected ? (g(), k("div", Ze, [
-          (g(!0), k(q, null, ae(h(l), (_) => {
+        e.showSelected ? (w(), b("div", Ze, [
+          (w(!0), b(q, null, ae(h(l), (E) => {
             var F;
-            return g(), k("div", {
-              key: _,
-              onClick: B((ee) => p(_[0]), ["stop", "prevent"]),
+            return w(), b("div", {
+              key: E,
+              onClick: B((ee) => m(E[0]), ["stop", "prevent"]),
               class: "selection-badge"
             }, [
-              ge(z((F = h(n).find((ee) => ee.key == _[0])) == null ? void 0 : F.value) + " ", 1),
-              C("div", {
+              ge(T((F = h(n).find((ee) => ee.key == E[0])) == null ? void 0 : F.value) + " ", 1),
+              _("div", {
                 class: "selection-remove",
                 innerHTML: e.removeIcon
               }, null, 8, Re)
             ], 8, Ke);
           }), 128))
         ])) : V("", !0),
-        C("input", se({
-          onFocus: r[0] || (r[0] = (_) => J(!0)),
-          onClick: r[1] || (r[1] = B((_) => J(!0), ["stop", "prevent"])),
+        _("input", se({
+          onFocus: u[0] || (u[0] = (E) => J(!0)),
+          onClick: u[1] || (u[1] = B((E) => J(!0), ["stop", "prevent"])),
           ref_key: "inputNode",
-          ref: b,
+          ref: p,
           value: L.value,
           class: "extra-select extra-select-input",
           readonly: ""
-        }, o.$attrs, { disabled: t.disabled }), null, 16, et),
-        $.value ? (g(), ie(de, {
+        }, s.$attrs, { disabled: t.disabled }), null, 16, et),
+        $.value ? (w(), ie(ce, {
           key: 2,
           to: $.value
         }, [
-          oe(C("div", {
-            class: xe(["extra-select dropdown", { searching: h(w) > 0 }]),
+          oe(_("div", {
+            class: xe(["extra-select dropdown", { searching: h(S) > 0 }]),
             ref_key: "dropdownNode",
-            ref: T,
+            ref: z,
             style: Ce(h(re))
           }, [
-            e.search ? (g(), k("div", tt, [
-              oe(C("input", {
+            e.search ? (w(), b("div", tt, [
+              oe(_("input", {
                 ref_key: "searchNode",
                 ref: j,
                 class: "extra-select-search",
-                "onUpdate:modelValue": r[2] || (r[2] = (_) => _e(c) ? c.value = _ : null),
+                "onUpdate:modelValue": u[2] || (u[2] = (E) => _e(r) ? r.value = E : null),
                 type: "text",
                 autocomplete: "off",
                 autocorrect: "off",
                 autocapitilize: "off",
                 spellcheck: "false",
-                placeholder: h(f)("Search...")
+                placeholder: h(d)("Search...")
               }, null, 8, lt), [
-                [Pe, h(c)]
+                [Pe, h(r)]
               ])
             ])) : V("", !0),
-            h(c).length >= e.minChars ? (g(), k(q, { key: 1 }, [
-              d.value ? (g(), k("div", at, [
-                h(c).length == 0 ? (g(), k("div", {
+            h(r).length >= e.minChars ? (w(), b(q, { key: 1 }, [
+              c.value ? (w(), b("div", at, [
+                h(r).length == 0 ? (w(), b("div", {
                   key: 0,
                   onClick: B(X, ["stop", "prevent"]),
                   class: "all-select"
                 }, [
-                  C("div", nt, [
-                    C("input", {
-                      checked: W.value,
+                  _("div", nt, [
+                    _("input", {
+                      checked: U.value,
                       type: "checkbox"
                     }, null, 8, st),
-                    C("b", null, z(h(f)("Select all")), 1)
+                    _("b", null, T(h(d)("Select all")), 1)
                   ])
                 ])) : V("", !0),
-                h(m).length > 0 && h(c).length > 0 ? (g(), k("div", {
+                h(y).length > 0 && h(r).length > 0 ? (w(), b("div", {
                   key: 1,
                   onClick: B(R, ["stop", "prevent"]),
                   class: "all-select"
                 }, [
-                  C("div", ot, [
-                    C("input", {
+                  _("div", ot, [
+                    _("input", {
                       checked: N.value,
                       type: "checkbox"
                     }, null, 8, rt),
-                    C("b", null, z(h(f)("Select Filtered")), 1)
+                    _("b", null, T(h(d)("Select Filtered")), 1)
                   ])
                 ])) : V("", !0),
-                C("div", {
+                _("div", {
                   class: "clear",
                   onClick: B(K, ["stop", "prevent"])
-                }, z(h(f)("Clear")), 1)
+                }, T(h(d)("Clear")), 1)
               ])) : V("", !0),
-              h(m).length == 0 ? (g(), k("div", ut, z(h(f)("No matches found")), 1)) : V("", !0)
-            ], 64)) : (g(), k("div", it, z(h(f)("Insert at least :n characters", { n: e.minChars })), 1)),
-            C("div", se(h(Te), { class: "scroller" }), [
-              C("div", Ee(Ne(h(je))), [
-                (g(!0), k(q, null, ae(h(A), (_) => (g(), k("button", {
-                  key: _.index,
+              h(y).length == 0 ? (w(), b("div", ut, T(h(d)("No matches found")), 1)) : V("", !0)
+            ], 64)) : (w(), b("div", it, T(h(d)("Insert at least :n characters", { n: e.minChars })), 1)),
+            _("div", se(h(qe), { class: "scroller" }), [
+              _("div", Ee(Ne(h(je))), [
+                (w(!0), b(q, null, ae(h(A), (E) => (w(), b("button", {
+                  key: E.index,
                   class: "dropdown-row",
-                  onClick: B((F) => p(_.data.key), ["stop", "prevent"]),
+                  onClick: B((F) => m(E.data.key), ["stop", "prevent"]),
                   style: { height: "32px" }
                 }, [
-                  C("div", ct, [
-                    d.value ? (g(), k("input", {
+                  _("div", dt, [
+                    c.value ? (w(), b("input", {
                       key: 0,
-                      checked: h(l).has(_.data.key),
+                      checked: h(l).has(E.data.key),
                       type: "checkbox"
                     }, null, 8, ft)) : V("", !0),
-                    ge(" " + z(_.data.value), 1)
+                    ge(" " + T(E.data.value), 1)
                   ])
-                ], 8, dt))), 128))
+                ], 8, ct))), 128))
               ], 16)
             ], 16)
           ], 6), [
             [Le, M.value]
           ])
         ], 8, ["to"])) : V("", !0),
-        e.originalNode ? (g(), ie(de, {
+        e.originalNode ? (w(), ie(ce, {
           key: 3,
           to: e.originalNode
         }, [
-          (g(!0), k(q, null, ae(h(l), (_) => (g(), k("option", {
-            key: _[0],
+          (w(!0), b(q, null, ae(h(l), (E) => (w(), b("option", {
+            key: E[0],
             selected: "selected",
-            value: _[0]
+            value: E[0]
           }, null, 8, vt))), 128))
         ], 8, ["to"])) : V("", !0)
       ], 64);
     };
   }
-}), mt = ["disabled"], yt = {
+}), yt = ["disabled"], mt = {
   key: 0,
   class: "no-matches"
 }, gt = { key: 1 }, wt = ["onClick"], kt = { class: "row-input" }, bt = {
@@ -559,6 +573,7 @@ const ze = (t, i) => {
     maxWidth: { type: String, default: "dynamic" },
     url: { type: String, required: !1 },
     searchableUrl: { type: Boolean, default: !1 },
+    matchType: { type: String, default: "exact" },
     minChars: { type: Number, default: 0 },
     fetchMode: { type: String, default: "limited" },
     fetchOptions: { type: Object, default: {} },
@@ -569,64 +584,64 @@ const ze = (t, i) => {
   },
   emits: ["update:modelValue"],
   setup(t, { emit: i }) {
-    var Z, U, K, X, R, W;
+    var Z, W, K, X, R, U;
     const e = t;
-    let d = ke();
-    const { options: a } = Fe(e.originalNode, Q(e, "options"), S([]), null, (K = (U = (Z = e.originalNode) == null ? void 0 : Z.id) != null ? U : d.id) != null ? K : null), { t: n } = ze(e.originalNode, Q(e, "localization")), l = (X = e.originalNode) == null ? void 0 : X.classList, y = Object.values((W = (R = e.originalNode) == null ? void 0 : R.style) != null ? W : {});
+    let c = ke();
+    const { options: a } = Fe(e.originalNode, Q(e, "options"), x([]), null, (K = (W = (Z = e.originalNode) == null ? void 0 : Z.id) != null ? W : c.id) != null ? K : null), { t: n } = Te(e.originalNode, Q(e, "localization")), l = (X = e.originalNode) == null ? void 0 : X.classList, k = Object.values((U = (R = e.originalNode) == null ? void 0 : R.style) != null ? U : {});
     Ae(e.originalNode);
-    const f = i, u = (N, x = null) => {
-      x === !1 ? s.value = "" : s.value = a.map.get(N).value, w.value = !1;
-    }, { filterText: s, filteredOptions: v, filterValues: p } = $e(a, null, u, e.filterFields, e.hardFilterFields), { searchingFlag: c } = Me(
+    const d = i, o = (N, C = null) => {
+      C === !1 ? f.value = "" : f.value = a.map.get(N).value, S.value = !1;
+    }, { filterText: f, filteredOptions: v, filterValues: m } = Me(a, null, o, e.filterFields, e.hardFilterFields, e.matchType), { searchingFlag: r } = ze(
       a,
       e.url,
       e.searchableUrl,
-      s,
+      f,
       e.minChars,
-      p,
+      m,
       e.fetchMode,
       e.fetchOptions
-    ), m = S(null), E = S(null), w = S(!1), b = S(null);
-    function T(N) {
-      e.disabled || (w.value = N);
+    ), y = x(null), g = x(null), S = x(!1), p = x(null);
+    function z(N) {
+      e.disabled || (S.value = N);
     }
-    ne(s, () => {
-      E.value.querySelector(".scroller").scrollTop = 0;
+    ne(f, () => {
+      g.value.querySelector(".scroller").scrollTop = 0;
     });
     const j = function(N) {
-      const x = D(N.target);
-      x.push(N.target), !x.includes(m.value) && !x.includes(E.value) && (w.value = !1);
+      const C = D(N.target);
+      C.push(N.target), !C.includes(y.value) && !C.includes(g.value) && (S.value = !1);
     };
     be(() => {
       if (e.dropdownContainer) {
         let L = !1;
-        b.value = D(m.value).find((A) => !!(A instanceof Element && (A.matches(e.dropdownContainer) && (L = !0), L && ["absolute", "relative", "fixed", "sticky"].includes(getComputedStyle(A).position))));
+        p.value = D(y.value).find((A) => !!(A instanceof Element && (A.matches(e.dropdownContainer) && (L = !0), L && ["absolute", "relative", "fixed", "sticky"].includes(getComputedStyle(A).position))));
       }
-      if (b.value == null && (b.value = document.querySelector("body")), e.originalNode) {
+      if (p.value == null && (p.value = document.querySelector("body")), e.originalNode) {
         for (let A of l)
-          A != "extrasuggest" && m.value.classList.add(A);
-        for (let A of y)
-          m.value.style[A] = e.originalNode.style[A];
-        s.value = e.originalNode.value;
-        let L = D(m.value, "form").pop();
-        L instanceof HTMLElement && L.matches("form") && L.addEventListener("reset", () => setTimeout(x)), e.originalNode.addEventListener("change", () => {
+          A != "extrasuggest" && y.value.classList.add(A);
+        for (let A of k)
+          y.value.style[A] = e.originalNode.style[A];
+        f.value = e.originalNode.value;
+        let L = D(y.value, "form").pop();
+        L instanceof HTMLElement && L.matches("form") && L.addEventListener("reset", () => setTimeout(C)), e.originalNode.addEventListener("change", () => {
           J(!0);
         });
       }
       Y(() => {
-        e.modelValue != null && (s.value = e.modelValue);
+        e.modelValue != null && (f.value = e.modelValue);
       });
-      const N = s.value, x = () => {
-        s.value = N;
+      const N = f.value, C = () => {
+        f.value = N;
       };
       window.document.addEventListener("mousedown", j), window.document.addEventListener("focusin", j);
     }), Se(() => {
       window.document.removeEventListener("mousedown", j), window.document.removeEventListener("focusin", j);
     });
-    const { dropdownStyle: M } = qe(a, S([]), w, m, E, b, e.maxWidth), J = (N = !1) => {
-      var x;
-      e.originalNode && (N ? s.value = e.originalNode.value : (e.originalNode.value = s.value, (x = e.originalNode) == null || x.dispatchEvent(new Event("change", { bubbles: !0 })))), f("update:modelValue", s.value);
+    const { dropdownStyle: M } = $e(a, x([]), S, y, g, p, e.maxWidth), J = (N = !1) => {
+      var C;
+      e.originalNode && (N ? f.value = e.originalNode.value : (e.originalNode.value = f.value, (C = e.originalNode) == null || C.dispatchEvent(new Event("change", { bubbles: !0 })))), d("update:modelValue", f.value);
     };
-    ne(() => w.value, (N) => {
+    ne(() => S.value, (N) => {
       N === !1 && J();
     });
     const { list: $, containerProps: H, wrapperProps: re } = Oe(
@@ -635,44 +650,44 @@ const ze = (t, i) => {
         itemHeight: 32
       }
     );
-    return (N, x) => (g(), k(q, null, [
-      oe(C("input", se({
-        onFocus: x[0] || (x[0] = (L) => T(!0)),
-        onClick: x[1] || (x[1] = (L) => T(!0)),
+    return (N, C) => (w(), b(q, null, [
+      oe(_("input", se({
+        onFocus: C[0] || (C[0] = (L) => z(!0)),
+        onClick: C[1] || (C[1] = (L) => z(!0)),
         ref_key: "inputNode",
-        ref: m,
-        "onUpdate:modelValue": x[2] || (x[2] = (L) => _e(s) ? s.value = L : null),
+        ref: y,
+        "onUpdate:modelValue": C[2] || (C[2] = (L) => _e(f) ? f.value = L : null),
         class: "extra-select extra-select-input"
-      }, N.$attrs, { disabled: t.disabled }), null, 16, mt), [
-        [He, h(s)]
+      }, N.$attrs, { disabled: t.disabled }), null, 16, yt), [
+        [He, h(f)]
       ]),
-      b.value ? (g(), ie(de, {
+      p.value ? (w(), ie(ce, {
         key: 0,
-        to: b.value
+        to: p.value
       }, [
-        oe(C("div", {
-          class: xe(["extra-select dropdown", { searching: h(c) > 0 }]),
+        oe(_("div", {
+          class: xe(["extra-select dropdown", { searching: h(r) > 0 }]),
           ref_key: "dropdownNode",
-          ref: E,
+          ref: g,
           style: Ce(h(M))
         }, [
-          h(s).length >= e.minChars ? (g(), k(q, { key: 0 }, [
-            h(v).length == 0 ? (g(), k("div", yt, z(h(n)("No matches found")), 1)) : V("", !0)
-          ], 64)) : (g(), k("div", gt, z(h(n)("Insert at least :n characters", { n: e.minChars })), 1)),
-          C("div", se(h(H), { class: "scroller" }), [
-            C("div", Ee(Ne(h(re))), [
-              (g(!0), k(q, null, ae(h($), (L) => (g(), k("button", {
+          h(f).length >= e.minChars ? (w(), b(q, { key: 0 }, [
+            h(v).length == 0 ? (w(), b("div", mt, T(h(n)("No matches found")), 1)) : V("", !0)
+          ], 64)) : (w(), b("div", gt, T(h(n)("Insert at least :n characters", { n: e.minChars })), 1)),
+          _("div", se(h(H), { class: "scroller" }), [
+            _("div", Ee(Ne(h(re))), [
+              (w(!0), b(q, null, ae(h($), (L) => (w(), b("button", {
                 key: L.index,
                 class: "dropdown-row",
-                onClick: B((A) => u(L.data.key), ["stop", "prevent"]),
+                onClick: B((A) => o(L.data.key), ["stop", "prevent"]),
                 style: { height: "32px" }
               }, [
-                C("div", kt, z(L.data.value), 1)
+                _("div", kt, T(L.data.value), 1)
               ], 8, wt))), 128))
             ], 16)
           ], 16)
         ], 6), [
-          [Le, w.value]
+          [Le, S.value]
         ])
       ], 8, ["to"])) : V("", !0)
     ], 64));

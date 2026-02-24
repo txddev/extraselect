@@ -33,6 +33,7 @@ const props = defineProps({
   url: { type:String, required:false },
   maxWidth: { type: String, default: "dynamic" },
   search: { type: Boolean, default: false },
+  matchType: {type:String,default: "exact"},
   searchableUrl: { type: Boolean, default: false },
   initialValue: { default: null },
   minChars: { type: Number, default: 0 },
@@ -81,7 +82,7 @@ const toggleOption = (key, forcedState = null) => {
   emitModelValue(Array.from(selectedOptions.value.keys()))
 };
 
-const { filterText, filteredOptions, filterValues } = loadFilter(options,selectedOptions,toggleOption, props.filterFields,props.hardFilterFields)
+const { filterText, filteredOptions, filterValues } = loadFilter(options,selectedOptions,toggleOption, props.filterFields,props.hardFilterFields, props.matchType)
 const { searchingFlag } = loadSearch(
   options,
   props.url,
