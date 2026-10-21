@@ -44,7 +44,8 @@ const props = defineProps({
   hardFilterFields: { type: Array, default: [] },
   removeIcon: {type: String, default: "X"},
   dropdownContainer: {type: String, default: null },
-  disabled: {type: Boolean, default: false }
+  disabled: {type: Boolean, default: false },
+  selectedOnTop: {type: Boolean, default: false },
 });
 const isMultiple = computed(() => props.originalNode?.multiple ?? props.multiple)
 
@@ -278,8 +279,21 @@ const placeholder = computed(() => {
   return $t("No selection")
 });
 
+const virtualSource = computed(() => {
+  if(props.selectedOnTop && isMultiple.value){
+    return [...[...selectedOptions.value.keys()].map(e => {
+      let i = filteredOptions.value.find(f => f.key === e)
+      if(i!= null){
+        return {...i,selected:true}
+      }
+      return null
+    }).filter( e => e != null),{key:'separator',value:'separator',separator: true},...filteredOptions.value]
+  }
+  return filteredOptions.value
+})
+
 const { list, containerProps, wrapperProps } = useVirtualList(
-  filteredOptions,
+  virtualSource,
   {
     itemHeight: 32
   },
@@ -365,12 +379,16 @@ const { list, containerProps, wrapperProps } = useVirtualList(
       <div v-bind="containerProps" class="scroller">
         <div v-bind="wrapperProps">
           <template v-for="item in list" :key="item.index" style="height: 32px">
+            <template v-if="item.data.separator">
+              <div class="border-bottom"></div>
+            </template>
             <button
+              v-else
               class="dropdown-row"
               @click.stop.prevent="toggleOption(item.data.key)"
               style="height: 32px"
             >
-              <div class="row-input">
+              <div class="row-input" :class="{'fw-bold':item.data.selected}">
                 <input
                   :checked="selectedOptions.has(item.data.key)"
                   v-if="isMultiple"

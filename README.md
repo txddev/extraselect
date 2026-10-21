@@ -60,6 +60,7 @@ Per l'inclusione standalone il valore può essere impostato tramite dataset dell
 | dropdownContainer | String ( null ) | Avanzata. Definisce quale elemento html usare come contenitore del dropdown. Se null viene usato l'intero body |
 | showSelected |  Boolean ( false ) | Sperimentale. se true mostra delle badge con i valori selezionati sopra al campo |
 | removeIcon | String ( "X" ) | Sperimentale. Stringa usata come icona di rimozione se showSelected è attivo |
+| selectedOnTop | Boolean ( false ) | Riporta le voci selezionate in cima alla tendina. funziona solo se multiple |
 ### Extrasuggest
 | Parametro | Tipo (default) | Descrizione |
 |--|--|--|
